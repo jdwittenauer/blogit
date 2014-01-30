@@ -39,9 +39,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
+    <Compile Include="Entities\Author.cs" />
+    <Compile Include="Entities\Blog.cs" />
+    <Compile Include="Entities\Comment.cs" />
+    <Compile Include="Entities\Entity.cs" />
+    <Compile Include="Entities\Post.cs" />
+    <Compile Include="Interfaces\IAuthorRepository.cs" />
+    <Compile Include="Interfaces\IBlogRepository.cs" />
+    <Compile Include="Interfaces\ICommentRepository.cs" />
+    <Compile Include="Interfaces\IPostRepository.cs" />
+    <Compile Include="Interfaces\IRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
