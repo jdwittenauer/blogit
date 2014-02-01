@@ -4,9 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MyBlog.Infrastructure
+namespace MyBlog.Infrastructure.Repositories
 {
-    public class Class1
+    public class CommentRepository
     {
+
     }
 }
