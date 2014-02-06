@@ -1,12 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using MyBlog.Domain.Entities;
 
 namespace MyBlog.Domain.Interfaces
 {
-    public interface ICommentRepository : IRepository
+    /// <summary>
+    /// Interface for the comment repository.
+    /// </summary>
+    public interface ICommentRepository : IRepository<Comment>
     {
 
     }

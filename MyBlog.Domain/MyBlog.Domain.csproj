@@ -42,6 +42,7 @@
     <Compile Include="Entities\Author.cs" />
     <Compile Include="Entities\Blog.cs" />
     <Compile Include="Entities\Comment.cs" />
+    <Compile Include="Entities\Constants.cs" />
     <Compile Include="Entities\Entity.cs" />
     <Compile Include="Entities\Post.cs" />
     <Compile Include="Interfaces\IAuthorRepository.cs" />
@@ -50,6 +51,8 @@
     <Compile Include="Interfaces\IPostRepository.cs" />
     <Compile Include="Interfaces\IRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\GuidGenerator.cs" />
+    <Compile Include="Services\StringConverter.cs" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

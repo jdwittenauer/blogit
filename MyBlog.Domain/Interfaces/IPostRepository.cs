@@ -1,12 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using MyBlog.Domain.Entities;
 
 namespace MyBlog.Domain.Interfaces
 {
-    public interface IPostRepository : IRepository
+    /// <summary>
+    /// Interface for the post repository.
+    /// </summary>
+    public interface IPostRepository : IRepository<Post>
     {
 
     }
