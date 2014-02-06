@@ -1,13 +1,22 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Data.Entity;
+using System.Data.Entity.Infrastructure;
+using System.Data.Entity.SqlServer;
 
 namespace MyBlog.Infrastructure.Framework
 {
-    public class MyBlogConfiguration
+    /// <summary>
+    /// Defines configuration items for Entity Framework.  Replaces configuration file entries.
+    /// </summary>
+    public class MyBlogConfiguration : DbConfiguration
     {
-
+        /// <summary>
+        /// Default constructor.
+        /// </summary>
+        public MyBlogConfiguration()
+        {
+            SetDefaultConnectionFactory(new LocalDbConnectionFactory("v11.0"));
+            SetProviderServices("System.Data.SqlClient", SqlProviderServices.Instance);
+            SetExecutionStrategy("System.Data.SqlClient", () => new DefaultExecutionStrategy());
+        }
     }
 }

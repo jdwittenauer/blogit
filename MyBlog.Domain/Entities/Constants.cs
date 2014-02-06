@@ -6,6 +6,6 @@
         public const string Movies = "Movies";
         public const string Sports = "Sports";
         public const string Technology = "Technology";
-        public static string[] Array = new string[4] { Books, Movies, Sports, Technology }
+        public static string[] Array = new string[4] { Books, Movies, Sports, Technology };
     }
 }
