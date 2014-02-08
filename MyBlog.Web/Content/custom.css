@@ -1,1 +1,61 @@
-﻿
+﻿html, body
+{
+    background-color: #ffffff;
+    margin: 0;
+    padding-top: 25px;
+    font-size: 12px !important;
+    color: #000000 !important;
+}
+
+th, td 
+{ 
+    padding: 4px;
+}
+
+.theme-dropdown .dropdown-menu 
+{
+    display: block;
+    position: static;
+    margin-bottom: 20px;
+}
+
+.panel-inverse-no-border 
+{
+    border: none;
+}
+
+.panel-inverse-no-border > .panel-heading 
+{
+    color: #ffffff;
+    background-color: #333333;
+    border: none;
+    background-image: -webkit-linear-gradient(top, #333333 0%, #262626 100%);
+    background-image: linear-gradient(to bottom, #333333 0%, #262626 100%);
+    background-repeat: repeat-x;
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff333333', endColorstr='#ff262626', GradientType=0);
+}
+
+.panel-inverse-no-border > .panel-heading + .panel-collapse .panel-body 
+{
+    border: none;
+}
+
+.panel-inverse-no-border > .panel-footer + .panel-collapse .panel-body 
+{
+    border: none;
+}
+
+.panel-no-margin
+{
+    margin: 0;
+}
+
+.panel-body-no-padding
+{
+    padding: 0;
+}
+
+.panel-body-shaded
+{
+    background-color: #f0f0f0;
+}
