@@ -8,7 +8,7 @@ using MyBlog.Domain.Interfaces;
 using MyBlog.Infrastructure.Framework;
 using MyBlog.Infrastructure.Repositories;
 
-namespace MyBlog.Web.App_Start
+namespace MyBlog.Web
 {
     public class AutofacConfig
     {
@@ -18,8 +18,18 @@ namespace MyBlog.Web.App_Start
 
             builder.RegisterType<MyBlogContext>().AsSelf().InstancePerHttpRequest();
 
-            //builder.RegisterType<EFActivityRepository>()
-            //    .As<IActivityRepository>().UsingConstructor(typeof(KittyhawkContext));
+            builder.RegisterType<EFAuthorRepository>()
+                .As<IAuthorRepository>().UsingConstructor(typeof(MyBlogContext));
+            //builder.RegisterType<EFAuthorRepository>()
+            //    .As<IAuthorRepository>().UsingConstructor(typeof(MyBlogContext));
+            //builder.RegisterType<EFAuthorRepository>()
+            //    .As<IAuthorRepository>().UsingConstructor(typeof(MyBlogContext));
+            //builder.RegisterType<EFAuthorRepository>()
+            //    .As<IAuthorRepository>().UsingConstructor(typeof(MyBlogContext));
+            //builder.RegisterType<EFAuthorRepository>()
+            //    .As<IAuthorRepository>().UsingConstructor(typeof(MyBlogContext));
+            //builder.RegisterType<EFAuthorRepository>()
+            //    .As<IAuthorRepository>().UsingConstructor(typeof(MyBlogContext));
 
             builder.RegisterControllers(Assembly.GetExecutingAssembly());
             builder.RegisterApiControllers(Assembly.GetExecutingAssembly());

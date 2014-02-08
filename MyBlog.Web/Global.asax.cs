@@ -16,8 +16,11 @@ namespace MyBlog.Web
             AreaRegistration.RegisterAllAreas();
             GlobalConfiguration.Configure(WebApiConfig.Register);
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
+            FilterConfig.RegisterGlobalAPIFilters(GlobalConfiguration.Configuration.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+            AutofacConfig.RegisterConfiguration();
+            AutomapperConfig.RegisterConfiguration();
         }
     }
 }

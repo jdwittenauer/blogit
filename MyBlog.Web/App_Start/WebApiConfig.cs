@@ -1,7 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Net.Http.Formatting;
 using System.Web.Http;
+using System.Web.Http.OData.Builder;
+using MyBlog.Domain.Entities;
 
 namespace MyBlog.Web
 {
@@ -9,9 +9,22 @@ namespace MyBlog.Web
     {
         public static void Register(HttpConfiguration config)
         {
-            // Web API configuration and services
+            ODataConventionModelBuilder builder = new ODataConventionModelBuilder();
+            builder.EntitySet<Author>("authors");
+            //builder.EntitySet<Author>("authors");
+            //builder.EntitySet<Author>("authors");
+            //builder.EntitySet<Author>("authors");
 
-            // Web API routes
+            config.Routes.MapODataRoute("OData", "api/odata", builder.GetEdmModel());
+
+            var queryattribute = new QueryableAttribute()
+            {
+                PageSize = 100,
+                MaxTop = 100,
+                EnsureStableOrdering = false
+            };
+            config.EnableQuerySupport(queryattribute);
+
             config.MapHttpAttributeRoutes();
 
             config.Routes.MapHttpRoute(
@@ -19,6 +32,8 @@ namespace MyBlog.Web
                 routeTemplate: "api/{controller}/{id}",
                 defaults: new { id = RouteParameter.Optional }
             );
+
+            config.Formatters.Add(new BsonMediaTypeFormatter());
         }
     }
 }

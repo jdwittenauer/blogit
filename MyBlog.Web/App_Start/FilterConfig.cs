@@ -1,5 +1,6 @@
-﻿using System.Web;
+﻿using System.Web.Http.Filters;
 using System.Web.Mvc;
+using MyBlog.Web.Filters;
 
 namespace MyBlog.Web
 {
@@ -7,7 +8,14 @@ namespace MyBlog.Web
     {
         public static void RegisterGlobalFilters(GlobalFilterCollection filters)
         {
-            filters.Add(new HandleErrorAttribute());
+            filters.Add(new LogAction());
+            filters.Add(new LogError());
+        }
+
+        public static void RegisterGlobalAPIFilters(HttpFilterCollection filters)
+        {
+            filters.Add(new LogAPIAction());
+            filters.Add(new LogAPIError());
         }
     }
 }
