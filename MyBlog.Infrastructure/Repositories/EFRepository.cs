@@ -45,7 +45,15 @@ namespace MyBlog.Infrastructure.Repositories
         /// <returns>Instantiated entity</returns>
         public T Get(Guid key)
         {
-            throw new NotImplementedException();
+            try
+            {
+                return context.Set<T>().Find(key);
+            }
+            catch (Exception)
+            {
+                context.Dispose();
+                throw;
+            }
         }
 
         /// <summary>
@@ -54,7 +62,22 @@ namespace MyBlog.Infrastructure.Repositories
         /// <param name="entity">Entity</param>
         public void Insert(T entity)
         {
-            throw new NotImplementedException();
+            if (entity == null)
+                throw new ArgumentNullException("entity");
+
+            try
+            {
+                entity.ID = GuidGenerator.GenerateComb();
+                entity.CreatedDate = DateTime.Now;
+                entity.UpdatedDate = DateTime.Now;
+                context.Set<T>().Add(entity);
+                context.SaveChanges();
+            }
+            catch (Exception)
+            {
+                context.Dispose();
+                throw;
+            }
         }
 
         /// <summary>
@@ -63,7 +86,23 @@ namespace MyBlog.Infrastructure.Repositories
         /// <param name="entity">Entity</param>
         public void Update(T entity)
         {
-            throw new NotImplementedException();
+            if (entity == null)
+                throw new ArgumentNullException("entity");
+
+            try
+            {
+                if (!context.Set<T>().Local.Any(x => x == entity))
+                    context.Set<T>().Attach(entity);
+
+                entity.UpdatedDate = DateTime.Now;
+                context.Entry(entity).State = EntityState.Modified;
+                context.SaveChanges();
+            }
+            catch (Exception)
+            {
+                context.Dispose();
+                throw;
+            }
         }
 
         /// <summary>
@@ -72,7 +111,22 @@ namespace MyBlog.Infrastructure.Repositories
         /// <param name="entity">Entity</param>
         public void Delete(T entity)
         {
-            throw new NotImplementedException();
+            if (entity == null)
+                throw new ArgumentNullException("entity");
+
+            try
+            {
+                if (!context.Set<T>().Local.Any(x => x == entity))
+                    context.Set<T>().Attach(entity);
+
+                context.Set<T>().Remove(entity);
+                context.SaveChanges();
+            }
+            catch (Exception)
+            {
+                context.Dispose();
+                throw;
+            }
         }
 
         /// <summary>
@@ -81,7 +135,41 @@ namespace MyBlog.Infrastructure.Repositories
         /// <param name="entities">List of entities</param>
         public void BulkInsert(IEnumerable<T> entities)
         {
-            throw new NotImplementedException();
+            if (entities == null)
+                throw new ArgumentNullException("entities");
+
+            try
+            {
+                context.Configuration.AutoDetectChangesEnabled = false;
+                context.Configuration.ValidateOnSaveEnabled = false;
+
+                int i = 0;
+                foreach (var entity in entities)
+                {
+                    entity.ID = GuidGenerator.GenerateComb();
+                    entity.CreatedDate = DateTime.Now;
+                    entity.UpdatedDate = DateTime.Now;
+                    context.Set<T>().Add(entity);
+                    i++;
+
+                    if ((i % 1000) == 0)
+                    {
+                        context.SaveChanges();
+                    }
+                }
+
+                context.SaveChanges();
+            }
+            catch (Exception)
+            {
+                context.Dispose();
+                throw;
+            }
+            finally
+            {
+                context.Configuration.AutoDetectChangesEnabled = true;
+                context.Configuration.ValidateOnSaveEnabled = true;
+            }
         }
 
         /// <summary>
@@ -90,7 +178,42 @@ namespace MyBlog.Infrastructure.Repositories
         /// <param name="entities">List of entities</param>
         public void BulkUpdate(IEnumerable<T> entities)
         {
-            throw new NotImplementedException();
+            if (entities == null)
+                throw new ArgumentNullException("entities");
+
+            try
+            {
+                context.Configuration.AutoDetectChangesEnabled = false;
+                context.Configuration.ValidateOnSaveEnabled = false;
+
+                int i = 0;
+                foreach (var entity in entities)
+                {
+                    if (!context.Set<T>().Local.Any(x => x == entity))
+                        context.Set<T>().Attach(entity);
+
+                    entity.UpdatedDate = DateTime.Now;
+                    context.Entry(entity).State = EntityState.Modified;
+                    i++;
+
+                    if ((i % 1000) == 0)
+                    {
+                        context.SaveChanges();
+                    }
+                }
+
+                context.SaveChanges();
+            }
+            catch (Exception)
+            {
+                context.Dispose();
+                throw;
+            }
+            finally
+            {
+                context.Configuration.AutoDetectChangesEnabled = true;
+                context.Configuration.ValidateOnSaveEnabled = true;
+            }
         }
 
         /// <summary>
@@ -99,7 +222,38 @@ namespace MyBlog.Infrastructure.Repositories
         /// <param name="entities">List of entities</param>
         public void BulkDelete(IEnumerable<T> entities)
         {
-            throw new NotImplementedException();
+            if (entities == null)
+                throw new ArgumentNullException("entities");
+
+            try
+            {
+                context.Configuration.AutoDetectChangesEnabled = false;
+                context.Configuration.ValidateOnSaveEnabled = false;
+
+                int i = 0;
+                foreach (var entity in entities)
+                {
+                    context.Set<T>().Remove(entity);
+                    i++;
+
+                    if ((i % 1000) == 0)
+                    {
+                        context.SaveChanges();
+                    }
+                }
+
+                context.SaveChanges();
+            }
+            catch (Exception)
+            {
+                context.Dispose();
+                throw;
+            }
+            finally
+            {
+                context.Configuration.AutoDetectChangesEnabled = true;
+                context.Configuration.ValidateOnSaveEnabled = true;
+            }
         }
 
         /// <summary>
@@ -108,7 +262,15 @@ namespace MyBlog.Infrastructure.Repositories
         /// <returns>IQueryable object</returns>
         public IQueryable<T> Query()
         {
-            throw new NotImplementedException();
+            try
+            {
+                return context.Set<T>();
+            }
+            catch (Exception)
+            {
+                context.Dispose();
+                throw;
+            }
         }
 
         /// <summary>
@@ -118,12 +280,20 @@ namespace MyBlog.Infrastructure.Repositories
         /// <returns>IQueryable object</returns>
         public IQueryable<T> QueryNoTracking()
         {
-            throw new NotImplementedException();
+            try
+            {
+                return context.Set<T>().AsNoTracking();
+            }
+            catch (Exception)
+            {
+                context.Dispose();
+                throw;
+            }
         }
 
         /// <summary>
-        /// Callss dispose on the underlying context.  This is NOT necessary in most cases as the context
-        /// lifetime is normally handled by a dependency injection container.
+        /// Calls dispose on the underlying context.  This is NOT necessary in most cases
+        /// as the context lifetime is normally handled by a dependency injection container.
         /// </summary>
         public void Dispose()
         {
@@ -139,7 +309,7 @@ namespace MyBlog.Infrastructure.Repositories
         {
             if (disposing)
             {
-                if (context == null)
+                if (context != null)
                 {
                     context.Dispose();
                 }

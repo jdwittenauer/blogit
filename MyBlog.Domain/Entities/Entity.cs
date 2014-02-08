@@ -8,7 +8,7 @@ namespace MyBlog.Domain.Entities
     /// </summary>
     public abstract class Entity
     {
-        public virtual Guid ID { get; protected set; }
+        public virtual Guid ID { get; set; }
         public virtual DateTime CreatedDate { get; set; }
         public virtual DateTime UpdatedDate { get; set; }
 
