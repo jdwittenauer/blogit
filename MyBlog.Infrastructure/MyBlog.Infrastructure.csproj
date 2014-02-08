@@ -52,11 +52,15 @@
     <Compile Include="Mappings\AuthorMap.cs" />
     <Compile Include="Mappings\BlogMap.cs" />
     <Compile Include="Mappings\CommentMap.cs" />
+    <Compile Include="Mappings\ErrorMap.cs" />
+    <Compile Include="Mappings\LogMap.cs" />
     <Compile Include="Mappings\PostMap.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\EFAuthorRepository.cs" />
     <Compile Include="Repositories\EFBlogRepository.cs" />
     <Compile Include="Repositories\EFCommentRepository.cs" />
+    <Compile Include="Repositories\EFErrorRepository.cs" />
+    <Compile Include="Repositories\EFLogRepository.cs" />
     <Compile Include="Repositories\EFPostRepository.cs" />
     <Compile Include="Repositories\EFRepository.cs" />
   </ItemGroup>

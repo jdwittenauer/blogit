@@ -44,10 +44,14 @@
     <Compile Include="Entities\Comment.cs" />
     <Compile Include="Entities\Constants.cs" />
     <Compile Include="Entities\Entity.cs" />
+    <Compile Include="Entities\Error.cs" />
+    <Compile Include="Entities\Log.cs" />
     <Compile Include="Entities\Post.cs" />
     <Compile Include="Interfaces\IAuthorRepository.cs" />
     <Compile Include="Interfaces\IBlogRepository.cs" />
     <Compile Include="Interfaces\ICommentRepository.cs" />
+    <Compile Include="Interfaces\IErrorRepository.cs" />
+    <Compile Include="Interfaces\ILogRepository.cs" />
     <Compile Include="Interfaces\IPostRepository.cs" />
     <Compile Include="Interfaces\IRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
