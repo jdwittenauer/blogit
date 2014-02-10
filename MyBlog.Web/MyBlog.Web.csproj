@@ -218,6 +218,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\API\AuthorsController.cs" />
     <Compile Include="Controllers\API\BlogsController.cs" />
     <Compile Include="Controllers\API\CommentsController.cs" />
@@ -279,6 +280,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Models\" />
+    <Folder Include="Views\Admin\" />
     <Folder Include="Views\Author\" />
     <Folder Include="Views\Blog\" />
     <Folder Include="Views\Comment\" />

@@ -11,9 +11,9 @@ namespace MyBlog.Web
         {
             ODataConventionModelBuilder builder = new ODataConventionModelBuilder();
             builder.EntitySet<Author>("authors");
-            //builder.EntitySet<Author>("authors");
-            //builder.EntitySet<Author>("authors");
-            //builder.EntitySet<Author>("authors");
+            builder.EntitySet<Blog>("blogs");
+            builder.EntitySet<Comment>("comments");
+            builder.EntitySet<Post>("posts");
 
             config.Routes.MapODataRoute("OData", "api/odata", builder.GetEdmModel());
 

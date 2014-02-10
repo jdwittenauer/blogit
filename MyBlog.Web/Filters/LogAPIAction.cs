@@ -61,9 +61,6 @@ namespace MyBlog.Web.Filters
                 uriDetail = uri.Substring(uri.IndexOf("api/"), uri.Length - (uri.IndexOf("api/"))).ToLower();
             }
 
-            // The filter context object contains a lot of useful information about the
-            // current web request, including the controller and action that initiated
-            // the request and the identity of the user requesting the action
             Log log = new Log
             {
                 User = "Unknown",

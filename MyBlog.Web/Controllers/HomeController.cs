@@ -6,6 +6,9 @@ using System.Web.Mvc;
 
 namespace MyBlog.Web.Controllers
 {
+    /// <summary>
+    /// Home controller.
+    /// </summary>
     public class HomeController : Controller
     {
         public ActionResult Index()

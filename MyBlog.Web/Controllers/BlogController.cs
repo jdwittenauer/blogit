@@ -1,18 +1,21 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
+using MyBlog.Domain.Interfaces;
 
 namespace MyBlog.Web.Controllers
 {
+    /// <summary>
+    /// Blog controller.
+    /// </summary>
     public class BlogController : Controller
     {
-        //
-        // GET: /Blog/
-        public ActionResult Index()
+        private IBlogRepository repository;
+
+        /// <summary>
+        /// Overrides the default constructor.  Uses dependency injection to instantiate repositories.
+        /// </summary>
+        public BlogController(IBlogRepository repository)
         {
-            return View();
+            this.repository = repository;
         }
 	}
 }

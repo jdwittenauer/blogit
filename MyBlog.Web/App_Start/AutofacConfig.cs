@@ -20,16 +20,16 @@ namespace MyBlog.Web
 
             builder.RegisterType<EFAuthorRepository>()
                 .As<IAuthorRepository>().UsingConstructor(typeof(MyBlogContext));
-            //builder.RegisterType<EFAuthorRepository>()
-            //    .As<IAuthorRepository>().UsingConstructor(typeof(MyBlogContext));
-            //builder.RegisterType<EFAuthorRepository>()
-            //    .As<IAuthorRepository>().UsingConstructor(typeof(MyBlogContext));
-            //builder.RegisterType<EFAuthorRepository>()
-            //    .As<IAuthorRepository>().UsingConstructor(typeof(MyBlogContext));
-            //builder.RegisterType<EFAuthorRepository>()
-            //    .As<IAuthorRepository>().UsingConstructor(typeof(MyBlogContext));
-            //builder.RegisterType<EFAuthorRepository>()
-            //    .As<IAuthorRepository>().UsingConstructor(typeof(MyBlogContext));
+            builder.RegisterType<EFBlogRepository>()
+                .As<IBlogRepository>().UsingConstructor(typeof(MyBlogContext));
+            builder.RegisterType<EFCommentRepository>()
+                .As<ICommentRepository>().UsingConstructor(typeof(MyBlogContext));
+            builder.RegisterType<EFErrorRepository>()
+                .As<IErrorRepository>().UsingConstructor(typeof(MyBlogContext));
+            builder.RegisterType<EFLogRepository>()
+                .As<ILogRepository>().UsingConstructor(typeof(MyBlogContext));
+            builder.RegisterType<EFPostRepository>()
+                .As<IPostRepository>().UsingConstructor(typeof(MyBlogContext));
 
             builder.RegisterControllers(Assembly.GetExecutingAssembly());
             builder.RegisterApiControllers(Assembly.GetExecutingAssembly());

@@ -1,18 +1,21 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
+using MyBlog.Domain.Interfaces;
 
 namespace MyBlog.Web.Controllers
 {
+    /// <summary>
+    /// Comment controller.
+    /// </summary>
     public class CommentController : Controller
     {
-        //
-        // GET: /Comment/
-        public ActionResult Index()
+        private ICommentRepository repository;
+
+        /// <summary>
+        /// Overrides the default constructor.  Uses dependency injection to instantiate repositories.
+        /// </summary>
+        public CommentController(ICommentRepository repository)
         {
-            return View();
+            this.repository = repository;
         }
 	}
 }

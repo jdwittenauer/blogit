@@ -1,18 +1,21 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
+using MyBlog.Domain.Interfaces;
 
 namespace MyBlog.Web.Controllers
 {
+    /// <summary>
+    /// Author controller.
+    /// </summary>
     public class AuthorController : Controller
     {
-        //
-        // GET: /Author/
-        public ActionResult Index()
+        private IAuthorRepository repository;
+
+        /// <summary>
+        /// Overrides the default constructor.  Uses dependency injection to instantiate repositories.
+        /// </summary>
+        public AuthorController(IAuthorRepository repository)
         {
-            return View();
+            this.repository = repository;
         }
 	}
 }

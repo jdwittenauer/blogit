@@ -19,9 +19,6 @@ namespace MyBlog.Web.Filters
     {
         public object BeforeCall(string operationName, object[] inputs)
         {
-            // Used to calculate the time from when an operation is initiated to the
-            // moment when a result is returned, giving us an accurate estimate
-            // of the load time for the given operation
             Stopwatch timer = new Stopwatch();
             timer.Start();
 

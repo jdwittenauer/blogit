@@ -1,39 +1,32 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Net.Http;
-using System.Web.Http;
+﻿using System.Linq;
+using System.Web.Http.OData;
+using MyBlog.Domain.Entities;
+using MyBlog.Domain.Interfaces;
 
 namespace MyBlog.Web.Controllers.API
 {
-    public class BlogsController : ApiController
+    /// <summary>
+    /// Blog web API controller.
+    /// </summary>
+    public class BlogsController : ODataController
     {
-        // GET api/<controller>
-        public IEnumerable<string> Get()
+        private IBlogRepository repository;
+
+        /// <summary>
+        /// Overrides the default constructor.  Uses dependency injection to instantiate repositories.
+        /// </summary>
+        public BlogsController(IBlogRepository repository)
         {
-            return new string[] { "value1", "value2" };
+            this.repository = repository;
         }
 
-        // GET api/<controller>/5
-        public string Get(int id)
+        /// <summary>
+        /// Exposes odata endpoint for the deal entity.
+        /// </summary>
+        /// <returns>IQueryable object</returns>
+        public IQueryable<Blog> GetBlogs()
         {
-            return "value";
-        }
-
-        // POST api/<controller>
-        public void Post([FromBody]string value)
-        {
-        }
-
-        // PUT api/<controller>/5
-        public void Put(int id, [FromBody]string value)
-        {
-        }
-
-        // DELETE api/<controller>/5
-        public void Delete(int id)
-        {
+            return repository.QueryNoTracking();
         }
     }
 }
