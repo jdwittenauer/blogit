@@ -2,7 +2,7 @@
 using System.ServiceModel.Channels;
 using System.ServiceModel.Description;
 
-namespace Kittyhawk.Services
+namespace MyBlog.Services
 {
     /// <summary>
     /// Overrides the default channel factory implementation to add an endpoint behavior

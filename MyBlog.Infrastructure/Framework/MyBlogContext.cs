@@ -66,7 +66,7 @@ namespace MyBlog.Infrastructure.Framework
 
             modelBuilder.Properties<DateTime>().Where(x => x.Name == "UpdatedDate").Configure(c =>
                 c.HasColumnName("UpdatedDate")
-                .HasColumnOrder(1)
+                .HasColumnOrder(2)
                 .IsRequired());
 
             modelBuilder.Configurations.Add(new AuthorMap());

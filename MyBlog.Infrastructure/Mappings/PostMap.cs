@@ -16,7 +16,7 @@ namespace MyBlog.Infrastructure.Mappings
             this.Property(t => t.Content).HasColumnName("Content").HasColumnOrder(4).IsRequired();
             this.Property(t => t.Date).HasColumnName("Date").HasColumnOrder(5).IsRequired();
             this.Property(t => t.AuthorID).HasColumnName("AuthorID").HasColumnOrder(6).IsRequired();
-            this.Property(t => t.BlogID).HasColumnName("BlogID").HasColumnOrder(6).IsRequired();
+            this.Property(t => t.BlogID).HasColumnName("BlogID").HasColumnOrder(7).IsRequired();
 
             this.HasRequired<Author>(t => t.Author).WithMany(x => x.Posts).HasForeignKey(f => f.AuthorID);
             this.HasRequired<Blog>(t => t.Blog).WithMany(x => x.Posts).HasForeignKey(f => f.BlogID);

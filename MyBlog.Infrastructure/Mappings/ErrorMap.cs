@@ -13,11 +13,11 @@ namespace MyBlog.Infrastructure.Mapping
         {
             // Table & Column Mappings
             this.ToTable("Error");
-            this.Property(t => t.User).HasColumnName("UserName").IsRequired();
-            this.Property(t => t.EventType).HasColumnName("EventType").IsRequired();
-            this.Property(t => t.EventDetail).HasColumnName("EventDetail").IsOptional();
-            this.Property(t => t.Description).HasColumnName("Description").IsOptional();
-            this.Property(t => t.StackTrace).HasColumnName("StackTrace").IsOptional();
+            this.Property(t => t.User).HasColumnName("UserName").HasColumnOrder(3).IsRequired();
+            this.Property(t => t.EventType).HasColumnName("EventType").HasColumnOrder(4).IsRequired();
+            this.Property(t => t.EventDetail).HasColumnName("EventDetail").HasColumnOrder(5).IsOptional();
+            this.Property(t => t.Description).HasColumnName("Description").HasColumnOrder(6).IsOptional();
+            this.Property(t => t.StackTrace).HasColumnName("StackTrace").HasColumnOrder(7).IsOptional();
         }
     }
 }

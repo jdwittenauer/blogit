@@ -1,4 +1,4 @@
-﻿namespace Kittyhawk.Services
+﻿namespace MyBlog.Services
 {
     public static class Constants
     {
@@ -7,5 +7,6 @@
         public const string WebServerDev = null;
         public const string WebServerTest = null;
         public const string WebServerProd = null;
+        public const string AuthorService = "/services/authorservice.svc";
     }
 }

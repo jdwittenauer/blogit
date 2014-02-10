@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.ServiceModel;
 using MyBlog.Domain.Entities;
 
-namespace Kittyhawk.Services
+namespace MyBlog.Services
 {
     /// <summary>
     /// Provides an abstraction from the details of working with WCF channels on the
@@ -244,6 +244,9 @@ namespace Kittyhawk.Services
             string path = String.Empty;
             switch (type)
             {
+                case ("IAuthorService"):
+                    path = Constants.AuthorService;
+                    break;
 				default:
 					path = null;
                     break;
