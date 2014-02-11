@@ -9,6 +9,7 @@ namespace MyBlog.Web
     {
         public static void Register(HttpConfiguration config)
         {
+            // OData configuration
             ODataConventionModelBuilder builder = new ODataConventionModelBuilder();
             builder.EntitySet<Author>("authors");
             builder.EntitySet<Blog>("blogs");
@@ -27,12 +28,14 @@ namespace MyBlog.Web
 
             config.MapHttpAttributeRoutes();
 
+            // Web API configuration
             config.Routes.MapHttpRoute(
                 name: "DefaultApi",
                 routeTemplate: "api/{controller}/{id}",
                 defaults: new { id = RouteParameter.Optional }
             );
 
+            // Additional formatters
             config.Formatters.Add(new BsonMediaTypeFormatter());
         }
     }

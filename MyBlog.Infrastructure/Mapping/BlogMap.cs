@@ -2,7 +2,7 @@
 using System.Data.Entity.ModelConfiguration;
 using MyBlog.Domain.Entities;
 
-namespace MyBlog.Infrastructure.Mappings
+namespace MyBlog.Infrastructure.Mapping
 {
     /// <summary>
     /// Blog entity mapping for Entity Framework.

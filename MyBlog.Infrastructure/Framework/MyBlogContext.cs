@@ -4,7 +4,7 @@ using System.Configuration;
 using System.Data.Entity;
 using System.Data.Entity.ModelConfiguration.Conventions;
 using System.Diagnostics;
-using MyBlog.Infrastructure.Mappings;
+using MyBlog.Infrastructure.Mapping;
 
 namespace MyBlog.Infrastructure.Framework
 {
