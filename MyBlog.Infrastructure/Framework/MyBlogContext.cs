@@ -73,6 +73,8 @@ namespace MyBlog.Infrastructure.Framework
             modelBuilder.Configurations.Add(new BlogMap());
             modelBuilder.Configurations.Add(new CommentMap());
             modelBuilder.Configurations.Add(new PostMap());
+            modelBuilder.Configurations.Add(new LogMap());
+            modelBuilder.Configurations.Add(new ErrorMap());
 
             base.OnModelCreating(modelBuilder);
         }

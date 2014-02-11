@@ -2,7 +2,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Data.Entity.ModelConfiguration;
 using MyBlog.Domain.Entities;
 
-namespace MyBlog.Infrastructure.Mapping
+namespace MyBlog.Infrastructure.Mappings
 {
     /// <summary>
     /// Log entity mapping for Entity Framework.
@@ -11,7 +11,6 @@ namespace MyBlog.Infrastructure.Mapping
     {
         public LogMap()
         {
-            // Table & Column Mappings
             this.ToTable("Log");
             this.Property(t => t.User).HasColumnName("UserName").HasColumnOrder(3).IsRequired();
             this.Property(t => t.EventType).HasColumnName("EventType").HasColumnOrder(4).IsRequired();
