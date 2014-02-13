@@ -18,8 +18,8 @@ namespace MyBlog.Infrastructure.Mapping
             this.Property(t => t.AuthorID).HasColumnName("AuthorID").HasColumnOrder(6).IsRequired();
             this.Property(t => t.BlogID).HasColumnName("BlogID").HasColumnOrder(7).IsRequired();
 
-            this.HasRequired<Author>(t => t.Author).WithMany(x => x.Posts).HasForeignKey(f => f.AuthorID).WillCascadeOnDelete(false);
-            this.HasRequired<Blog>(t => t.Blog).WithMany(x => x.Posts).HasForeignKey(f => f.BlogID).WillCascadeOnDelete(false);
+            this.HasRequired<Author>(t => t.Author).WithMany(x => x.Posts).HasForeignKey(f => f.AuthorID);
+            this.HasRequired<Blog>(t => t.Blog).WithMany(x => x.Posts).HasForeignKey(f => f.BlogID);
             this.HasMany<Comment>(t => t.Comments).WithRequired(x => x.Post);
         }
     }

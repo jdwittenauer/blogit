@@ -53,6 +53,7 @@ namespace MyBlog.Infrastructure.Framework
         /// <param name="modelBuilder">Model builder definition</param>
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
+            modelBuilder.Conventions.Remove<OneToManyCascadeDeleteConvention>();
             modelBuilder.Properties<Guid>().Where(x => x.Name == "ID").Configure(c =>
                 c.IsKey()
                 .HasDatabaseGeneratedOption(DatabaseGeneratedOption.None)
