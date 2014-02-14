@@ -42,6 +42,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Constants.cs" />
+    <Compile Include="DataContracts\Post.cs" />
+    <Compile Include="DataContracts\Comment.cs" />
+    <Compile Include="DataContracts\Blog.cs" />
+    <Compile Include="DataContracts\Author.cs" />
+    <Compile Include="Interfaces\ICommentService.cs" />
+    <Compile Include="Interfaces\IBlogService.cs" />
+    <Compile Include="Interfaces\IPostService.cs" />
     <Compile Include="Interfaces\IAuthorService.cs" />
     <Compile Include="MyBlogChannelFactory.cs" />
     <Compile Include="MyBlogServiceFactory.cs" />

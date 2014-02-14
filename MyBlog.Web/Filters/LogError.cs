@@ -21,15 +21,17 @@ namespace MyBlog.Web.Filters
             {
                 User = "Unknown",
                 EventType = EventType.Web,
-                EventDetail = String.Format("{0}/{1}", 
-                    filterContext.RouteData.Values["controller"].ToString(), 
-                    filterContext.RouteData.Values["action"].ToString()),
+                EventDetail = String.Format("{0}/{1}",
+                    filterContext.RouteData.Values["controller"].ToString(),
+                    filterContext.RouteData.Values["action"].ToString()).ToLower(),
                 Description = filterContext.Exception.Message,
                 StackTrace = filterContext.Exception.StackTrace
             };
 
             if (filterContext.HttpContext.User != null)
+            {
                 error.User = filterContext.HttpContext.User.Identity.Name.ToString();
+            }
 
             if (filterContext.Exception.InnerException != null)
             {

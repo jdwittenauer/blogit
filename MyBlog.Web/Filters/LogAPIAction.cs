@@ -43,37 +43,49 @@ namespace MyBlog.Web.Filters
                 loadTime = Math.Round(double.Parse(timer.ElapsedMilliseconds.ToString()) / 1000, 3);
             }
 
-            string eventDetail, uriDetail;
-            string uri = actionExecutedContext.Request.RequestUri.ToString();
+            string eventDetail;
+            string uri = actionExecutedContext.Request.RequestUri.ToString().Substring(7).ToLower();
+            if (uri.EndsWith("/"))
+            {
+                uri = uri.Remove(uri.Length - 1);
+            }
+
             if (uri.Contains("odata"))
             {
                 eventDetail = String.Format("api/odata/{0}", actionExecutedContext.ActionContext
-                    .ControllerContext.RouteData.Values["controller"].ToString().ToLower());
-                if (uri.IndexOf("odata") + 5 == uri.Length)
-                    uriDetail = null;
-                else
-                    uriDetail = uri.Substring(uri.IndexOf("api/odata/"), uri.Length - (uri.IndexOf("api/odata/"))).ToLower();
+                    .ControllerContext.ControllerDescriptor.ControllerName.ToString().ToLower());
             }
             else
             {
-                eventDetail = String.Format("api/{0}", actionExecutedContext.ActionContext.
-                    ControllerContext.RouteData.Values["controller"].ToString().ToLower());
-                uriDetail = uri.Substring(uri.IndexOf("api/"), uri.Length - (uri.IndexOf("api/"))).ToLower();
+                eventDetail = String.Format("api/{0}", actionExecutedContext.ActionContext
+                    .ControllerContext.ControllerDescriptor.ControllerName.ToString().ToLower());
             }
 
+            // The filter context object contains a lot of useful information about the
+            // current web request, including the controller and action that initiated
+            // the request and the identity of the user requesting the action
             Log log = new Log
             {
                 User = "Unknown",
                 EventType = EventType.Web,
                 EventDetail = eventDetail,
-                Description = uriDetail,
+                Description = uri,
                 Metric = loadTime,
                 MetricDescription = "Elapsed Time",
                 MetricUnit = "Seconds"
             };
 
             if (actionExecutedContext.ActionContext.RequestContext.Principal != null)
-                log.User = actionExecutedContext.ActionContext.RequestContext.Principal.Identity.Name.ToString();
+            {
+                log.User = actionExecutedContext.ActionContext
+                    .RequestContext.Principal.Identity.Name.ToString().ToUpper();
+            }
+
+            if (actionExecutedContext.ActionContext.ControllerContext.RouteData.Values.ContainsKey("parameters"))
+            {
+                log.Description += " " + actionExecutedContext.ActionContext
+                    .ControllerContext.RouteData.Values["parameters"].ToString();
+            }
 
             var repository = System.Web.Mvc.DependencyResolver.Current.GetService<ILogRepository>();
             repository.Insert(log);

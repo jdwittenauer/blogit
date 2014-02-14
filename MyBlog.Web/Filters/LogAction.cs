@@ -39,23 +39,37 @@ namespace MyBlog.Web.Filters
                 loadTime = Math.Round(double.Parse(timer.ElapsedMilliseconds.ToString()) / 1000, 3);
             }
 
+            string uri = filterContext.HttpContext.Request.Url.ToString().Substring(7).ToLower();
+            if (uri.EndsWith("/"))
+            {
+                uri = uri.Remove(uri.Length - 1);
+            }
+
+            // The filter context object contains a lot of useful information about the
+            // current web request, including the controller and action that initiated
+            // the request and the identity of the user requesting the action
             Log log = new Log
             {
                 User = "Unknown",
                 EventType = EventType.Web,
                 EventDetail = String.Format("{0}/{1}",
                     filterContext.RouteData.Values["controller"].ToString(),
-                    filterContext.RouteData.Values["action"].ToString()),
+                    filterContext.RouteData.Values["action"].ToString()).ToLower(),
+                Description = uri,
                 Metric = loadTime,
                 MetricDescription = "Elapsed Time",
                 MetricUnit = "Seconds"
             };
 
             if (filterContext.HttpContext.User != null)
-                log.User = filterContext.HttpContext.User.Identity.Name.ToString();
+            {
+                log.User = filterContext.HttpContext.User.Identity.Name.ToString().ToUpper();
+            }
 
             if (filterContext.RouteData.Values.ContainsKey("parameters"))
-                log.Description = filterContext.RouteData.Values["parameters"].ToString();
+            {
+                log.Description += " " + filterContext.RouteData.Values["parameters"].ToString();
+            }
 
             var repository = DependencyResolver.Current.GetService<ILogRepository>();
             repository.Insert(log);

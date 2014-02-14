@@ -25,12 +25,12 @@ namespace MyBlog.Web.Filters
             if (uri.Contains("odata"))
             {
                 eventDetail = String.Format("api/odata/{0}",
-                    context.ActionContext.ControllerContext.RouteData.Values["controller"].ToString());
+                    context.ActionContext.ControllerContext.ControllerDescriptor.ControllerName.ToString().ToLower());
             }
             else
             {
                 eventDetail = String.Format("api/{0}",
-                    context.ActionContext.ControllerContext.RouteData.Values["controller"].ToString());
+                    context.ActionContext.ControllerContext.ControllerDescriptor.ControllerName.ToString().ToLower());
             }
 
             // Log the exception
@@ -44,7 +44,9 @@ namespace MyBlog.Web.Filters
             };
 
             if (context.ActionContext.RequestContext.Principal != null)
+            {
                 error.User = context.ActionContext.RequestContext.Principal.Identity.Name.ToString();
+            }
 
             if (context.Exception.InnerException != null)
             {

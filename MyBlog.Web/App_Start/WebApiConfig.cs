@@ -26,14 +26,8 @@ namespace MyBlog.Web
             };
             config.EnableQuerySupport(queryattribute);
 
+            // Web API attribute routing
             config.MapHttpAttributeRoutes();
-
-            // Web API configuration
-            config.Routes.MapHttpRoute(
-                name: "DefaultApi",
-                routeTemplate: "api/{controller}/{id}",
-                defaults: new { id = RouteParameter.Optional }
-            );
 
             // Additional formatters
             config.Formatters.Add(new BsonMediaTypeFormatter());
