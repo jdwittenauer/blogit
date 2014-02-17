@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Web.Http;
 using MyBlog.Domain.Entities;
@@ -22,10 +23,61 @@ namespace MyBlog.Web.Controllers.API
             this.repository = repository;
         }
 
+        /// <summary>
+        /// Gets a collection of all authors.
+        /// </summary>
+        /// <returns>Collection of authors</returns>
         [Route("authors")]
+        [HttpGet]
         public IEnumerable<Author> Get()
         {
-            return repository.Query().ToList();
+            throw new NotImplementedException();
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        [Route("authors/{id}")]
+        [HttpGet]
+        public Author Get(Guid id)
+        {
+            throw new NotImplementedException();
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="value"></param>
+        [Route("authors")]
+        [HttpPost]
+        public void Post([FromBody]Author value)
+        {
+            throw new NotImplementedException();
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="value"></param>
+        [Route("authors/{id}")]
+        [HttpPut]
+        public void Put(Guid id, [FromBody]Author value)
+        {
+            throw new NotImplementedException();
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="id"></param>
+        [Route("authors/{id}")]
+        [HttpDelete]
+        public void Delete(Guid id)
+        {
+            throw new NotImplementedException();
         }
     }
 }

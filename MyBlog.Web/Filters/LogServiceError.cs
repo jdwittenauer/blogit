@@ -38,7 +38,9 @@ namespace MyBlog.Web.Filters
             }
 
             if (OperationContext.Current.ServiceSecurityContext != null)
+            {
                 error.User = OperationContext.Current.ServiceSecurityContext.PrimaryIdentity.Name.ToString();
+            }
 
             var repository = DependencyResolver.Current.GetService<IErrorRepository>();
             repository.Insert(error);

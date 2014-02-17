@@ -51,7 +51,9 @@ namespace MyBlog.Web.Filters
                 };
 
                 if (OperationContext.Current.ServiceSecurityContext != null)
+                {
                     log.User = OperationContext.Current.ServiceSecurityContext.PrimaryIdentity.Name.ToString();
+                }
 
                 var repository = DependencyResolver.Current.GetService<ILogRepository>();
                 repository.Insert(log);

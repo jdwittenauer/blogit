@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Web.Http;
 using MyBlog.Domain.Entities;
@@ -22,10 +23,15 @@ namespace MyBlog.Web.Controllers.API
             this.repository = repository;
         }
 
-        [Route("Blogs")]
+        /// <summary>
+        /// Gets a collection of all blogs.
+        /// </summary>
+        /// <returns>Collection of blogs</returns>
+        [Route("blogs")]
+        [HttpGet]
         public IEnumerable<Blog> Get()
         {
-            return repository.Query().ToList();
+            throw new NotImplementedException();
         }
     }
 }
