@@ -7,6 +7,21 @@
     color: #000000 !important;
 }
 
+.background-light
+{
+    background-color: #f5f5f5;
+}
+
+.background-medium
+{
+    background-color: #f0f0f0;
+}
+
+.background-dark
+{
+    background-color: #333333;
+}
+
 th, td 
 { 
     padding: 4px;
@@ -53,9 +68,4 @@ th, td
 .panel-body-no-padding
 {
     padding: 0;
-}
-
-.panel-body-shaded
-{
-    background-color: #f0f0f0;
 }

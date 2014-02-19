@@ -35,10 +35,10 @@ namespace MyBlog.Web.Controllers.API
         }
 
         /// <summary>
-        /// 
+        /// Gets a single author by ID.
         /// </summary>
-        /// <param name="id"></param>
-        /// <returns></returns>
+        /// <param name="id">Author ID</param>
+        /// <returns>Author</returns>
         [Route("authors/{id}")]
         [HttpGet]
         public Author Get(Guid id)
@@ -47,9 +47,9 @@ namespace MyBlog.Web.Controllers.API
         }
 
         /// <summary>
-        /// 
+        /// Posts a new author.
         /// </summary>
-        /// <param name="value"></param>
+        /// <param name="value">New author</param>
         [Route("authors")]
         [HttpPost]
         public void Post([FromBody]Author value)
@@ -58,10 +58,10 @@ namespace MyBlog.Web.Controllers.API
         }
 
         /// <summary>
-        /// 
+        /// Updates an existing author.
         /// </summary>
-        /// <param name="id"></param>
-        /// <param name="value"></param>
+        /// <param name="id">Author ID</param>
+        /// <param name="value">Updated author</param>
         [Route("authors/{id}")]
         [HttpPut]
         public void Put(Guid id, [FromBody]Author value)
@@ -70,9 +70,9 @@ namespace MyBlog.Web.Controllers.API
         }
 
         /// <summary>
-        /// 
+        /// Deletes an existing author.
         /// </summary>
-        /// <param name="id"></param>
+        /// <param name="id">Author ID</param>
         [Route("authors/{id}")]
         [HttpDelete]
         public void Delete(Guid id)
