@@ -3,8 +3,16 @@
     background-color: #ffffff;
     margin: 0;
     padding-top: 25px;
-    font-size: 12px !important;
-    color: #000000 !important;
+}
+
+.text-medium
+{
+	color: #333333;
+}
+
+.text-dark
+{
+	color: #000000;
 }
 
 .background-light
