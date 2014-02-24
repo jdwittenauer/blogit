@@ -18,5 +18,14 @@ namespace MyBlog.Infrastructure.Repositories
         public EFPostRepository() : base() { }
 
         public EFPostRepository(MyBlogContext context) : base(context) { }
+
+        /// <summary>
+        /// Get a list of all posts.
+        /// </summary>
+        /// <returns>List of posts</returns>
+        public List<Post> GetPosts()
+        {
+            return Query().ToList();
+        }
     }
 }

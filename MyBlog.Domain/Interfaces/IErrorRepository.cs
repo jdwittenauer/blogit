@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using MyBlog.Domain.Entities;
 
 namespace MyBlog.Domain.Interfaces
@@ -9,6 +8,6 @@ namespace MyBlog.Domain.Interfaces
     /// </summary>
     public interface IErrorRepository : IRepository<Error>
     {
-        
+        List<Error> GetErrors();
     }
 }

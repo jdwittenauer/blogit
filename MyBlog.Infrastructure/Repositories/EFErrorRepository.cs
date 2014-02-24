@@ -17,5 +17,14 @@ namespace MyBlog.Infrastructure.Repositories
         public EFErrorRepository() : base() { }
 
         public EFErrorRepository(MyBlogContext context) : base(context) { }
+
+        /// <summary>
+        /// Get a list of all errors.
+        /// </summary>
+        /// <returns>List of errors</returns>
+        public List<Error> GetErrors()
+        {
+            return Query().ToList();
+        }
     }
 }

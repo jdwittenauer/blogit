@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Net.Security;
 using System.ServiceModel;
-using MyBlog.Domain.Entities;
 using MyBlog.Services;
+using MyBlog.Services.DataContracts;
 
 namespace MyBlog.Services.Interfaces
 {

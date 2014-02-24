@@ -33,5 +33,39 @@ namespace MyBlog.Web.Controllers.API
         {
             throw new NotImplementedException();
         }
+
+        /// <summary>
+        /// Posts a new blog.
+        /// </summary>
+        /// <param name="value">New blog</param>
+        [Route("blogs")]
+        [HttpPost]
+        public void Post([FromBody]Blog value)
+        {
+            throw new NotImplementedException();
+        }
+
+        /// <summary>
+        /// Updates an existing blog.
+        /// </summary>
+        /// <param name="id">Blog ID</param>
+        /// <param name="value">Updated blog</param>
+        [Route("blogs/{id}")]
+        [HttpPut]
+        public void Put(Guid id, [FromBody]Blog value)
+        {
+            throw new NotImplementedException();
+        }
+
+        /// <summary>
+        /// Deletes an existing blog.
+        /// </summary>
+        /// <param name="id">Blog ID</param>
+        [Route("blogs/{id}")]
+        [HttpDelete]
+        public void Delete(Guid id)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

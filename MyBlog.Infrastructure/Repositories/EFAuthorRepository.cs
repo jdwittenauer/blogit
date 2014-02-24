@@ -18,5 +18,14 @@ namespace MyBlog.Infrastructure.Repositories
         public EFAuthorRepository() : base() { }
 
         public EFAuthorRepository(MyBlogContext context) : base(context) { }
+
+        /// <summary>
+        /// Get a list of all authors.
+        /// </summary>
+        /// <returns>List of authors</returns>
+        public List<Author> GetAuthors()
+        {
+            return Query().ToList();
+        }
     }
 }

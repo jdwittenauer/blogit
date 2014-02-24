@@ -17,5 +17,14 @@ namespace MyBlog.Infrastructure.Repositories
         public EFLogRepository() : base() { }
 
         public EFLogRepository(MyBlogContext context) : base(context) { }
+
+        /// <summary>
+        /// Get a list of all logs.
+        /// </summary>
+        /// <returns>List of logs</returns>
+        public List<Log> GetLogs()
+        {
+            return Query().ToList();
+        }
     }
 }

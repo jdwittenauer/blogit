@@ -18,5 +18,14 @@ namespace MyBlog.Infrastructure.Repositories
         public EFCommentRepository() : base() { }
 
         public EFCommentRepository(MyBlogContext context) : base(context) { }
+
+        /// <summary>
+        /// Get a list of all comments.
+        /// </summary>
+        /// <returns>List of comments</returns>
+        public List<Comment> GetComments()
+        {
+            return Query().ToList();
+        }
     }
 }
