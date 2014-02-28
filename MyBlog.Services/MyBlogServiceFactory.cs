@@ -247,6 +247,15 @@ namespace MyBlog.Services
                 case ("IAuthorService"):
                     path = Constants.AuthorService;
                     break;
+                case ("IBlogService"):
+                    path = Constants.BlogService;
+                    break;
+                case ("ICommentService"):
+                    path = Constants.CommentService;
+                    break;
+                case ("IPostService"):
+                    path = Constants.PostService;
+                    break;
 				default:
 					path = null;
                     break;

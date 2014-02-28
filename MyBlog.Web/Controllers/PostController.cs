@@ -17,5 +17,13 @@ namespace MyBlog.Web.Controllers
         {
             this.repository = repository;
         }
+
+        /// <summary>
+        /// Index view.
+        /// </summary>
+        public ActionResult Index()
+        {
+            return View();
+        }
 	}
 }

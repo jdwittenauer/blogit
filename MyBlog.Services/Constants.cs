@@ -8,5 +8,8 @@
         public const string WebServerTest = null;
         public const string WebServerProd = null;
         public const string AuthorService = "/services/authorservice.svc";
+        public const string BlogService = "/services/blogservice.svc";
+        public const string CommentService = "/services/commentservice.svc";
+        public const string PostService = "/services/postservice.svc";
     }
 }
