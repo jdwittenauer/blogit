@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
+using System.Threading.Tasks;
 using MyBlog.Domain.Entities;
 using MyBlog.Domain.Interfaces;
 using MyBlog.Domain.Services;
@@ -282,6 +283,270 @@ namespace MyBlog.Infrastructure.Repositories
         {
             try
             {
+                return context.Set<T>().AsNoTracking();
+            }
+            catch (Exception)
+            {
+                context.Dispose();
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Retrieves an entity's current state from the data store and returns the initialized object.
+        /// Uses asynchronous data access pattern.
+        /// </summary>
+        /// <param name="key">Entity identifier</param>
+        /// <returns>Instantiated entity</returns>
+        public async Task<T> GetAsync(Guid key)
+        {
+            try
+            {
+                return await context.Set<T>().FindAsync(key);
+            }
+            catch (Exception)
+            {
+                context.Dispose();
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Adds a new entity to the data store.  Uses asynchronous data access pattern.
+        /// </summary>
+        /// <param name="entity">Entity</param>
+        public async Task InsertAsync(T entity)
+        {
+            if (entity == null)
+                throw new ArgumentNullException("entity");
+
+            try
+            {
+                entity.ID = GuidGenerator.GenerateComb();
+                entity.CreatedDate = DateTime.Now;
+                entity.UpdatedDate = DateTime.Now;
+                context.Set<T>().Add(entity);
+                await context.SaveChangesAsync();
+            }
+            catch (Exception)
+            {
+                context.Dispose();
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Updates an entity in the data store.  Uses asynchronous data access pattern.
+        /// </summary>
+        /// <param name="entity">Entity</param>
+        public async Task UpdateAsync(T entity)
+        {
+            if (entity == null)
+                throw new ArgumentNullException("entity");
+
+            try
+            {
+                if (!context.Set<T>().Local.Any(x => x == entity))
+                    context.Set<T>().Attach(entity);
+
+                entity.UpdatedDate = DateTime.Now;
+                context.Entry(entity).State = EntityState.Modified;
+                await context.SaveChangesAsync();
+            }
+            catch (Exception)
+            {
+                context.Dispose();
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Deletes an entity from the data store.  Uses asynchronous data access pattern.
+        /// </summary>
+        /// <param name="entity">Entity</param>
+        public async Task DeleteAsync(T entity)
+        {
+            if (entity == null)
+                throw new ArgumentNullException("entity");
+
+            try
+            {
+                if (!context.Set<T>().Local.Any(x => x == entity))
+                    context.Set<T>().Attach(entity);
+
+                context.Set<T>().Remove(entity);
+                await context.SaveChangesAsync();
+            }
+            catch (Exception)
+            {
+                context.Dispose();
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Insert a group of entities at once.  Uses several optimizations to improve performance.
+        /// Uses asynchronous data access pattern.
+        /// </summary>
+        /// <param name="entities">List of entities</param>
+        public async Task BulkInsertAsync(IEnumerable<T> entities)
+        {
+            if (entities == null)
+                throw new ArgumentNullException("entities");
+
+            try
+            {
+                context.Configuration.AutoDetectChangesEnabled = false;
+                context.Configuration.ValidateOnSaveEnabled = false;
+
+                int i = 0;
+                foreach (var entity in entities)
+                {
+                    entity.ID = GuidGenerator.GenerateComb();
+                    entity.CreatedDate = DateTime.Now;
+                    entity.UpdatedDate = DateTime.Now;
+                    context.Set<T>().Add(entity);
+                    i++;
+
+                    if ((i % 1000) == 0)
+                    {
+                        await context.SaveChangesAsync();
+                    }
+                }
+
+                await context.SaveChangesAsync();
+            }
+            catch (Exception)
+            {
+                context.Dispose();
+                throw;
+            }
+            finally
+            {
+                context.Configuration.AutoDetectChangesEnabled = true;
+                context.Configuration.ValidateOnSaveEnabled = true;
+            }
+        }
+
+        /// <summary>
+        /// Update a group of entities at once.  Uses several optimizations to improve performance.
+        /// Uses asynchronous data access pattern.
+        /// </summary>
+        /// <param name="entities">List of entities</param>
+        public async Task BulkUpdateAsync(IEnumerable<T> entities)
+        {
+            if (entities == null)
+                throw new ArgumentNullException("entities");
+
+            try
+            {
+                context.Configuration.AutoDetectChangesEnabled = false;
+                context.Configuration.ValidateOnSaveEnabled = false;
+
+                int i = 0;
+                foreach (var entity in entities)
+                {
+                    if (!context.Set<T>().Local.Any(x => x == entity))
+                        context.Set<T>().Attach(entity);
+
+                    entity.UpdatedDate = DateTime.Now;
+                    context.Entry(entity).State = EntityState.Modified;
+                    i++;
+
+                    if ((i % 1000) == 0)
+                    {
+                        await context.SaveChangesAsync();
+                    }
+                }
+
+                await context.SaveChangesAsync();
+            }
+            catch (Exception)
+            {
+                context.Dispose();
+                throw;
+            }
+            finally
+            {
+                context.Configuration.AutoDetectChangesEnabled = true;
+                context.Configuration.ValidateOnSaveEnabled = true;
+            }
+        }
+
+        /// <summary>
+        /// Delete a group of entities at once.  Uses several optimizations to improve performance.
+        /// Uses asynchronous data access pattern.
+        /// </summary>
+        /// <param name="entities">List of entities</param>
+        public async Task BulkDeleteAsync(IEnumerable<T> entities)
+        {
+            if (entities == null)
+                throw new ArgumentNullException("entities");
+
+            try
+            {
+                context.Configuration.AutoDetectChangesEnabled = false;
+                context.Configuration.ValidateOnSaveEnabled = false;
+
+                int i = 0;
+                foreach (var entity in entities)
+                {
+                    context.Set<T>().Remove(entity);
+                    i++;
+
+                    if ((i % 1000) == 0)
+                    {
+                        await context.SaveChangesAsync();
+                    }
+                }
+
+                await context.SaveChangesAsync();
+            }
+            catch (Exception)
+            {
+                context.Dispose();
+                throw;
+            }
+            finally
+            {
+                context.Configuration.AutoDetectChangesEnabled = true;
+                context.Configuration.ValidateOnSaveEnabled = true;
+            }
+        }
+
+        /// <summary>
+        /// Returns an IQueryable API for the entity.  Allows a consumer to compose custom queries.
+        /// Uses asynchronous data access pattern.
+        /// </summary>
+        /// <returns>IQueryable object</returns>
+        public async Task<IQueryable<T>> QueryAsync()
+        {
+            try
+            {
+                // Currently there is no easy way to push an external query to the database asyncronously,
+                // so for the time being this will run syncronously...wrapping in async so parent calls
+                // can use the await keyword
+                return context.Set<T>();
+            }
+            catch (Exception)
+            {
+                context.Dispose();
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Returns an IQueryable API for the entity.  Allows a consumer to compose custom queries.
+        /// Entity tracking is disabled.  Uses asynchronous data access pattern.
+        /// </summary>
+        /// <returns>IQueryable object</returns>
+        public async Task<IQueryable<T>> QueryNoTrackingAsync()
+        {
+            try
+            {
+                // Currently there is no easy way to push an external query to the database asyncronously,
+                // so for the time being this will run syncronously...wrapping in async so parent calls
+                // can use the await keyword
                 return context.Set<T>().AsNoTracking();
             }
             catch (Exception)

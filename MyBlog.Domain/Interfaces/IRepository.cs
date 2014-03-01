@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using MyBlog.Domain.Entities;
 
 namespace MyBlog.Domain.Interfaces
@@ -20,5 +21,14 @@ namespace MyBlog.Domain.Interfaces
         void BulkDelete(IEnumerable<T> entities);
         IQueryable<T> Query();
         IQueryable<T> QueryNoTracking();
+        Task<T> GetAsync(Guid key);
+        Task InsertAsync(T entity);
+        Task UpdateAsync(T entity);
+        Task DeleteAsync(T entity);
+        Task BulkInsertAsync(IEnumerable<T> entities);
+        Task BulkUpdateAsync(IEnumerable<T> entities);
+        Task BulkDeleteAsync(IEnumerable<T> entities);
+        Task<IQueryable<T>> QueryAsync();
+        Task<IQueryable<T>> QueryNoTrackingAsync();
     }
 }
