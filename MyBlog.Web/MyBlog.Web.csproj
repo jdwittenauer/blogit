@@ -203,7 +203,6 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
-    <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\API\PostController.cs" />
     <Compile Include="Controllers\API\CommentController.cs" />
     <Compile Include="Controllers\API\BlogController.cs" />
@@ -287,14 +286,12 @@
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Home\Test.cshtml" />
+    <Content Include="Views\Author\Index.cshtml" />
+    <Content Include="Views\Blog\Index.cshtml" />
+    <Content Include="Views\Comment\Index.cshtml" />
+    <Content Include="Views\Post\Index.cshtml" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Views\Admin\" />
-    <Folder Include="Views\Author\" />
-    <Folder Include="Views\Blog\" />
-    <Folder Include="Views\Comment\" />
-    <Folder Include="Views\Post\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="packages.config" />
   </ItemGroup>
