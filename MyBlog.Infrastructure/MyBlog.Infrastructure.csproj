@@ -59,6 +59,10 @@
     <Compile Include="Migrations\201402112159431_InitialCreate.Designer.cs">
       <DependentUpon>201402112159431_InitialCreate.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201403130208333_ModelUpdates.cs" />
+    <Compile Include="Migrations\201403130208333_ModelUpdates.Designer.cs">
+      <DependentUpon>201403130208333_ModelUpdates.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\EFAuthorRepository.cs" />
@@ -81,6 +85,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201402112159431_InitialCreate.resx">
       <DependentUpon>201402112159431_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201403130208333_ModelUpdates.resx">
+      <DependentUpon>201403130208333_ModelUpdates.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

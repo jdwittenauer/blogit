@@ -5,6 +5,11 @@
     padding-top: 25px;
 }
 
+.text-light
+{
+	color: #ffffff;
+}
+
 .text-medium
 {
 	color: #333333;
@@ -15,14 +20,19 @@
 	color: #000000;
 }
 
-.background-light
+.background-very-light
 {
     background-color: #f5f5f5;
 }
 
-.background-medium
+.background-light
 {
     background-color: #f0f0f0;
+}
+
+.background-medium
+{
+    background-color: #999999;
 }
 
 .background-dark
@@ -68,12 +78,12 @@ th, td
     border: none;
 }
 
-.panel-no-margin
+.no-margin
 {
     margin: 0;
 }
 
-.panel-body-no-padding
+.no-padding
 {
     padding: 0;
 }

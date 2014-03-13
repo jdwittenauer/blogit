@@ -17,6 +17,8 @@ namespace MyBlog.Services.DataContracts
         [DataMember]
         public DateTime UpdatedDate { get; set; }
         [DataMember]
+        public string Name { get; set; }
+        [DataMember]
         public int Age { get; set; }
         [DataMember]
         public string City { get; set; }
