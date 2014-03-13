@@ -29,5 +29,12 @@ namespace MyBlog.Web.Controllers
 
             return View();
         }
+
+        public ActionResult Test()
+        {
+            ViewBag.Message = "Bootstrap & CSS test page.";
+
+            return View();
+        }
     }
 }

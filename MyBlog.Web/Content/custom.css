@@ -32,12 +32,44 @@
 
 .background-medium
 {
-    background-color: #999999;
+    background-color: #bfbfbf;
 }
 
 .background-dark
 {
     background-color: #333333;
+}
+
+.background-very-light-gradient
+{
+    background-color: #f5f5f5;
+    background: -webkit-linear-gradient(top, #f5f5f5 0, #f0f0f0 100%);
+    background: linear-gradient(to bottom, #f5f5f5 0, #f0f0f0 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#fff5f5f5', endColorstr='#fff0f0f0', GradientType=0);
+}
+
+.background-light-gradient
+{
+    background-color: #f0f0f0;
+    background: -webkit-linear-gradient(top, #f0f0f0 0, #d4d4d4 100%);
+    background: linear-gradient(to bottom, #f0f0f0 0, #d4d4d4 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffd0d0d0', endColorstr='#ffd4d4d4', GradientType=0);
+}
+
+.background-medium-gradient
+{
+    background-color: #bfbfbf;
+    background: -webkit-linear-gradient(top, #bfbfbf 0, #a8a8a8 100%);
+    background: linear-gradient(to bottom, #bfbfbf 0, #a8a8a8 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffbfbfbf', endColorstr='#ffa8a8a8', GradientType=0);
+}
+
+.background-dark-gradient
+{
+    background-color: #333333;
+    background: -webkit-linear-gradient(top, #333333 0, #1a1a1a 100%);
+    background: linear-gradient(to bottom, #333333 0, #1a1a1a 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff333333', endColorstr='#ff1a1a1a', GradientType=0);
 }
 
 th, td 
@@ -62,10 +94,9 @@ th, td
     color: #ffffff;
     background-color: #333333;
     border: none;
-    background-image: -webkit-linear-gradient(top, #333333 0%, #262626 100%);
-    background-image: linear-gradient(to bottom, #333333 0%, #262626 100%);
-    background-repeat: repeat-x;
-    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff333333', endColorstr='#ff262626', GradientType=0);
+    background: -webkit-linear-gradient(top, #333333 0, #1a1a1a 100%);
+    background: linear-gradient(to bottom, #333333 0, #1a1a1a 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff333333', endColorstr='#ff1a1a1a', GradientType=0);
 }
 
 .panel-inverse-no-border > .panel-heading + .panel-collapse .panel-body 
