@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Web.Http;
 using MyBlog.Domain.Entities;
 using MyBlog.Domain.Interfaces;
@@ -29,7 +30,19 @@ namespace MyBlog.Web.Controllers.API
         /// <returns>Collection of comments</returns>
         [Route("comments")]
         [HttpGet]
-        public IEnumerable<Comment> Get()
+        public async Task <IEnumerable<Comment>> Get()
+        {
+            throw new NotImplementedException();
+        }
+
+        /// <summary>
+        /// Gets a single comment by ID.
+        /// </summary>
+        /// <param name="id">Comment ID</param>
+        /// <returns>Comment</returns>
+        [Route("comments/{id}")]
+        [HttpGet]
+        public async Task<Comment> Get(Guid id)
         {
             throw new NotImplementedException();
         }
@@ -40,7 +53,7 @@ namespace MyBlog.Web.Controllers.API
         /// <param name="value">New comment</param>
         [Route("comments")]
         [HttpPost]
-        public void Post([FromBody]Comment value)
+        public async Task Post([FromBody]Comment value)
         {
             throw new NotImplementedException();
         }
@@ -52,7 +65,7 @@ namespace MyBlog.Web.Controllers.API
         /// <param name="value">Updated comment</param>
         [Route("comments/{id}")]
         [HttpPut]
-        public void Put(Guid id, [FromBody]Comment value)
+        public async Task Put(Guid id, [FromBody]Comment value)
         {
             throw new NotImplementedException();
         }
@@ -63,7 +76,7 @@ namespace MyBlog.Web.Controllers.API
         /// <param name="id">Comment ID</param>
         [Route("comments/{id}")]
         [HttpDelete]
-        public void Delete(Guid id)
+        public async Task Delete(Guid id)
         {
             throw new NotImplementedException();
         }

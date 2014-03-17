@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Web.Http;
 using MyBlog.Domain.Entities;
 using MyBlog.Domain.Interfaces;
@@ -29,7 +30,19 @@ namespace MyBlog.Web.Controllers.API
         /// <returns>Collection of blogs</returns>
         [Route("blogs")]
         [HttpGet]
-        public IEnumerable<Blog> Get()
+        public async Task<IEnumerable<Blog>> Get()
+        {
+            throw new NotImplementedException();
+        }
+
+        /// <summary>
+        /// Gets a single blog by ID.
+        /// </summary>
+        /// <param name="id">Blog ID</param>
+        /// <returns>Blog</returns>
+        [Route("blogs/{id}")]
+        [HttpGet]
+        public async Task<Blog> Get(Guid id)
         {
             throw new NotImplementedException();
         }
@@ -40,7 +53,7 @@ namespace MyBlog.Web.Controllers.API
         /// <param name="value">New blog</param>
         [Route("blogs")]
         [HttpPost]
-        public void Post([FromBody]Blog value)
+        public async Task Post([FromBody]Blog value)
         {
             throw new NotImplementedException();
         }
@@ -52,7 +65,7 @@ namespace MyBlog.Web.Controllers.API
         /// <param name="value">Updated blog</param>
         [Route("blogs/{id}")]
         [HttpPut]
-        public void Put(Guid id, [FromBody]Blog value)
+        public async Task Put(Guid id, [FromBody]Blog value)
         {
             throw new NotImplementedException();
         }
@@ -63,7 +76,7 @@ namespace MyBlog.Web.Controllers.API
         /// <param name="id">Blog ID</param>
         [Route("blogs/{id}")]
         [HttpDelete]
-        public void Delete(Guid id)
+        public async Task Delete(Guid id)
         {
             throw new NotImplementedException();
         }

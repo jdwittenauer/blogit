@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Web.Http;
 using MyBlog.Domain.Entities;
 using MyBlog.Domain.Interfaces;
@@ -29,7 +30,7 @@ namespace MyBlog.Web.Controllers.API
         /// <returns>Collection of authors</returns>
         [Route("authors")]
         [HttpGet]
-        public IEnumerable<Author> Get()
+        public async Task<IEnumerable<Author>> Get()
         {
             throw new NotImplementedException();
         }
@@ -41,7 +42,7 @@ namespace MyBlog.Web.Controllers.API
         /// <returns>Author</returns>
         [Route("authors/{id}")]
         [HttpGet]
-        public Author Get(Guid id)
+        public async Task<Author> Get(Guid id)
         {
             throw new NotImplementedException();
         }
@@ -52,7 +53,7 @@ namespace MyBlog.Web.Controllers.API
         /// <param name="value">New author</param>
         [Route("authors")]
         [HttpPost]
-        public void Post([FromBody]Author value)
+        public async Task Post([FromBody]Author value)
         {
             throw new NotImplementedException();
         }
@@ -64,7 +65,7 @@ namespace MyBlog.Web.Controllers.API
         /// <param name="value">Updated author</param>
         [Route("authors/{id}")]
         [HttpPut]
-        public void Put(Guid id, [FromBody]Author value)
+        public async Task Put(Guid id, [FromBody]Author value)
         {
             throw new NotImplementedException();
         }
@@ -75,7 +76,7 @@ namespace MyBlog.Web.Controllers.API
         /// <param name="id">Author ID</param>
         [Route("authors/{id}")]
         [HttpDelete]
-        public void Delete(Guid id)
+        public async Task Delete(Guid id)
         {
             throw new NotImplementedException();
         }

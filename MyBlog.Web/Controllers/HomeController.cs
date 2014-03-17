@@ -30,7 +30,7 @@ namespace MyBlog.Web.Controllers
             return View();
         }
 
-        public ActionResult Test()
+        public ActionResult Bootstrap()
         {
             ViewBag.Message = "Bootstrap & CSS test page.";
 

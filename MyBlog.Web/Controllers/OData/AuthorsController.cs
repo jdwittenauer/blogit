@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using System.Net.Http;
+using System.Threading.Tasks;
 using System.Web.Http;
 using System.Web.Http.OData;
 using MyBlog.Domain.Entities;
@@ -27,9 +28,9 @@ namespace MyBlog.Web.Controllers.OData
         /// Exposes odata endpoint for the deal entity.
         /// </summary>
         /// <returns>IQueryable object</returns>
-        public IQueryable<Author> GetAuthors()
+        public async Task<IQueryable<Author>> GetAuthors()
         {
-            return repository.QueryNoTracking();
+            return await repository.QueryNoTrackingAsync();
         }
 
         /// <summary>
@@ -37,7 +38,7 @@ namespace MyBlog.Web.Controllers.OData
         /// </summary>
         /// <param name="key">Author ID</param>
         /// <returns>Author</returns>
-        public Author Get([FromODataUri] Guid key)
+        public async Task<Author> Get([FromODataUri] Guid key)
         {
             throw new NotImplementedException();
         }
@@ -47,7 +48,7 @@ namespace MyBlog.Web.Controllers.OData
         /// </summary>
         /// <param name="item">New author</param>
         /// <returns>Status message</returns>
-        public HttpResponseMessage Post(Author item)
+        public async Task<HttpResponseMessage> Post(Author item)
         {
             throw new NotImplementedException();
         }
@@ -58,7 +59,7 @@ namespace MyBlog.Web.Controllers.OData
         /// <param name="key">Author ID</param>
         /// <param name="item">Updated author</param>
         /// <returns>Status message</returns>
-        public HttpResponseMessage Put([FromODataUri] Guid key, Author item)
+        public async Task<HttpResponseMessage> Put([FromODataUri] Guid key, Author item)
         {
             throw new NotImplementedException();
         }
@@ -68,7 +69,7 @@ namespace MyBlog.Web.Controllers.OData
         /// </summary>
         /// <param name="key">Author ID</param>
         /// <returns>Status message</returns>
-        public HttpResponseMessage Delete([FromODataUri] Guid key)
+        public async Task<HttpResponseMessage> Delete([FromODataUri] Guid key)
         {
             throw new NotImplementedException();
         }
@@ -80,7 +81,7 @@ namespace MyBlog.Web.Controllers.OData
         /// <param name="navigationProperty">Related property field</param>
         /// <param name="link">Link</param>
         /// <returns>Status message</returns>
-        public HttpResponseMessage CreateLink([FromODataUri] int key, string navigationProperty, [FromBody] Uri link) 
+        public async Task<HttpResponseMessage> CreateLink([FromODataUri] int key, string navigationProperty, [FromBody] Uri link) 
         {
             throw new NotImplementedException();
         }
@@ -92,7 +93,7 @@ namespace MyBlog.Web.Controllers.OData
         /// <param name="navigationProperty">Related property field</param>
         /// <param name="link">Link</param>
         /// <returns>Status message</returns>
-        public HttpResponseMessage DeleteLink([FromODataUri] int key, string navigationProperty, [FromBody] Uri link) 
+        public async Task<HttpResponseMessage> DeleteLink([FromODataUri] int key, string navigationProperty, [FromBody] Uri link) 
         {
             throw new NotImplementedException();
         }
@@ -104,7 +105,7 @@ namespace MyBlog.Web.Controllers.OData
         /// <param name="relatedKey">Related property key</param>
         /// <param name="navigationProperty">Related property field</param>
         /// <returns>Status message</returns>
-        public HttpResponseMessage DeleteLink([FromODataUri] int key, string relatedKey, string navigationProperty)
+        public async Task<HttpResponseMessage> DeleteLink([FromODataUri] int key, string relatedKey, string navigationProperty)
         {
             throw new NotImplementedException();
         }
