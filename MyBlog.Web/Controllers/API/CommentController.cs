@@ -30,9 +30,9 @@ namespace MyBlog.Web.Controllers.API
         /// <returns>Collection of comments</returns>
         [Route("comments")]
         [HttpGet]
-        public async Task <IEnumerable<Comment>> Get()
+        public async Task<List<Comment>> Get()
         {
-            throw new NotImplementedException();
+            return await repository.GetCommentsAsync();
         }
 
         /// <summary>

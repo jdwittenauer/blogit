@@ -30,9 +30,9 @@ namespace MyBlog.Web.Controllers.API
         /// <returns>Collection of posts</returns>
         [Route("posts")]
         [HttpGet]
-        public async Task<IEnumerable<Post>> Get()
+        public async Task<List<Post>> Get()
         {
-            throw new NotImplementedException();
+            return await repository.GetPostsAsync();
         }
 
         /// <summary>

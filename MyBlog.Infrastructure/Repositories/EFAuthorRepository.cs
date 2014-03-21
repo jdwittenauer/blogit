@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
+using System.Threading.Tasks;
 using MyBlog.Domain.Entities;
 using MyBlog.Domain.Interfaces;
 using MyBlog.Domain.Services;
@@ -26,6 +27,16 @@ namespace MyBlog.Infrastructure.Repositories
         public List<Author> GetAuthors()
         {
             return Query().ToList();
+        }
+
+        /// <summary>
+        /// Get a list of all authors.  Uses asynchronous data access pattern.
+        /// </summary>
+        /// <returns>List of authors</returns>
+        public async Task<List<Author>> GetAuthorsAsync()
+        {
+            var task = await QueryAsync();
+            return task.ToList();
         }
     }
 }

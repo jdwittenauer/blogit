@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
+using System.Threading.Tasks;
 using MyBlog.Domain.Entities;
 using MyBlog.Domain.Interfaces;
 using MyBlog.Infrastructure.Framework;
@@ -25,6 +26,16 @@ namespace MyBlog.Infrastructure.Repositories
         public List<Log> GetLogs()
         {
             return Query().ToList();
+        }
+
+        /// <summary>
+        /// Get a list of all logs.  Uses asynchronous data access pattern.
+        /// </summary>
+        /// <returns>List of logs</returns>
+        public async Task<List<Log>> GetLogsAsync()
+        {
+            var task = await QueryAsync();
+            return task.ToList();
         }
     }
 }
