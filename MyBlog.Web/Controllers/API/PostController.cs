@@ -44,7 +44,7 @@ namespace MyBlog.Web.Controllers.API
         [HttpGet]
         public async Task<Post> Get(Guid id)
         {
-            throw new NotImplementedException();
+            return await repository.GetAsync(id);
         }
 
         /// <summary>
@@ -55,7 +55,7 @@ namespace MyBlog.Web.Controllers.API
         [HttpPost]
         public async Task Post([FromBody]Post value)
         {
-            throw new NotImplementedException();
+            await repository.InsertAsync(value);
         }
 
         /// <summary>
@@ -67,7 +67,7 @@ namespace MyBlog.Web.Controllers.API
         [HttpPut]
         public async Task Put(Guid id, [FromBody]Post value)
         {
-            throw new NotImplementedException();
+            await repository.UpdateAsync(value);
         }
 
         /// <summary>
@@ -78,7 +78,8 @@ namespace MyBlog.Web.Controllers.API
         [HttpDelete]
         public async Task Delete(Guid id)
         {
-            throw new NotImplementedException();
+            var value = await repository.GetAsync(id);
+            await repository.DeleteAsync(value);
         }
     }
 }

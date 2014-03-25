@@ -6,7 +6,7 @@
     <meta name="description" content="The description of my page" />
     <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
     <link rel="icon" href="/favicon.ico" type="image/x-icon">
-    <title>@ViewBag.Title - My Blog</title>
+    <title>My Blog - @ViewBag.Title</title>
 
     @Styles.Render("~/Content/bootstrap")
     @Styles.Render("~/Content/custom")
@@ -19,7 +19,8 @@
 
     <script>
         $(function () {
-            CreateActiveBootstrapMenu();
+            RegisterHoverEnabledNavBar();
+            RegisterActiveNavBar();
         });
     </script>
 </head>

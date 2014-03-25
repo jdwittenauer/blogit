@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using System.Threading.Tasks;
@@ -40,7 +41,17 @@ namespace MyBlog.Web.Controllers.OData
         /// <returns>Post</returns>
         public async Task<Post> Get([FromODataUri] Guid key)
         {
-            throw new NotImplementedException();
+            try
+            {
+                return await repository.GetAsync(key);
+            }
+            catch (Exception e)
+            {
+                if (e.InnerException != null)
+                    throw new HttpRequestException(e.Message, e.InnerException);
+                else
+                    throw new HttpRequestException(e.Message);
+            }
         }
 
         /// <summary>

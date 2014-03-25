@@ -29,5 +29,48 @@ namespace MyBlog.Web.Services
             var repository = DependencyResolver.Current.GetService<ICommentRepository>();
             return Mapper.Map<List<Domain.Entities.Comment>, List<Comment>>(repository.GetComments());
         }
+
+        /// <summary>
+        /// Gets a single comment by ID.
+        /// </summary>
+        /// <param name="id">Comment ID</param>
+        /// <returns>Comment</returns>
+        public Comment GetComment(Guid id)
+        {
+            var repository = DependencyResolver.Current.GetService<ICommentRepository>();
+            return Mapper.Map<Domain.Entities.Comment, Comment>(repository.Get(id));
+        }
+
+        /// <summary>
+        /// Posts a new comment.
+        /// </summary>
+        /// <param name="value">New comment</param>
+        public void InsertComment(Comment comment)
+        {
+            var repository = DependencyResolver.Current.GetService<ICommentRepository>();
+            repository.Insert(Mapper.Map<Comment, Domain.Entities.Comment>(comment));
+        }
+
+        /// <summary>
+        /// Updates an existing comment.
+        /// </summary>
+        /// <param name="id">Comment ID</param>
+        /// <param name="value">Updated comment</param>
+        public void UpdateComment(Comment comment)
+        {
+            var repository = DependencyResolver.Current.GetService<ICommentRepository>();
+            repository.Update(Mapper.Map<Comment, Domain.Entities.Comment>(comment));
+        }
+
+        /// <summary>
+        /// Deletes an existing comment.
+        /// </summary>
+        /// <param name="id">Comment ID</param>
+        public void DeleteComment(Guid id)
+        {
+            var repository = DependencyResolver.Current.GetService<ICommentRepository>();
+            var comment = repository.Get(id);
+            repository.Delete(comment);
+        }
     }
 }

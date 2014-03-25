@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Net.Security;
 using System.ServiceModel;
 using MyBlog.Services;
@@ -14,5 +15,17 @@ namespace MyBlog.Services.Interfaces
     {
         [OperationContract]
         List<Comment> GetComments();
+
+        [OperationContract]
+        Comment GetComment(Guid id);
+
+        [OperationContract]
+        void InsertComment(Comment comment);
+
+        [OperationContract]
+        void UpdateComment(Comment comment);
+
+        [OperationContract]
+        void DeleteComment(Guid id);
     }
 }
