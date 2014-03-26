@@ -41,17 +41,13 @@ namespace MyBlog.Web.Controllers.OData
         /// <returns>Author</returns>
         public async Task<Author> Get([FromODataUri] Guid key)
         {
-            try
+            if (key == Guid.Empty)
             {
-                return await repository.GetAsync(key);
+                throw new HttpResponseException(
+                    Request.CreateErrorResponse(HttpStatusCode.NotFound, "Invalid parameter"));
             }
-            catch (Exception e)
-            {
-                if (e.InnerException != null)
-                    throw new HttpRequestException(e.Message, e.InnerException);
-                else
-                    throw new HttpRequestException(e.Message);
-            }
+
+            return await repository.GetAsync(key);
         }
 
         /// <summary>
@@ -61,7 +57,14 @@ namespace MyBlog.Web.Controllers.OData
         /// <returns>Status message</returns>
         public async Task<HttpResponseMessage> Post(Author item)
         {
-            throw new NotImplementedException();
+            if (item == null)
+            {
+                throw new HttpResponseException(
+                    Request.CreateErrorResponse(HttpStatusCode.NotFound, "Invalid parameter"));
+            }
+
+            await repository.InsertAsync(item);
+            return new HttpResponseMessage(HttpStatusCode.OK);
         }
 
         /// <summary>
@@ -72,7 +75,15 @@ namespace MyBlog.Web.Controllers.OData
         /// <returns>Status message</returns>
         public async Task<HttpResponseMessage> Put([FromODataUri] Guid key, Author item)
         {
-            throw new NotImplementedException();
+            if (key == Guid.Empty || item == null)
+            {
+                throw new HttpResponseException(
+                    Request.CreateErrorResponse(HttpStatusCode.NotFound, "Invalid parameter"));
+            }
+
+            item.ID = key;
+            await repository.UpdateAsync(item);
+            return new HttpResponseMessage(HttpStatusCode.OK);
         }
 
         /// <summary>
@@ -82,43 +93,15 @@ namespace MyBlog.Web.Controllers.OData
         /// <returns>Status message</returns>
         public async Task<HttpResponseMessage> Delete([FromODataUri] Guid key)
         {
-            throw new NotImplementedException();
-        }
+            if (key == Guid.Empty)
+            {
+                throw new HttpResponseException(
+                    Request.CreateErrorResponse(HttpStatusCode.NotFound, "Invalid parameter"));
+            }
 
-        /// <summary>
-        /// Creates a link between an author and a related entity.
-        /// </summary>
-        /// <param name="key">Author ID</param>
-        /// <param name="navigationProperty">Related property field</param>
-        /// <param name="link">Link</param>
-        /// <returns>Status message</returns>
-        public async Task<HttpResponseMessage> CreateLink([FromODataUri] int key, string navigationProperty, [FromBody] Uri link) 
-        {
-            throw new NotImplementedException();
-        }
-
-        /// <summary>
-        /// Deletes a link between an author and a related entity.
-        /// </summary>
-        /// <param name="key">Author ID</param>
-        /// <param name="navigationProperty">Related property field</param>
-        /// <param name="link">Link</param>
-        /// <returns>Status message</returns>
-        public async Task<HttpResponseMessage> DeleteLink([FromODataUri] int key, string navigationProperty, [FromBody] Uri link) 
-        {
-            throw new NotImplementedException();
-        }
-
-        /// <summary>
-        /// Deletes a link between an author and a related entity.
-        /// </summary>
-        /// <param name="key">Author ID</param>
-        /// <param name="relatedKey">Related property key</param>
-        /// <param name="navigationProperty">Related property field</param>
-        /// <returns>Status message</returns>
-        public async Task<HttpResponseMessage> DeleteLink([FromODataUri] int key, string relatedKey, string navigationProperty)
-        {
-            throw new NotImplementedException();
+            var item = await repository.GetAsync(key);
+            await repository.UpdateAsync(item);
+            return new HttpResponseMessage(HttpStatusCode.OK);
         }
     }
 }

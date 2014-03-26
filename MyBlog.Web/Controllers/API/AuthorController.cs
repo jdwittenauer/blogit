@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
+using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web.Http;
 using MyBlog.Domain.Entities;
@@ -44,6 +46,12 @@ namespace MyBlog.Web.Controllers.API
         [HttpGet]
         public async Task<Author> Get(Guid id)
         {
+            if (id == Guid.Empty)
+            {
+                throw new HttpResponseException(
+                    Request.CreateErrorResponse(HttpStatusCode.NotFound, "Invalid parameter"));
+            }
+
             return await repository.GetAsync(id);
         }
 
@@ -53,9 +61,16 @@ namespace MyBlog.Web.Controllers.API
         /// <param name="value">New author</param>
         [Route("authors")]
         [HttpPost]
-        public async Task Post([FromBody]Author value)
+        public async Task<HttpResponseMessage> Post([FromBody]Author value)
         {
+            if (value == null)
+            {
+                throw new HttpResponseException(
+                    Request.CreateErrorResponse(HttpStatusCode.NotFound, "Invalid parameter"));
+            }
+
             await repository.InsertAsync(value);
+            return new HttpResponseMessage(HttpStatusCode.OK);
         }
 
         /// <summary>
@@ -65,9 +80,17 @@ namespace MyBlog.Web.Controllers.API
         /// <param name="value">Updated author</param>
         [Route("authors/{id}")]
         [HttpPut]
-        public async Task Put(Guid id, [FromBody]Author value)
+        public async Task<HttpResponseMessage> Put(Guid id, [FromBody]Author value)
         {
+            if (id == Guid.Empty || value == null)
+            {
+                throw new HttpResponseException(
+                    Request.CreateErrorResponse(HttpStatusCode.NotFound, "Invalid parameter"));
+            }
+
+            value.ID = id;
             await repository.UpdateAsync(value);
+            return new HttpResponseMessage(HttpStatusCode.OK);
         }
 
         /// <summary>
@@ -76,10 +99,17 @@ namespace MyBlog.Web.Controllers.API
         /// <param name="id">Author ID</param>
         [Route("authors/{id}")]
         [HttpDelete]
-        public async Task Delete(Guid id)
+        public async Task<HttpResponseMessage> Delete(Guid id)
         {
+            if (id == Guid.Empty)
+            {
+                throw new HttpResponseException(
+                    Request.CreateErrorResponse(HttpStatusCode.NotFound, "Invalid parameter"));
+            }
+
             var value = await repository.GetAsync(id);
             await repository.DeleteAsync(value);
+            return new HttpResponseMessage(HttpStatusCode.OK);
         }
     }
 }
