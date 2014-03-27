@@ -1,23 +1,23 @@
 ﻿html, body
 {
-    background-color: #ffffff;
+    background-color: #fff;
     margin: 0;
-    padding-top: 25px;
+    padding-top: 30px;
 }
 
 .text-light
 {
-	color: #ffffff;
+	color: #fff;
 }
 
 .text-medium
 {
-	color: #333333;
+	color: #333;
 }
 
 .text-dark
 {
-	color: #000000;
+	color: #000;
 }
 
 .background-very-light
@@ -37,7 +37,7 @@
 
 .background-dark
 {
-    background-color: #333333;
+    background-color: #333;
 }
 
 .background-very-light-gradient
@@ -66,9 +66,9 @@
 
 .background-dark-gradient
 {
-    background-color: #333333;
-    background: -webkit-linear-gradient(top, #333333 0, #1a1a1a 100%);
-    background: linear-gradient(to bottom, #333333 0, #1a1a1a 100%);
+    background-color: #333;
+    background: -webkit-linear-gradient(top, #333 0, #1a1a1a 100%);
+    background: linear-gradient(to bottom, #333 0, #1a1a1a 100%);
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff333333', endColorstr='#ff1a1a1a', GradientType=0);
 }
 
@@ -91,11 +91,11 @@ th, td
 
 .panel-inverse-no-border > .panel-heading 
 {
-    color: #ffffff;
-    background-color: #333333;
+    color: #fff;
+    background-color: #333;
     border: none;
-    background: -webkit-linear-gradient(top, #333333 0, #1a1a1a 100%);
-    background: linear-gradient(to bottom, #333333 0, #1a1a1a 100%);
+    background: -webkit-linear-gradient(top, #333 0, #1a1a1a 100%);
+    background: linear-gradient(to bottom, #333 0, #1a1a1a 100%);
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff333333', endColorstr='#ff1a1a1a', GradientType=0);
 }
 
@@ -139,6 +139,15 @@ th, td
     color: #eee;
 }
 
+footer
+{
+    padding: 40px 0;
+    color: #333;
+    text-align: left;
+    background-color: #f5f5f5;
+    border-top: 1px solid #e5e5e5;
+}
+
 @media (max-width: 767px) 
 {
     .navbar-default .navbar-nav .open .dropdown-menu > li > a 
@@ -152,7 +161,8 @@ th, td
     }
 }
 
-@media (min-width: 768px) 
+/* Uncomment this to enable menu hover feature */
+/*@media (min-width: 768px) 
 {
     .navbar-nav .caret 
     {
@@ -226,4 +236,4 @@ th, td
     {
         display: block;
     }
-}
+}*/

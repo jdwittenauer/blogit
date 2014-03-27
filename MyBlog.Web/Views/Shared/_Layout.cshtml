@@ -19,7 +19,8 @@
 
     <script>
         $(function () {
-            RegisterHoverEnabledNavBar();
+            // Uncomment this to enable menu hover feature
+            //RegisterHoverEnabledNavBar();
             RegisterActiveNavBar();
         });
     </script>
@@ -41,7 +42,7 @@
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("Home", "Index", "Home")</li>
                     <li>@Html.ActionLink("Authors", "Index", "Author")</li>
-                    <li>@Html.ActionLink("Blogs", "Index", "Author")</li>
+                    <li>@Html.ActionLink("Blogs", "Index", "Blog")</li>
                     <li>@Html.ActionLink("Bootstrap", "Bootstrap", "Home")</li>
                 </ul>
                 <form class="navbar-form navbar-right" role="form">
@@ -58,10 +59,12 @@
         @RenderBody()
     </div>
 
-    <hr />
+    <br />
 
-    <footer>
-        <p>&copy; @DateTime.Now.Year - My Blog</p>
+    <footer class="footer">
+        <div class="container">
+            <p>@DateTime.Now.Year - My Blog</p>
+        </div>
     </footer>
 </body>
 </html>
