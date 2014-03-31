@@ -16,10 +16,23 @@ namespace MyBlog.Web.Controllers
             return View();
         }
 
-        public ActionResult Bootstrap()
+        public ActionResult Cover()
         {
-            ViewBag.Message = "Bootstrap & CSS test page.";
+            return View();
+        }
 
+        public ActionResult Theme()
+        {
+            return View();
+        }
+
+        public ActionResult Jumbotron()
+        {
+            return View();
+        }
+
+        public ActionResult Dashboard()
+        {
             return View();
         }
     }

@@ -23,14 +23,14 @@
 }
 
 function RegisterActiveNavBar() {
-    $(".nav li").removeClass("active");
+    $("#navbar ul li").removeClass("active");
     var url = window.location;
 
-    $("ul.nav a").filter(function () {
+    $("#navbar ul.nav a").filter(function () {
         return this.href == url;
     }).parent().addClass("active");
 
-    $("ul.nav a").filter(function () {
+    $("#navbar ul.nav a").filter(function () {
         return this.href == url;
     }).parent().parent().parent().filter("li").addClass("active");
 }

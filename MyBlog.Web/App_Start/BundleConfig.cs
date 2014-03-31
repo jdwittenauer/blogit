@@ -9,7 +9,9 @@ namespace MyBlog.Web
         {
             // Script bundles
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include("~/Scripts/jquery-{version}.js"));
-            bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include("~/Scripts/bootstrap.js"));
+            bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
+                "~/Scripts/bootstrap.js",
+                "~/Scripts/holder.js"));
             bundles.Add(new ScriptBundle("~/bundles/modernizr").Include("~/Scripts/modernizr-*"));
             bundles.Add(new ScriptBundle("~/bundles/global").Include("~/Scripts/app/global.js"));
 
@@ -17,7 +19,10 @@ namespace MyBlog.Web
             bundles.Add(new StyleBundle("~/Content/bootstrap").Include(
                 "~/Content/bootstrap.css",
                 "~/Content/bootstrap-theme.css"));
-            bundles.Add(new StyleBundle("~/Content/custom").Include("~/Content/custom.css"));
+            bundles.Add(new StyleBundle("~/Content/site").Include(
+                "~/Content/site.css",
+                "~/Content/dashboard.css"));
+            bundles.Add(new StyleBundle("~/Content/cover").Include("~/Content/cover.css"));
         }
     }
 }

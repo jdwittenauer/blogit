@@ -13,7 +13,7 @@ namespace MyBlog.Web
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
-                defaults: new { controller = "home", action = "index", id = UrlParameter.Optional }
+                defaults: new { controller = "home", action = "cover", id = UrlParameter.Optional }
             );
         }
     }
