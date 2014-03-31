@@ -62,6 +62,96 @@ namespace MyBlog.Web.Controllers
                 CommentCount = 2
             });
 
+            model.Authors.Add(new AuthorDTO
+            {
+                Name = "Some Guy",
+                Age = 27,
+                City = "Columbus",
+                State = "Ohio",
+                PostCount = 3,
+                CommentCount = 0
+            });
+
+            model.Authors.Add(new AuthorDTO
+            {
+                Name = "Homer Simpson",
+                Age = 42,
+                City = "Springfield",
+                State = "Illinois",
+                PostCount = 10,
+                CommentCount = 20
+            });
+
+            model.Authors.Add(new AuthorDTO
+            {
+                Name = "Carlos Danger",
+                Age = 33,
+                City = "New York",
+                State = "New York",
+                PostCount = 7,
+                CommentCount = 2
+            });
+
+            model.Authors.Add(new AuthorDTO
+            {
+                Name = "Some Guy",
+                Age = 27,
+                City = "Columbus",
+                State = "Ohio",
+                PostCount = 3,
+                CommentCount = 0
+            });
+
+            model.Authors.Add(new AuthorDTO
+            {
+                Name = "Homer Simpson",
+                Age = 42,
+                City = "Springfield",
+                State = "Illinois",
+                PostCount = 10,
+                CommentCount = 20
+            });
+
+            model.Authors.Add(new AuthorDTO
+            {
+                Name = "Carlos Danger",
+                Age = 33,
+                City = "New York",
+                State = "New York",
+                PostCount = 7,
+                CommentCount = 2
+            });
+
+            model.Authors.Add(new AuthorDTO
+            {
+                Name = "Some Guy",
+                Age = 27,
+                City = "Columbus",
+                State = "Ohio",
+                PostCount = 3,
+                CommentCount = 0
+            });
+
+            model.Authors.Add(new AuthorDTO
+            {
+                Name = "Homer Simpson",
+                Age = 42,
+                City = "Springfield",
+                State = "Illinois",
+                PostCount = 10,
+                CommentCount = 20
+            });
+
+            model.Authors.Add(new AuthorDTO
+            {
+                Name = "Carlos Danger",
+                Age = 33,
+                City = "New York",
+                State = "New York",
+                PostCount = 7,
+                CommentCount = 2
+            });
+
             return View(model);
         }
 	}

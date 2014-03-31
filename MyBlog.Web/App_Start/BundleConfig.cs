@@ -11,7 +11,7 @@ namespace MyBlog.Web
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include("~/Scripts/jquery-{version}.js"));
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include("~/Scripts/bootstrap.js"));
             bundles.Add(new ScriptBundle("~/bundles/modernizr").Include("~/Scripts/modernizr-*"));
-            bundles.Add(new ScriptBundle("~/bundles/global").Include("~/Scripts/global.js"));
+            bundles.Add(new ScriptBundle("~/bundles/global").Include("~/Scripts/app/global.js"));
 
             // Style bundles
             bundles.Add(new StyleBundle("~/Content/bootstrap").Include(

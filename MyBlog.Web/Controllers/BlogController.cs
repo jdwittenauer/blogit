@@ -53,6 +53,69 @@ namespace MyBlog.Web.Controllers
                 PostCount = 20
             });
 
+            model.Blogs.Add(new BlogDTO
+            {
+                Name = "Blog 1",
+                Category = "Tech",
+                PostCount = 50
+            });
+
+            model.Blogs.Add(new BlogDTO
+            {
+                Name = "Blog 2",
+                Category = "Sports",
+                PostCount = 100
+            });
+
+            model.Blogs.Add(new BlogDTO
+            {
+                Name = "Blog 3",
+                Category = "Economics",
+                PostCount = 20
+            });
+
+            model.Blogs.Add(new BlogDTO
+            {
+                Name = "Blog 1",
+                Category = "Tech",
+                PostCount = 50
+            });
+
+            model.Blogs.Add(new BlogDTO
+            {
+                Name = "Blog 2",
+                Category = "Sports",
+                PostCount = 100
+            });
+
+            model.Blogs.Add(new BlogDTO
+            {
+                Name = "Blog 3",
+                Category = "Economics",
+                PostCount = 20
+            });
+
+            model.Blogs.Add(new BlogDTO
+            {
+                Name = "Blog 1",
+                Category = "Tech",
+                PostCount = 50
+            });
+
+            model.Blogs.Add(new BlogDTO
+            {
+                Name = "Blog 2",
+                Category = "Sports",
+                PostCount = 100
+            });
+
+            model.Blogs.Add(new BlogDTO
+            {
+                Name = "Blog 3",
+                Category = "Economics",
+                PostCount = 20
+            });
+
             return View(model);
         }
 	}
