@@ -8,7 +8,7 @@
     <h1 class="page-header">@ViewBag.Title</h1>
 
     <div class="padding-8">
-        <a>Insert</a>
+        @Html.ActionLink("Insert", "Edit", "Author")
     </div>
 
     <div class="table-responsive">
@@ -33,9 +33,12 @@
                     <td>@author.Age</td>
                     <td>@author.City</td>
                     <td>@author.State</td>
-                    <td><a>@author.PostCount</a></td>
-                    <td><a>@author.CommentCount</a></td>
-                    <td><a>Edit</a>&nbsp;&nbsp;<a>Delete</a></td>
+                    <td>@Html.ActionLink(author.PostCount.ToString(), "Index", "Post")</td>
+                    <td>@Html.ActionLink(author.CommentCount.ToString(), "Index", "Comment")</td>
+                    <td>
+                        @Html.ActionLink("Edit", "Edit", "Author", new { id = new Guid() }, new { })&nbsp;&nbsp;
+                        <a href="#">Delete</a>
+                    </td>
                 </tr>
                 i++;
             }

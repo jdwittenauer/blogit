@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Web.Mvc;
 using MyBlog.Domain.Entities;
 using MyBlog.Domain.Interfaces;
@@ -151,6 +152,22 @@ namespace MyBlog.Web.Controllers
                 PostCount = 7,
                 CommentCount = 2
             });
+
+            return View(model);
+        }
+
+        public ActionResult Edit(Guid? id)
+        {
+            var model = new AuthorDTO();
+
+            if (id != null)
+            {
+                model.ID = id.Value;
+                model.Name = "Homer Simpson";
+                model.Age = 42;
+                model.City = "Springfield";
+                model.State = "Illinois";
+            }
 
             return View(model);
         }

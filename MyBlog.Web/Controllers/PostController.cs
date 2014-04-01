@@ -1,5 +1,10 @@
-﻿using System.Web.Mvc;
+﻿using System;
+using System.Collections.Generic;
+using System.Web.Mvc;
+using MyBlog.Domain.Entities;
 using MyBlog.Domain.Interfaces;
+using MyBlog.Web.Models;
+using MyBlog.Web.Models.DTO;
 
 namespace MyBlog.Web.Controllers
 {

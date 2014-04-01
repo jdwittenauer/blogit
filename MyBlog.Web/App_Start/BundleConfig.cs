@@ -20,9 +20,9 @@ namespace MyBlog.Web
                 "~/Content/bootstrap.css",
                 "~/Content/bootstrap-theme.css"));
             bundles.Add(new StyleBundle("~/Content/site").Include(
-                "~/Content/site.css",
-                "~/Content/dashboard.css"));
-            bundles.Add(new StyleBundle("~/Content/cover").Include("~/Content/cover.css"));
+                "~/Content/app/site.css",
+                "~/Content/app/dashboard.css"));
+            bundles.Add(new StyleBundle("~/Content/cover").Include("~/Content/app/cover.css"));
         }
     }
 }

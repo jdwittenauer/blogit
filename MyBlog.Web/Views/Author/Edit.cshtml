@@ -1,0 +1,45 @@
+﻿@model MyBlog.Web.Models.DTO.AuthorDTO
+
+@{
+    ViewBag.Title = "Edit Author";
+}
+
+<div class="container-fluid">
+    <h1 class="page-header">@ViewBag.Title</h1>
+
+    <input type="hidden" id="id" name="ID" value="@Model.ID" />
+
+    <div class="row padding-8">
+        <label class="col-md-2" for="Name">Name</label>
+        <div class="col-md-10">
+            <input type="text" class="text-box" id="name" name="Name" value="@Model.Name" />
+        </div>
+    </div>
+
+    <div class="row padding-8">
+        <label class="col-md-2" for="Age">Age</label>
+        <div class="col-md-10">
+            <input type="number" class="text-box" id="age" name="Age" value="@Model.Age" />
+        </div>
+    </div>
+
+    <div class="row padding-8">
+        <label class="col-md-2" for="City">City</label>
+        <div class="col-md-10">
+            <input type="text" class="text-box" id="city" name="City" value="@Model.City" />
+        </div>
+    </div>
+
+    <div class="row padding-8">
+        <label class="col-md-2" for="State">State</label>
+        <div class="col-md-10">
+            <input type="text" class="text-box" id="state" name="State" value="@Model.State" />
+        </div>
+    </div>
+
+    <div class="row padding-8">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="button" class="btn btn-default" id="save" value="Save" />
+        </div>
+    </div>
+</div>
