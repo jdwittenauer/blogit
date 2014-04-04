@@ -13,18 +13,18 @@ namespace MyBlog.Domain.Interfaces
     public interface IRepository<T> where T : Entity
     {
         T Get(Guid key);
-        void Insert(T entity);
-        void Update(T entity);
-        void Delete(T entity);
+        T Insert(T entity);
+        T Update(T entity);
+        T Delete(T entity);
         void BulkInsert(IEnumerable<T> entities);
         void BulkUpdate(IEnumerable<T> entities);
         void BulkDelete(IEnumerable<T> entities);
         IQueryable<T> Query();
         IQueryable<T> QueryNoTracking();
         Task<T> GetAsync(Guid key);
-        Task InsertAsync(T entity);
-        Task UpdateAsync(T entity);
-        Task DeleteAsync(T entity);
+        Task<T> InsertAsync(T entity);
+        Task<T> UpdateAsync(T entity);
+        Task<T> DeleteAsync(T entity);
         Task BulkInsertAsync(IEnumerable<T> entities);
         Task BulkUpdateAsync(IEnumerable<T> entities);
         Task BulkDeleteAsync(IEnumerable<T> entities);

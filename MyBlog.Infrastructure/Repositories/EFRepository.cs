@@ -58,10 +58,10 @@ namespace MyBlog.Infrastructure.Repositories
         }
 
         /// <summary>
-        /// Adds a new entity to the data store.
+        /// Adds a new entity to the data store and returns the new entity.
         /// </summary>
         /// <param name="entity">Entity</param>
-        public void Insert(T entity)
+        public T Insert(T entity)
         {
             if (entity == null)
                 throw new ArgumentNullException("entity");
@@ -73,6 +73,7 @@ namespace MyBlog.Infrastructure.Repositories
                 entity.UpdatedDate = DateTime.Now;
                 context.Set<T>().Add(entity);
                 context.SaveChanges();
+                return entity;
             }
             catch (Exception)
             {
@@ -82,10 +83,10 @@ namespace MyBlog.Infrastructure.Repositories
         }
 
         /// <summary>
-        /// Updates an entity in the data store.
+        /// Updates an entity in the data store and returns the new entity.
         /// </summary>
         /// <param name="entity">Entity</param>
-        public void Update(T entity)
+        public T Update(T entity)
         {
             if (entity == null)
                 throw new ArgumentNullException("entity");
@@ -98,6 +99,7 @@ namespace MyBlog.Infrastructure.Repositories
                 entity.UpdatedDate = DateTime.Now;
                 context.Entry(entity).State = EntityState.Modified;
                 context.SaveChanges();
+                return entity;
             }
             catch (Exception)
             {
@@ -107,10 +109,10 @@ namespace MyBlog.Infrastructure.Repositories
         }
 
         /// <summary>
-        /// Deletes an entity from the data store.
+        /// Deletes an entity from the data store and returns the new entity.
         /// </summary>
         /// <param name="entity">Entity</param>
-        public void Delete(T entity)
+        public T Delete(T entity)
         {
             if (entity == null)
                 throw new ArgumentNullException("entity");
@@ -122,6 +124,7 @@ namespace MyBlog.Infrastructure.Repositories
 
                 context.Set<T>().Remove(entity);
                 context.SaveChanges();
+                return entity;
             }
             catch (Exception)
             {
@@ -312,10 +315,10 @@ namespace MyBlog.Infrastructure.Repositories
         }
 
         /// <summary>
-        /// Adds a new entity to the data store.  Uses asynchronous data access pattern.
+        /// Adds a new entity to the data store and returns the new entity.  Uses asynchronous data access pattern.
         /// </summary>
         /// <param name="entity">Entity</param>
-        public async Task InsertAsync(T entity)
+        public async Task<T> InsertAsync(T entity)
         {
             if (entity == null)
                 throw new ArgumentNullException("entity");
@@ -327,6 +330,7 @@ namespace MyBlog.Infrastructure.Repositories
                 entity.UpdatedDate = DateTime.Now;
                 context.Set<T>().Add(entity);
                 await context.SaveChangesAsync();
+                return entity;
             }
             catch (Exception)
             {
@@ -336,10 +340,10 @@ namespace MyBlog.Infrastructure.Repositories
         }
 
         /// <summary>
-        /// Updates an entity in the data store.  Uses asynchronous data access pattern.
+        /// Updates an entity in the data store and returns the new entity.  Uses asynchronous data access pattern.
         /// </summary>
         /// <param name="entity">Entity</param>
-        public async Task UpdateAsync(T entity)
+        public async Task<T> UpdateAsync(T entity)
         {
             if (entity == null)
                 throw new ArgumentNullException("entity");
@@ -352,6 +356,7 @@ namespace MyBlog.Infrastructure.Repositories
                 entity.UpdatedDate = DateTime.Now;
                 context.Entry(entity).State = EntityState.Modified;
                 await context.SaveChangesAsync();
+                return entity;
             }
             catch (Exception)
             {
@@ -361,10 +366,10 @@ namespace MyBlog.Infrastructure.Repositories
         }
 
         /// <summary>
-        /// Deletes an entity from the data store.  Uses asynchronous data access pattern.
+        /// Deletes an entity from the data store and returns the new entity.  Uses asynchronous data access pattern.
         /// </summary>
         /// <param name="entity">Entity</param>
-        public async Task DeleteAsync(T entity)
+        public async Task<T> DeleteAsync(T entity)
         {
             if (entity == null)
                 throw new ArgumentNullException("entity");
@@ -376,6 +381,7 @@ namespace MyBlog.Infrastructure.Repositories
 
                 context.Set<T>().Remove(entity);
                 await context.SaveChangesAsync();
+                return entity;
             }
             catch (Exception)
             {

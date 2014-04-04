@@ -6,4 +6,72 @@
 
 <div class="container-fluid">
     <h1 class="page-header">@ViewBag.Title</h1>
+
+    <a href="@Url.Action("New", "Blog")" class="btn btn-default btn-lg">
+        <span class="glyphicon glyphicon-plus"></span> New Blog
+    </a>
+
+    <br /><br />
+
+    <div class="row">
+        <div class="col-md-4">
+            <div class="list-group">
+                @{int i = 1;}
+                @foreach (var blog in Model.Blogs)
+                {
+                    if (i % 3 == 1)
+                    {
+                        <a href="@Url.Action("Detail", "Blog")" class="list-group-item background-very-light">
+                            <h3>@blog.Name</h3>
+                            <div>
+                                <span>@blog.Category</span>
+                                <span>@blog.PostCount Posts</span>
+                            </div>
+                        </a>
+                    }
+                    i++;
+                }
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="list-group">
+                @{int j = 1;}
+                @foreach (var blog in Model.Blogs)
+                {
+                    if (j % 3 == 2)
+                    {
+                        <a href="@Url.Action("Detail", "Blog")" class="list-group-item background-very-light">
+                            <h3>@blog.Name</h3>
+                            <div>
+                                <span>@blog.Category</span>
+                                <span>@blog.PostCount Posts</span>
+                            </div>
+                        </a>
+                    }
+                    j++;
+                }
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="list-group">
+                @{int k = 1;}
+                @foreach (var blog in Model.Blogs)
+                {
+                    if (k % 3 == 0)
+                    {
+                        <a href="@Url.Action("Detail", "Blog")" class="list-group-item background-very-light">
+                            <h3>@blog.Name</h3>
+                            <div>
+                                <span>@blog.Category</span>
+                                <span>@blog.PostCount Posts</span>
+                            </div>
+                        </a>
+                    }
+                    k++;
+                }
+            </div>
+        </div>
+    </div>
 </div>

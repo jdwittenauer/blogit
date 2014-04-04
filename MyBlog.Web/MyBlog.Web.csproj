@@ -232,6 +232,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AuthorViewModel.cs" />
+    <Compile Include="Models\BlogDetailViewModel.cs" />
     <Compile Include="Models\BlogViewModel.cs" />
     <Compile Include="Models\CommentViewModel.cs" />
     <Compile Include="Models\DTO\AuthorDTO.cs" />
@@ -304,6 +305,8 @@
     <Content Include="Views\Home\Jumbotron.cshtml" />
     <Content Include="Views\Home\Cover.cshtml" />
     <Content Include="Views\Author\Edit.cshtml" />
+    <Content Include="Views\Blog\New.cshtml" />
+    <Content Include="Views\Blog\Detail.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

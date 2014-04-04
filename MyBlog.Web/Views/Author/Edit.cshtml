@@ -1,7 +1,7 @@
 ﻿@model MyBlog.Web.Models.DTO.AuthorDTO
 
 @{
-    ViewBag.Title = "Edit Author";
+    ViewBag.Title = Model.ID == Guid.Empty ? "Add Author" : "Edit Author";
 }
 
 <div class="container-fluid">
@@ -39,7 +39,8 @@
 
     <div class="row padding-8">
         <div class="col-md-offset-2 col-md-10">
-            <input type="button" class="btn btn-default" id="save" value="Save" />
+            <input type="button" class="btn btn-default" id="save" value="Save" />&nbsp;
+            <input type="button" class="btn btn-default" id="cancel" value="Cancel" />
         </div>
     </div>
 </div>

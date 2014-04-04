@@ -156,6 +156,9 @@ namespace MyBlog.Web.Controllers
             return View(model);
         }
 
+        /// <summary>
+        /// Edit view.
+        /// </summary>
         public ActionResult Edit(Guid? id)
         {
             var model = new AuthorDTO();
