@@ -21,6 +21,7 @@ namespace MyBlog.Web
                 "~/Content/bootstrap-theme.css"));
             bundles.Add(new StyleBundle("~/Content/site").Include(
                 "~/Content/app/site.css",
+                "~/Content/app/blog.css",
                 "~/Content/app/dashboard.css"));
             bundles.Add(new StyleBundle("~/Content/cover").Include("~/Content/app/cover.css"));
         }
