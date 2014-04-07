@@ -6,4 +6,44 @@
 
 <div class="container-fluid">
     <h1 class="page-header">@ViewBag.Title</h1>
+
+    <div class="row">
+        <div class="col-md-6">
+            <div class="list-group">
+                @{int i = 1;}
+                @foreach (var post in Model.Posts)
+                {
+                    if (i % 2 == 1)
+                    {
+                        <a href="@Url.Action("Detail", "Blog")" class="list-group-item background-very-light">
+                            <h3>@post.Title</h3>
+                            <p>Date: @post.Date.ToShortDateString()</p>
+                            <p>Blog: @post.Blog</p>
+                            <p>Comments: @post.CommentCount</p>
+                        </a>
+                    }
+                    i++;
+                }
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="list-group">
+                @{int j = 1;}
+                @foreach (var post in Model.Posts)
+                {
+                    if (j % 2 == 0)
+                    {
+                        <a href="@Url.Action("Detail", "Blog")" class="list-group-item background-very-light">
+                            <h3>@post.Title</h3>
+                            <p>Date: @post.Date.ToShortDateString()</p>
+                            <p>Blog: @post.Blog</p>
+                            <p>Comments: @post.CommentCount</p>
+                        </a>
+                    }
+                    j++;
+                }
+            </div>
+        </div>
+    </div>
 </div>

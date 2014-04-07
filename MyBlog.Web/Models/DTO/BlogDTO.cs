@@ -7,6 +7,7 @@ namespace MyBlog.Web.Models.DTO
         public Guid ID { get; set; }
         public string Name { get; set; }
         public string Category { get; set; }
+        public DateTime LastPostDate { get; set; }
         public int PostCount { get; set; }
     }
 }

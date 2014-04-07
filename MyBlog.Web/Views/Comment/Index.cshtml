@@ -6,4 +6,16 @@
 
 <div class="container-fluid">
     <h1 class="page-header">@ViewBag.Title</h1>
+
+    <div class="row">
+        <div class="list-group">
+            @foreach (var comment in Model.Comments)
+            {
+                <div class="list-group-item background-very-light">
+                    <p>@comment.BlogName - @comment.PostTitle</p>
+                    <p>(@comment.Date.ToShortDateString()) @comment.AuthorName said:</p>
+                    <blockquote>@comment.Content</blockquote>
+                </div>
+            }
+        </div>
 </div>

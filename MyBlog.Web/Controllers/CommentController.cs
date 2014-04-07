@@ -28,7 +28,62 @@ namespace MyBlog.Web.Controllers
         /// </summary>
         public ActionResult Index()
         {
-            return View();
+            var model = new CommentViewModel
+            {
+                Comments = new List<CommentDTO>()
+            };
+
+            model.Comments.Add(new CommentDTO
+            {
+                ID = Guid.Empty,
+                Content = "My comment to this post",
+                Date = DateTime.Now,
+                AuthorName = "Some Guy",
+                BlogName = "Some Random Blog",
+                PostTitle = "1st Post"
+            });
+
+            model.Comments.Add(new CommentDTO
+            {
+                ID = Guid.Empty,
+                Content = "My comment to this post",
+                Date = DateTime.Now,
+                AuthorName = "Some Guy",
+                BlogName = "Some Random Blog",
+                PostTitle = "1st Post"
+            });
+
+            model.Comments.Add(new CommentDTO
+            {
+                ID = Guid.Empty,
+                Content = "My comment to this post",
+                Date = DateTime.Now,
+                AuthorName = "Some Guy",
+                BlogName = "Some Random Blog",
+                PostTitle = "1st Post"
+            });
+
+            model.Comments.Add(new CommentDTO
+            {
+                ID = Guid.Empty,
+                Content = "My comment to this post",
+                Date = DateTime.Now,
+                AuthorName = "Some Guy",
+                BlogName = "Some Random Blog",
+                PostTitle = "1st Post"
+            });
+
+            model.Comments.Add(new CommentDTO
+            {
+                ID = Guid.Empty,
+                Content = "My comment to this post",
+                Date = DateTime.Now,
+                AuthorName = "Some Guy",
+                BlogName = "Some Random Blog",
+                PostTitle = "1st Post"
+            });
+
+            return View(model);
         }
 	}
 }

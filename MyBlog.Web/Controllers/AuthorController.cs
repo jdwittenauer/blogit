@@ -161,7 +161,7 @@ namespace MyBlog.Web.Controllers
         /// </summary>
         public ActionResult Edit(Guid? id)
         {
-            var model = new AuthorDTO();
+            var model = new Author();
 
             if (id != null)
             {

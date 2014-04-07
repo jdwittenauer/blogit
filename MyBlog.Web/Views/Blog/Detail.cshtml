@@ -1,7 +1,7 @@
-﻿@model MyBlog.Web.Models.BlogDetailViewModel
+﻿@model MyBlog.Domain.Entities.Blog
 
 @{
-    ViewBag.Title = Model.Blog.Name;
+    ViewBag.Title = Model.Name;
 }
 
 <div class="container-fluid">
@@ -9,7 +9,7 @@
 
     <div class="row">
         <div class="col-sm-8 blog-main">
-            @foreach (var post in Model.Blog.Posts)
+            @foreach (var post in Model.Posts)
             {
                 <div class="blog-post">
                     <h2 class="blog-post-title">@post.Title</h2>
@@ -43,7 +43,7 @@
         <div class="col-sm-2 col-sm-offset-1 blog-sidebar">
             <div class="sidebar-module sidebar-module-inset">
                 <h4>About</h4>
-                <p>@Model.Blog.Category</p>
+                <p>@Model.Category</p>
             </div>
 
             <div class="sidebar-module">
@@ -68,7 +68,7 @@
             <div class="sidebar-module">
                 <h4>Admin</h4>
                 <ol class="list-unstyled">
-                    <li><a href="#">Create New Post...</a></li>
+                    <li>@Html.ActionLink("Create New Post...", "New", "Post", new { authorID = Guid.Empty, blogID = Model.ID }, new { })</li>
                 </ol>
             </div>
         </div>

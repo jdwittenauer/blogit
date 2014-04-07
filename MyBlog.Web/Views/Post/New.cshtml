@@ -1,23 +1,26 @@
-﻿@model MyBlog.Domain.Entities.Blog
+﻿@model MyBlog.Domain.Entities.Post
 
 @{
-    ViewBag.Title = "Add Blog";
+    ViewBag.Title = "Add Post";
 }
 
 <div class="container-fluid">
     <h1 class="page-header">@ViewBag.Title</h1>
 
+    <input type="hidden" id="authorID" name="AuthorID" value="@Model.AuthorID" />
+    <input type="hidden" id="blogID" name="BlogID" value="@Model.BlogID" />
+
     <div class="row padding-8">
-        <label class="col-md-2" for="Name">Name</label>
+        <label class="col-md-2" for="Title">Title</label>
         <div class="col-md-10">
-            <input type="text" class="text-box" id="name" name="Name" value="@Model.Name" />
+            <input type="text" class="text-box" id="title" name="Title" value="@Model.Title" />
         </div>
     </div>
 
     <div class="row padding-8">
-        <label class="col-md-2" for="Category">Category</label>
+        <label class="col-md-2" for="Content">Content</label>
         <div class="col-md-10">
-            <input type="text" class="text-box" id="category" name="Category" value="@Model.Category" />
+            <textarea class="width-50" id="content" name="Content" rows="3">@Model.Content</textarea>
         </div>
     </div>
 

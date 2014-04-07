@@ -11,6 +11,11 @@ namespace MyBlog.Web
             routes.LowercaseUrls = true;
 
             routes.MapRoute(
+                name: "NewPost",
+                url: "{controller}/{action}/{authorID}/{blogID}"
+            );
+
+            routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "home", action = "cover", id = UrlParameter.Optional }

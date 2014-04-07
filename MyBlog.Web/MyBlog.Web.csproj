@@ -232,11 +232,12 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AuthorViewModel.cs" />
-    <Compile Include="Models\BlogDetailViewModel.cs" />
     <Compile Include="Models\BlogViewModel.cs" />
     <Compile Include="Models\CommentViewModel.cs" />
     <Compile Include="Models\DTO\AuthorDTO.cs" />
     <Compile Include="Models\DTO\BlogDTO.cs" />
+    <Compile Include="Models\DTO\CommentDTO.cs" />
+    <Compile Include="Models\DTO\PostDTO.cs" />
     <Compile Include="Models\PostViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\AuthorService.svc.cs">
@@ -308,6 +309,7 @@
     <Content Include="Views\Author\Edit.cshtml" />
     <Content Include="Views\Blog\New.cshtml" />
     <Content Include="Views\Blog\Detail.cshtml" />
+    <Content Include="Views\Post\New.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

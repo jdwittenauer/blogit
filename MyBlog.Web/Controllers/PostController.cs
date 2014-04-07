@@ -28,7 +28,121 @@ namespace MyBlog.Web.Controllers
         /// </summary>
         public ActionResult Index()
         {
-            return View();
+            var model = new PostViewModel()
+            {
+                Posts = new List<PostDTO>()
+            };
+
+            model.Posts.Add(new PostDTO
+            {
+                ID = Guid.Empty,
+                BlogID = Guid.Empty,
+                Title = "My New Post",
+                Date = DateTime.Now,
+                Blog = "Some Random Blog",
+                CommentCount = 10
+            });
+
+            model.Posts.Add(new PostDTO
+            {
+                ID = Guid.Empty,
+                BlogID = Guid.Empty,
+                Title = "My New Post",
+                Date = DateTime.Now,
+                Blog = "Some Random Blog",
+                CommentCount = 10
+            });
+
+            model.Posts.Add(new PostDTO
+            {
+                ID = Guid.Empty,
+                BlogID = Guid.Empty,
+                Title = "My New Post",
+                Date = DateTime.Now,
+                Blog = "Some Random Blog",
+                CommentCount = 10
+            });
+
+            model.Posts.Add(new PostDTO
+            {
+                ID = Guid.Empty,
+                BlogID = Guid.Empty,
+                Title = "My New Post",
+                Date = DateTime.Now,
+                Blog = "Some Random Blog",
+                CommentCount = 10
+            });
+
+            model.Posts.Add(new PostDTO
+            {
+                ID = Guid.Empty,
+                BlogID = Guid.Empty,
+                Title = "My New Post",
+                Date = DateTime.Now,
+                Blog = "Some Random Blog",
+                CommentCount = 10
+            });
+
+            model.Posts.Add(new PostDTO
+            {
+                ID = Guid.Empty,
+                BlogID = Guid.Empty,
+                Title = "My New Post",
+                Date = DateTime.Now,
+                Blog = "Some Random Blog",
+                CommentCount = 10
+            });
+
+            model.Posts.Add(new PostDTO
+            {
+                ID = Guid.Empty,
+                BlogID = Guid.Empty,
+                Title = "My New Post",
+                Date = DateTime.Now,
+                Blog = "Some Random Blog",
+                CommentCount = 10
+            });
+
+            model.Posts.Add(new PostDTO
+            {
+                ID = Guid.Empty,
+                BlogID = Guid.Empty,
+                Title = "My New Post",
+                Date = DateTime.Now,
+                Blog = "Some Random Blog",
+                CommentCount = 10
+            });
+
+            model.Posts.Add(new PostDTO
+            {
+                ID = Guid.Empty,
+                BlogID = Guid.Empty,
+                Title = "My New Post",
+                Date = DateTime.Now,
+                Blog = "Some Random Blog",
+                CommentCount = 10
+            });
+
+            model.Posts.Add(new PostDTO
+            {
+                ID = Guid.Empty,
+                BlogID = Guid.Empty,
+                Title = "My New Post",
+                Date = DateTime.Now,
+                Blog = "Some Random Blog",
+                CommentCount = 10
+            });
+
+            return View(model);
+        }
+
+        public ActionResult New(Guid authorID, Guid blogID)
+        {
+            var model = new Post();
+            model.AuthorID = authorID;
+            model.BlogID = blogID;
+
+            return View(model);
         }
 	}
 }

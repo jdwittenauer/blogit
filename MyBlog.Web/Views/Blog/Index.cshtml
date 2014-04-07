@@ -22,11 +22,16 @@
                     if (i % 3 == 1)
                     {
                         <a href="@Url.Action("Detail", "Blog")" class="list-group-item background-very-light">
-                            <h3>@blog.Name</h3>
-                            <div>
-                                <span>@blog.Category</span>
-                                <span>@blog.PostCount Posts</span>
-                            </div>
+                            <table class="width-100">
+                                <tr class="width-100">
+                                    <td class="text-align-left"><h3>@blog.Name</h3></td>
+                                    <td class="text-align-right">@blog.LastPostDate.ToShortDateString()</td>
+                                </tr>
+                                <tr class="width-100">
+                                    <td class="text-align-left">@blog.Category</td>
+                                    <td class="text-align-right">@blog.PostCount Posts</td>
+                                </tr>
+                            </table>
                         </a>
                     }
                     i++;
@@ -42,11 +47,16 @@
                     if (j % 3 == 2)
                     {
                         <a href="@Url.Action("Detail", "Blog")" class="list-group-item background-very-light">
-                            <h3>@blog.Name</h3>
-                            <div>
-                                <span>@blog.Category</span>
-                                <span>@blog.PostCount Posts</span>
-                            </div>
+                            <table class="width-100">
+                                <tr class="width-100">
+                                    <td class="text-align-left"><h3>@blog.Name</h3></td>
+                                    <td class="text-align-right">@blog.LastPostDate.ToShortDateString()</td>
+                                </tr>
+                                <tr class="width-100">
+                                    <td class="text-align-left">@blog.Category</td>
+                                    <td class="text-align-right">@blog.PostCount Posts</td>
+                                </tr>
+                            </table>
                         </a>
                     }
                     j++;
@@ -62,11 +72,16 @@
                     if (k % 3 == 0)
                     {
                         <a href="@Url.Action("Detail", "Blog")" class="list-group-item background-very-light">
-                            <h3>@blog.Name</h3>
-                            <div>
-                                <span>@blog.Category</span>
-                                <span>@blog.PostCount Posts</span>
-                            </div>
+                            <table class="width-100">
+                                <tr class="width-100">
+                                    <td class="text-align-left"><h3>@blog.Name</h3></td>
+                                    <td class="text-align-right">@blog.LastPostDate.ToShortDateString()</td>
+                                </tr>
+                                <tr class="width-100">
+                                    <td class="text-align-left">@blog.Category</td>
+                                    <td class="text-align-right">@blog.PostCount Posts</td>
+                                </tr>
+                            </table>
                         </a>
                     }
                     k++;
