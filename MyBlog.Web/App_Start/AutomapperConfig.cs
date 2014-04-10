@@ -1,4 +1,5 @@
-﻿using AutoMapper;
+﻿using System.Linq;
+using AutoMapper;
 
 namespace MyBlog.Web
 {
@@ -35,6 +36,21 @@ namespace MyBlog.Web
             Mapper.CreateMap<MyBlog.Services.DataContracts.Blog, MyBlog.Domain.Entities.Blog>();
             Mapper.CreateMap<MyBlog.Services.DataContracts.Comment, MyBlog.Domain.Entities.Comment>();
             Mapper.CreateMap<MyBlog.Services.DataContracts.Post, MyBlog.Domain.Entities.Post>();
+
+            // Map from domain entities to DTOs
+            Mapper.CreateMap<MyBlog.Domain.Entities.Author, MyBlog.Web.Models.DTO.AuthorDTO>()
+                .ForMember(dest => dest.PostCount, opt => opt.MapFrom(src => src.Posts.Count))
+                .ForMember(dest => dest.CommentCount, opt => opt.MapFrom(src => src.Comments.Count));
+            Mapper.CreateMap<MyBlog.Domain.Entities.Blog, MyBlog.Web.Models.DTO.BlogDTO>()
+                .ForMember(dest => dest.PostCount, opt => opt.MapFrom(src => src.Posts.Count));
+            Mapper.CreateMap<MyBlog.Domain.Entities.Comment, MyBlog.Web.Models.DTO.CommentDTO>()
+                .ForMember(dest => dest.PostTitle, opt => opt.MapFrom(src => src.Post.Title))
+                .ForMember(dest => dest.AuthorName, opt => opt.MapFrom(src => src.Author.Name))
+                .ForMember(dest => dest.BlogName, opt => opt.MapFrom(src => src.Post.Blog.Name));
+            Mapper.CreateMap<MyBlog.Domain.Entities.Post, MyBlog.Web.Models.DTO.PostDTO>()
+                .ForMember(dest => dest.AuthorName, opt => opt.MapFrom(src => src.Author.Name))
+                .ForMember(dest => dest.BlogName, opt => opt.MapFrom(src => src.Blog.Name))
+                .ForMember(dest => dest.CommentCount, opt => opt.MapFrom(src => src.Comments.Count));
 
             Mapper.AssertConfigurationIsValid();
         }

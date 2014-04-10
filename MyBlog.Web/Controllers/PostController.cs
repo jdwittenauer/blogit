@@ -26,7 +26,7 @@ namespace MyBlog.Web.Controllers
         /// <summary>
         /// Index view.
         /// </summary>
-        public ActionResult Index()
+        public ActionResult Index(Guid id)
         {
             var model = new PostViewModel()
             {
@@ -36,100 +36,120 @@ namespace MyBlog.Web.Controllers
             model.Posts.Add(new PostDTO
             {
                 ID = Guid.Empty,
+                AuthorID = Guid.Empty,
                 BlogID = Guid.Empty,
                 Title = "My New Post",
                 Date = DateTime.Now,
-                Blog = "Some Random Blog",
+                AuthorName = "Some Guy",
+                BlogName = "Some Random Blog",
                 CommentCount = 10
             });
 
             model.Posts.Add(new PostDTO
             {
                 ID = Guid.Empty,
+                AuthorID = Guid.Empty,
                 BlogID = Guid.Empty,
                 Title = "My New Post",
                 Date = DateTime.Now,
-                Blog = "Some Random Blog",
+                AuthorName = "Some Guy",
+                BlogName = "Some Random Blog",
                 CommentCount = 10
             });
 
             model.Posts.Add(new PostDTO
             {
                 ID = Guid.Empty,
+                AuthorID = Guid.Empty,
                 BlogID = Guid.Empty,
                 Title = "My New Post",
                 Date = DateTime.Now,
-                Blog = "Some Random Blog",
+                AuthorName = "Some Guy",
+                BlogName = "Some Random Blog",
                 CommentCount = 10
             });
 
             model.Posts.Add(new PostDTO
             {
                 ID = Guid.Empty,
+                AuthorID = Guid.Empty,
                 BlogID = Guid.Empty,
                 Title = "My New Post",
                 Date = DateTime.Now,
-                Blog = "Some Random Blog",
+                AuthorName = "Some Guy",
+                BlogName = "Some Random Blog",
                 CommentCount = 10
             });
 
             model.Posts.Add(new PostDTO
             {
                 ID = Guid.Empty,
+                AuthorID = Guid.Empty,
                 BlogID = Guid.Empty,
                 Title = "My New Post",
                 Date = DateTime.Now,
-                Blog = "Some Random Blog",
+                AuthorName = "Some Guy",
+                BlogName = "Some Random Blog",
                 CommentCount = 10
             });
 
             model.Posts.Add(new PostDTO
             {
                 ID = Guid.Empty,
+                AuthorID = Guid.Empty,
                 BlogID = Guid.Empty,
                 Title = "My New Post",
                 Date = DateTime.Now,
-                Blog = "Some Random Blog",
+                AuthorName = "Some Guy",
+                BlogName = "Some Random Blog",
                 CommentCount = 10
             });
 
             model.Posts.Add(new PostDTO
             {
                 ID = Guid.Empty,
+                AuthorID = Guid.Empty,
                 BlogID = Guid.Empty,
                 Title = "My New Post",
                 Date = DateTime.Now,
-                Blog = "Some Random Blog",
+                AuthorName = "Some Guy",
+                BlogName = "Some Random Blog",
                 CommentCount = 10
             });
 
             model.Posts.Add(new PostDTO
             {
                 ID = Guid.Empty,
+                AuthorID = Guid.Empty,
                 BlogID = Guid.Empty,
                 Title = "My New Post",
                 Date = DateTime.Now,
-                Blog = "Some Random Blog",
+                AuthorName = "Some Guy",
+                BlogName = "Some Random Blog",
                 CommentCount = 10
             });
 
             model.Posts.Add(new PostDTO
             {
                 ID = Guid.Empty,
+                AuthorID = Guid.Empty,
                 BlogID = Guid.Empty,
                 Title = "My New Post",
                 Date = DateTime.Now,
-                Blog = "Some Random Blog",
+                AuthorName = "Some Guy",
+                BlogName = "Some Random Blog",
                 CommentCount = 10
             });
 
             model.Posts.Add(new PostDTO
             {
                 ID = Guid.Empty,
+                AuthorID = Guid.Empty,
                 BlogID = Guid.Empty,
                 Title = "My New Post",
                 Date = DateTime.Now,
-                Blog = "Some Random Blog",
+                AuthorName = "Some Guy",
+                BlogName = "Some Random Blog",
                 CommentCount = 10
             });
 

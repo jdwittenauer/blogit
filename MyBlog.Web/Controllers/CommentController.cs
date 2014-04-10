@@ -26,7 +26,7 @@ namespace MyBlog.Web.Controllers
         /// <summary>
         /// Index view.
         /// </summary>
-        public ActionResult Index()
+        public ActionResult Index(Guid id)
         {
             var model = new CommentViewModel
             {

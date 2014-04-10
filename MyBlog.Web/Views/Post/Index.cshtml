@@ -18,7 +18,8 @@
                         <a href="@Url.Action("Detail", "Blog")" class="list-group-item background-very-light">
                             <h3>@post.Title</h3>
                             <p>Date: @post.Date.ToShortDateString()</p>
-                            <p>Blog: @post.Blog</p>
+                            <p>Author: @post.AuthorName</p>
+                            <p>Blog: @post.BlogName</p>
                             <p>Comments: @post.CommentCount</p>
                         </a>
                     }
@@ -37,7 +38,8 @@
                         <a href="@Url.Action("Detail", "Blog")" class="list-group-item background-very-light">
                             <h3>@post.Title</h3>
                             <p>Date: @post.Date.ToShortDateString()</p>
-                            <p>Blog: @post.Blog</p>
+                            <p>Author: @post.AuthorName</p>
+                            <p>Blog: @post.BlogName</p>
                             <p>Comments: @post.CommentCount</p>
                         </a>
                     }

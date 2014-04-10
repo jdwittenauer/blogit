@@ -5,7 +5,7 @@ This MVC-based application demonstrates a number of design patterns and advanced
 
 The app presents screens to manage a group of authors posting and commenting on a set of blogs.  Models are contrived and very basic - the intent is just to demonstrate various patterns and concepts.
 
-Several views demonstrating some of Bootstrap's capabilities are also presented.  These examples contain static markup only and are included as examples only.
+Several views demonstrating some of Bootstrap's capabilities are also presented.  These examples contain static markup and are included as examples only.
 
 Some of the design patterns and technologies used include:
 

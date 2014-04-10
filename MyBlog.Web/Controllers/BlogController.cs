@@ -37,7 +37,6 @@ namespace MyBlog.Web.Controllers
             {
                 Name = "Blog 1",
                 Category = "Tech",
-                LastPostDate = DateTime.Now,
                 PostCount = 50
             });
 
@@ -45,7 +44,6 @@ namespace MyBlog.Web.Controllers
             {
                 Name = "Blog 2",
                 Category = "Sports",
-                LastPostDate = DateTime.Now,
                 PostCount = 100
             });
 
@@ -53,7 +51,6 @@ namespace MyBlog.Web.Controllers
             {
                 Name = "Blog 3",
                 Category = "Economics",
-                LastPostDate = DateTime.Now,
                 PostCount = 20
             });
 
@@ -61,7 +58,6 @@ namespace MyBlog.Web.Controllers
             {
                 Name = "Blog 1",
                 Category = "Tech",
-                LastPostDate = DateTime.Now,
                 PostCount = 50
             });
 
@@ -69,7 +65,6 @@ namespace MyBlog.Web.Controllers
             {
                 Name = "Blog 2",
                 Category = "Sports",
-                LastPostDate = DateTime.Now,
                 PostCount = 100
             });
 
@@ -77,7 +72,6 @@ namespace MyBlog.Web.Controllers
             {
                 Name = "Blog 3",
                 Category = "Economics",
-                LastPostDate = DateTime.Now,
                 PostCount = 20
             });
 
@@ -85,7 +79,6 @@ namespace MyBlog.Web.Controllers
             {
                 Name = "Blog 1",
                 Category = "Tech",
-                LastPostDate = DateTime.Now,
                 PostCount = 50
             });
 
@@ -93,7 +86,6 @@ namespace MyBlog.Web.Controllers
             {
                 Name = "Blog 2",
                 Category = "Sports",
-                LastPostDate = DateTime.Now,
                 PostCount = 100
             });
 
@@ -101,7 +93,6 @@ namespace MyBlog.Web.Controllers
             {
                 Name = "Blog 3",
                 Category = "Economics",
-                LastPostDate = DateTime.Now,
                 PostCount = 20
             });
 
@@ -109,7 +100,6 @@ namespace MyBlog.Web.Controllers
             {
                 Name = "Blog 1",
                 Category = "Tech",
-                LastPostDate = DateTime.Now,
                 PostCount = 50
             });
 
@@ -117,7 +107,6 @@ namespace MyBlog.Web.Controllers
             {
                 Name = "Blog 2",
                 Category = "Sports",
-                LastPostDate = DateTime.Now,
                 PostCount = 100
             });
 
@@ -125,7 +114,6 @@ namespace MyBlog.Web.Controllers
             {
                 Name = "Blog 3",
                 Category = "Economics",
-                LastPostDate = DateTime.Now,
                 PostCount = 20
             });
 
