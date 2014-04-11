@@ -272,6 +272,10 @@
     <Content Include="Content\bootstrap-theme.css.map" />
     <Content Include="Content\bootstrap.css.map" />
     <None Include="Scripts\jquery-2.1.0.intellisense.js" />
+    <Content Include="Scripts\app\comment.js" />
+    <Content Include="Scripts\app\post.js" />
+    <Content Include="Scripts\app\blog.js" />
+    <Content Include="Scripts\app\author.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\app\global.js" />

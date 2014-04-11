@@ -30,7 +30,7 @@ namespace MyBlog.Web.Controllers.API
         /// Gets a collection of all blogs.
         /// </summary>
         /// <returns>Collection of blogs</returns>
-        [Route("blogs")]
+        [Route("blogs", Name = "Blogs")]
         [HttpGet]
         public async Task<List<Blog>> Get()
         {
@@ -42,7 +42,7 @@ namespace MyBlog.Web.Controllers.API
         /// </summary>
         /// <param name="id">Blog ID</param>
         /// <returns>Blog</returns>
-        [Route("blogs/{id}")]
+        [Route("blogs/{id}", Name = "Blog")]
         [HttpGet]
         public async Task<Blog> Get(Guid id)
         {

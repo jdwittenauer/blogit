@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Web.Mvc;
+using AutoMapper;
 using MyBlog.Domain.Entities;
 using MyBlog.Domain.Interfaces;
 using MyBlog.Web.Models;
@@ -30,128 +31,8 @@ namespace MyBlog.Web.Controllers
         {
             var model = new AuthorViewModel
             {
-                Authors = new List<AuthorDTO>()
+                Authors = Mapper.Map<List<Author>, List<AuthorDTO>>(repository.GetAuthors())
             };
-
-            model.Authors.Add(new AuthorDTO
-            {
-                Name = "Some Guy",
-                Age = 27,
-                City = "Columbus",
-                State = "Ohio",
-                PostCount = 3,
-                CommentCount = 0
-            });
-
-            model.Authors.Add(new AuthorDTO
-            {
-                Name = "Homer Simpson",
-                Age = 42,
-                City = "Springfield",
-                State = "Illinois",
-                PostCount = 10,
-                CommentCount = 20
-            });
-
-            model.Authors.Add(new AuthorDTO
-            {
-                Name = "Carlos Danger",
-                Age = 33,
-                City = "New York",
-                State = "New York",
-                PostCount = 7,
-                CommentCount = 2
-            });
-
-            model.Authors.Add(new AuthorDTO
-            {
-                Name = "Some Guy",
-                Age = 27,
-                City = "Columbus",
-                State = "Ohio",
-                PostCount = 3,
-                CommentCount = 0
-            });
-
-            model.Authors.Add(new AuthorDTO
-            {
-                Name = "Homer Simpson",
-                Age = 42,
-                City = "Springfield",
-                State = "Illinois",
-                PostCount = 10,
-                CommentCount = 20
-            });
-
-            model.Authors.Add(new AuthorDTO
-            {
-                Name = "Carlos Danger",
-                Age = 33,
-                City = "New York",
-                State = "New York",
-                PostCount = 7,
-                CommentCount = 2
-            });
-
-            model.Authors.Add(new AuthorDTO
-            {
-                Name = "Some Guy",
-                Age = 27,
-                City = "Columbus",
-                State = "Ohio",
-                PostCount = 3,
-                CommentCount = 0
-            });
-
-            model.Authors.Add(new AuthorDTO
-            {
-                Name = "Homer Simpson",
-                Age = 42,
-                City = "Springfield",
-                State = "Illinois",
-                PostCount = 10,
-                CommentCount = 20
-            });
-
-            model.Authors.Add(new AuthorDTO
-            {
-                Name = "Carlos Danger",
-                Age = 33,
-                City = "New York",
-                State = "New York",
-                PostCount = 7,
-                CommentCount = 2
-            });
-
-            model.Authors.Add(new AuthorDTO
-            {
-                Name = "Some Guy",
-                Age = 27,
-                City = "Columbus",
-                State = "Ohio",
-                PostCount = 3,
-                CommentCount = 0
-            });
-
-            model.Authors.Add(new AuthorDTO
-            {
-                Name = "Homer Simpson",
-                Age = 42,
-                City = "Springfield",
-                State = "Illinois",
-                PostCount = 10,
-                CommentCount = 20
-            });
-
-            model.Authors.Add(new AuthorDTO
-            {
-                Name = "Carlos Danger",
-                Age = 33,
-                City = "New York",
-                State = "New York",
-                PostCount = 7,
-                CommentCount = 2
-            });
 
             return View(model);
         }
@@ -161,15 +42,15 @@ namespace MyBlog.Web.Controllers
         /// </summary>
         public ActionResult Edit(Guid? id)
         {
-            var model = new Author();
+            Author model = null;
 
-            if (id != null)
+            if (id == null)
             {
-                model.ID = id.Value;
-                model.Name = "Homer Simpson";
-                model.Age = 42;
-                model.City = "Springfield";
-                model.State = "Illinois";
+                model = new Author();
+            }
+            else
+            {
+                model = repository.Get(id.Value);
             }
 
             return View(model);

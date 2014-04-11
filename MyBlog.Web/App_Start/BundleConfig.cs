@@ -13,7 +13,12 @@ namespace MyBlog.Web
                 "~/Scripts/bootstrap.js",
                 "~/Scripts/holder.js"));
             bundles.Add(new ScriptBundle("~/bundles/modernizr").Include("~/Scripts/modernizr-*"));
-            bundles.Add(new ScriptBundle("~/bundles/global").Include("~/Scripts/app/global.js"));
+            bundles.Add(new ScriptBundle("~/bundles/app").Include(
+                "~/Scripts/app/global.js",
+                "~/Scripts/app/author.js",
+                "~/Scripts/app/blog.js",
+                "~/Scripts/app/comment.js",
+                "~/Scripts/app/post.js"));
 
             // Style bundles
             bundles.Add(new StyleBundle("~/Content/bootstrap").Include(

@@ -30,7 +30,7 @@ namespace MyBlog.Web.Controllers.API
         /// Gets a collection of all authors.
         /// </summary>
         /// <returns>Collection of authors</returns>
-        [Route("authors")]
+        [Route("authors", Name = "Authors")]
         [HttpGet]
         public async Task<List<Author>> Get()
         {
@@ -42,7 +42,7 @@ namespace MyBlog.Web.Controllers.API
         /// </summary>
         /// <param name="id">Author ID</param>
         /// <returns>Author</returns>
-        [Route("authors/{id}")]
+        [Route("authors/{id}", Name = "Author")]
         [HttpGet]
         public async Task<Author> Get(Guid id)
         {

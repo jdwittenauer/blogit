@@ -98,6 +98,7 @@ namespace MyBlog.Infrastructure.Repositories
 
                 entity.UpdatedDate = DateTime.Now;
                 context.Entry(entity).State = EntityState.Modified;
+                context.Entry(entity).Property(x => x.CreatedDate).IsModified = false;
                 context.SaveChanges();
                 return entity;
             }
@@ -355,6 +356,7 @@ namespace MyBlog.Infrastructure.Repositories
 
                 entity.UpdatedDate = DateTime.Now;
                 context.Entry(entity).State = EntityState.Modified;
+                context.Entry(entity).Property(x => x.CreatedDate).IsModified = false;
                 await context.SaveChangesAsync();
                 return entity;
             }

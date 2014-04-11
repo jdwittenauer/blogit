@@ -30,7 +30,7 @@ namespace MyBlog.Web.Controllers.API
         /// Gets a collection of all comments.
         /// </summary>
         /// <returns>Collection of comments</returns>
-        [Route("comments")]
+        [Route("comments", Name = "Comments")]
         [HttpGet]
         public async Task<List<Comment>> Get()
         {
@@ -42,7 +42,7 @@ namespace MyBlog.Web.Controllers.API
         /// </summary>
         /// <param name="id">Comment ID</param>
         /// <returns>Comment</returns>
-        [Route("comments/{id}")]
+        [Route("comments/{id}", Name = "Comment")]
         [HttpGet]
         public async Task<Comment> Get(Guid id)
         {
