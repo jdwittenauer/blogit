@@ -4,6 +4,12 @@
     ViewBag.Title = "Add Post";
 }
 
+<script>
+    $(function () {
+        RegisterNewPostEvents();
+    });
+</script>
+
 <div class="container-fluid">
     <h1 class="page-header">@ViewBag.Title</h1>
 
@@ -26,8 +32,10 @@
 
     <div class="row padding-8">
         <div class="col-md-offset-2 col-md-10">
-            <input type="button" class="btn btn-default" id="save" value="Save" />&nbsp;
-            <input type="button" class="btn btn-default" id="cancel" value="Cancel" />
+            <input type="button" class="btn btn-default" id="save" value="Save"
+                   data-request-url="@Url.HttpRouteUrl("Posts", new { })"
+                   data-redirect-url="@Url.Action("Detail", "Blog", new { id = Model.BlogID })" />&nbsp;
+            <a href="@Url.Action("Detail", "Blog", new { id = Model.BlogID })" class="btn btn-default">Cancel</a>
         </div>
     </div>
 </div>

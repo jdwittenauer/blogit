@@ -30,13 +30,34 @@ namespace MyBlog.Infrastructure.Repositories
         }
 
         /// <summary>
+        /// Get a list of all comments by author.
+        /// </summary>
+        /// <param name="authorID">Author ID</param>
+        /// <returns>List of comments</returns>
+        public List<Comment> GetByAuthor(Guid authorID)
+        {
+            return Query().Where(x => x.AuthorID == authorID).ToList();
+        }
+
+        /// <summary>
         /// Get a list of all comments.  Uses asynchronous data access pattern.
         /// </summary>
         /// <returns>List of comments</returns>
         public async Task<List<Comment>> GetCommentsAsync()
         {
-            var task = await QueryAsync();
-            return task.ToList();
+            var query = await QueryAsync();
+            return query.ToList();
+        }
+
+        /// <summary>
+        /// Get a list of all comments by author.  Uses asynchronous data access pattern.
+        /// </summary>
+        /// <param name="authorID">Author ID</param>
+        /// <returns>List of comments</returns>
+        public async Task<List<Comment>> GetByAuthorAsync(Guid authorID)
+        {
+            var query = await QueryAsync();
+            return query.Where(x => x.AuthorID == authorID).ToList();
         }
     }
 }

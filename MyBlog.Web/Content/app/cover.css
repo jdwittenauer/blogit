@@ -1,13 +1,10 @@
-﻿/* Links */
-a,
+﻿a,
 a:focus,
 a:hover 
 {
     color: #fff;
 }
 
-
-/* Custom default button */
 .btn-default,
 .btn-default:hover,
 .btn-default:focus 
@@ -18,8 +15,6 @@ a:hover
     border: 1px solid #fff;
 }
 
-
-/* Base structure */
 html,
 body 
 {
@@ -60,8 +55,6 @@ body
     padding: 30px;
 }
 
-
-/* Header */
 .masthead-brand 
 {
     margin-top: 10px;
@@ -117,8 +110,6 @@ body
     }
 }
 
-
-/* Cover */
 .cover 
 {
     padding: 0 20px;
@@ -130,16 +121,12 @@ body
     font-weight: bold;
 }
 
-
-/* Footer */
 .mastfoot 
 {
     color: #999;
     color: rgba(255,255,255,.5);
 }
 
-
-/* Affix and center */
 @media (min-width: 768px) 
 {
     .masthead 

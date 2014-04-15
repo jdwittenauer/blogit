@@ -35,8 +35,8 @@ namespace MyBlog.Infrastructure.Repositories
         /// <returns>List of authors</returns>
         public async Task<List<Author>> GetAuthorsAsync()
         {
-            var task = await QueryAsync();
-            return task.ToList();
+            var query = await QueryAsync();
+            return query.ToList();
         }
     }
 }

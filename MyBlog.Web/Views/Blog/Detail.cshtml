@@ -4,6 +4,12 @@
     ViewBag.Title = Model.Name;
 }
 
+<script>
+    $(function () {
+        RegisterBlogDetailEvents();
+    });
+</script>
+
 <div class="container-fluid">
     <h1 class="page-header">@ViewBag.Title</h1>
 
@@ -13,7 +19,7 @@
             {
                 <div class="blog-post">
                     <h2 class="blog-post-title">@post.Title</h2>
-                    <p class="blog-post-meta">@post.Date.ToShortDateString() by <a href="#">@post.Author.Name</a></p>
+                    <p class="blog-post-meta">@post.Date.ToShortDateString() by <a href="@Url.Action("Index", "Author")">@post.Author.Name</a></p>
 
                     <p>@post.Content</p>
 

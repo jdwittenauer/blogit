@@ -34,8 +34,8 @@ namespace MyBlog.Infrastructure.Repositories
         /// <returns>List of errors</returns>
         public async Task<List<Error>> GetErrorsAsync()
         {
-            var task = await QueryAsync();
-            return task.ToList();
+            var query = await QueryAsync();
+            return query.ToList();
         }
     }
 }

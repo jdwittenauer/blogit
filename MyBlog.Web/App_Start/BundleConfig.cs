@@ -17,7 +17,6 @@ namespace MyBlog.Web
                 "~/Scripts/app/global.js",
                 "~/Scripts/app/author.js",
                 "~/Scripts/app/blog.js",
-                "~/Scripts/app/comment.js",
                 "~/Scripts/app/post.js"));
 
             // Style bundles

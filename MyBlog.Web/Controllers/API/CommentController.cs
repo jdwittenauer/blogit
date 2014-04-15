@@ -69,6 +69,7 @@ namespace MyBlog.Web.Controllers.API
                     Request.CreateErrorResponse(HttpStatusCode.NotFound, "Invalid parameter"));
             }
 
+            value.Date = DateTime.Now;
             await repository.InsertAsync(value);
             return new HttpResponseMessage(HttpStatusCode.OK);
         }

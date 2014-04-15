@@ -8,44 +8,51 @@
     <h1 class="page-header">@ViewBag.Title</h1>
 
     <div class="row">
-        <div class="col-md-6">
-            <div class="list-group">
-                @{int i = 1;}
-                @foreach (var post in Model.Posts)
-                {
-                    if (i % 2 == 1)
+        @if (Model.Posts.Count == 0)
+        {
+            <p class="lead">This author has not created any posts yet.</p>
+        }
+        else
+        {
+            <div class="col-md-6">
+                <div class="list-group">
+                    @{int i = 1;}
+                    @foreach (var post in Model.Posts)
                     {
-                        <a href="@Url.Action("Detail", "Blog")" class="list-group-item background-very-light">
-                            <h3>@post.Title</h3>
-                            <p>Date: @post.Date.ToShortDateString()</p>
-                            <p>Author: @post.AuthorName</p>
-                            <p>Blog: @post.BlogName</p>
-                            <p>Comments: @post.CommentCount</p>
-                        </a>
+                        if (i % 2 == 1)
+                        {
+                            <a href="@Url.Action("Detail", "Blog", new { id = post.BlogID })" class="list-group-item background-very-light">
+                                <h3>@post.Title</h3>
+                                <p>Date: @post.Date.ToShortDateString()</p>
+                                <p>Author: @post.AuthorName</p>
+                                <p>Blog: @post.BlogName</p>
+                                <p>Comments: @post.CommentCount</p>
+                            </a>
+                        }
+                        i++;
                     }
-                    i++;
-                }
+                </div>
             </div>
-        </div>
 
-        <div class="col-md-6">
-            <div class="list-group">
-                @{int j = 1;}
-                @foreach (var post in Model.Posts)
-                {
-                    if (j % 2 == 0)
+            <div class="col-md-6">
+                <div class="list-group">
+                    @{int j = 1;}
+                    @foreach (var post in Model.Posts)
                     {
-                        <a href="@Url.Action("Detail", "Blog")" class="list-group-item background-very-light">
-                            <h3>@post.Title</h3>
-                            <p>Date: @post.Date.ToShortDateString()</p>
-                            <p>Author: @post.AuthorName</p>
-                            <p>Blog: @post.BlogName</p>
-                            <p>Comments: @post.CommentCount</p>
-                        </a>
+                        if (j % 2 == 0)
+                        {
+                            <a href="@Url.Action("Detail", "Blog", new { id = post.BlogID })" class="list-group-item background-very-light">
+                                <h3>@post.Title</h3>
+                                <p>Date: @post.Date.ToShortDateString()</p>
+                                <p>Author: @post.AuthorName</p>
+                                <p>Blog: @post.BlogName</p>
+                                <p>Comments: @post.CommentCount</p>
+                            </a>
+                        }
+                        j++;
                     }
-                    j++;
-                }
+                </div>
             </div>
-        </div>
+        }
     </div>
 </div>

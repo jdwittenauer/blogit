@@ -33,8 +33,8 @@
                     <td>@author.Age</td>
                     <td>@author.City</td>
                     <td>@author.State</td>
-                    <td>@Html.ActionLink(author.PostCount.ToString(), "Index", "Post", new { id = author.ID }, new { })</td>
-                    <td>@Html.ActionLink(author.CommentCount.ToString(), "Index", "Comment", new { id = author.ID }, new { })</td>
+                    <td>@Html.ActionLink(author.PostCount.ToString(), "Index", "Post", new { authorID = author.ID }, new { })</td>
+                    <td>@Html.ActionLink(author.CommentCount.ToString(), "Index", "Comment", new { authorID = author.ID }, new { })</td>
                     <td>
                         @Html.ActionLink("Edit", "Edit", "Author", new { id = author.ID }, new { })
                     </td>

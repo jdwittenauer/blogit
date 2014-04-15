@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Web.Mvc;
 using AutoMapper;
 using MyBlog.Domain.Entities;
@@ -27,62 +28,12 @@ namespace MyBlog.Web.Controllers
         /// <summary>
         /// Index view.
         /// </summary>
-        public ActionResult Index(Guid id)
+        public ActionResult Index(Guid authorID)
         {
             var model = new CommentViewModel
             {
-                Comments = new List<CommentDTO>()
+                Comments = Mapper.Map<List<Comment>, List<CommentDTO>>(repository.GetByAuthor(authorID))
             };
-
-            model.Comments.Add(new CommentDTO
-            {
-                ID = Guid.Empty,
-                Content = "My comment to this post",
-                Date = DateTime.Now,
-                AuthorName = "Some Guy",
-                BlogName = "Some Random Blog",
-                PostTitle = "1st Post"
-            });
-
-            model.Comments.Add(new CommentDTO
-            {
-                ID = Guid.Empty,
-                Content = "My comment to this post",
-                Date = DateTime.Now,
-                AuthorName = "Some Guy",
-                BlogName = "Some Random Blog",
-                PostTitle = "1st Post"
-            });
-
-            model.Comments.Add(new CommentDTO
-            {
-                ID = Guid.Empty,
-                Content = "My comment to this post",
-                Date = DateTime.Now,
-                AuthorName = "Some Guy",
-                BlogName = "Some Random Blog",
-                PostTitle = "1st Post"
-            });
-
-            model.Comments.Add(new CommentDTO
-            {
-                ID = Guid.Empty,
-                Content = "My comment to this post",
-                Date = DateTime.Now,
-                AuthorName = "Some Guy",
-                BlogName = "Some Random Blog",
-                PostTitle = "1st Post"
-            });
-
-            model.Comments.Add(new CommentDTO
-            {
-                ID = Guid.Empty,
-                Content = "My comment to this post",
-                Date = DateTime.Now,
-                AuthorName = "Some Guy",
-                BlogName = "Some Random Blog",
-                PostTitle = "1st Post"
-            });
 
             return View(model);
         }

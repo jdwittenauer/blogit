@@ -34,8 +34,8 @@ namespace MyBlog.Infrastructure.Repositories
         /// <returns>List of logs</returns>
         public async Task<List<Log>> GetLogsAsync()
         {
-            var task = await QueryAsync();
-            return task.ToList();
+            var query = await QueryAsync();
+            return query.ToList();
         }
     }
 }

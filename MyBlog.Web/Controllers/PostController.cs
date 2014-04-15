@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Web.Mvc;
 using AutoMapper;
 using MyBlog.Domain.Entities;
@@ -27,132 +28,12 @@ namespace MyBlog.Web.Controllers
         /// <summary>
         /// Index view.
         /// </summary>
-        public ActionResult Index(Guid id)
+        public ActionResult Index(Guid authorID)
         {
             var model = new PostViewModel()
             {
-                Posts = new List<PostDTO>()
+                Posts = Mapper.Map<List<Post>, List<PostDTO>>(repository.GetByAuthor(authorID))
             };
-
-            model.Posts.Add(new PostDTO
-            {
-                ID = Guid.Empty,
-                AuthorID = Guid.Empty,
-                BlogID = Guid.Empty,
-                Title = "My New Post",
-                Date = DateTime.Now,
-                AuthorName = "Some Guy",
-                BlogName = "Some Random Blog",
-                CommentCount = 10
-            });
-
-            model.Posts.Add(new PostDTO
-            {
-                ID = Guid.Empty,
-                AuthorID = Guid.Empty,
-                BlogID = Guid.Empty,
-                Title = "My New Post",
-                Date = DateTime.Now,
-                AuthorName = "Some Guy",
-                BlogName = "Some Random Blog",
-                CommentCount = 10
-            });
-
-            model.Posts.Add(new PostDTO
-            {
-                ID = Guid.Empty,
-                AuthorID = Guid.Empty,
-                BlogID = Guid.Empty,
-                Title = "My New Post",
-                Date = DateTime.Now,
-                AuthorName = "Some Guy",
-                BlogName = "Some Random Blog",
-                CommentCount = 10
-            });
-
-            model.Posts.Add(new PostDTO
-            {
-                ID = Guid.Empty,
-                AuthorID = Guid.Empty,
-                BlogID = Guid.Empty,
-                Title = "My New Post",
-                Date = DateTime.Now,
-                AuthorName = "Some Guy",
-                BlogName = "Some Random Blog",
-                CommentCount = 10
-            });
-
-            model.Posts.Add(new PostDTO
-            {
-                ID = Guid.Empty,
-                AuthorID = Guid.Empty,
-                BlogID = Guid.Empty,
-                Title = "My New Post",
-                Date = DateTime.Now,
-                AuthorName = "Some Guy",
-                BlogName = "Some Random Blog",
-                CommentCount = 10
-            });
-
-            model.Posts.Add(new PostDTO
-            {
-                ID = Guid.Empty,
-                AuthorID = Guid.Empty,
-                BlogID = Guid.Empty,
-                Title = "My New Post",
-                Date = DateTime.Now,
-                AuthorName = "Some Guy",
-                BlogName = "Some Random Blog",
-                CommentCount = 10
-            });
-
-            model.Posts.Add(new PostDTO
-            {
-                ID = Guid.Empty,
-                AuthorID = Guid.Empty,
-                BlogID = Guid.Empty,
-                Title = "My New Post",
-                Date = DateTime.Now,
-                AuthorName = "Some Guy",
-                BlogName = "Some Random Blog",
-                CommentCount = 10
-            });
-
-            model.Posts.Add(new PostDTO
-            {
-                ID = Guid.Empty,
-                AuthorID = Guid.Empty,
-                BlogID = Guid.Empty,
-                Title = "My New Post",
-                Date = DateTime.Now,
-                AuthorName = "Some Guy",
-                BlogName = "Some Random Blog",
-                CommentCount = 10
-            });
-
-            model.Posts.Add(new PostDTO
-            {
-                ID = Guid.Empty,
-                AuthorID = Guid.Empty,
-                BlogID = Guid.Empty,
-                Title = "My New Post",
-                Date = DateTime.Now,
-                AuthorName = "Some Guy",
-                BlogName = "Some Random Blog",
-                CommentCount = 10
-            });
-
-            model.Posts.Add(new PostDTO
-            {
-                ID = Guid.Empty,
-                AuthorID = Guid.Empty,
-                BlogID = Guid.Empty,
-                Title = "My New Post",
-                Date = DateTime.Now,
-                AuthorName = "Some Guy",
-                BlogName = "Some Random Blog",
-                CommentCount = 10
-            });
 
             return View(model);
         }
@@ -162,6 +43,10 @@ namespace MyBlog.Web.Controllers
             var model = new Post();
             model.AuthorID = authorID;
             model.BlogID = blogID;
+
+            // The site doesn't have any identity management yet, so in order to get a valid author ID 
+            // (which would normally be the logged in user) we'll just statically grab the first author 
+            model.AuthorID = DependencyResolver.Current.GetService<IAuthorRepository>().GetAuthors().First().ID;
 
             return View(model);
         }
