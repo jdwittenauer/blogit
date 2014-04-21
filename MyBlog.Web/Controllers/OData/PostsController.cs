@@ -73,7 +73,7 @@ namespace MyBlog.Web.Controllers.OData
         /// <param name="key">Post ID</param>
         /// <param name="item">Updated post</param>
         /// <returns>Status message</returns>
-        public async Task<HttpResponseMessage> Put([FromODataUri] Guid key, Post item)
+        public async Task<Post> Put([FromODataUri] Guid key, Post item)
         {
             if (key == Guid.Empty || item == null)
             {
@@ -82,8 +82,8 @@ namespace MyBlog.Web.Controllers.OData
             }
 
             item.ID = key;
-            await repository.UpdateAsync(item);
-            return new HttpResponseMessage(HttpStatusCode.OK);
+            var post = await repository.UpdateAsync(item);
+            return post;
         }
 
         /// <summary>

@@ -81,7 +81,7 @@ namespace MyBlog.Web.Controllers.API
         /// <param name="value">Updated post</param>
         [Route("posts/{id}")]
         [HttpPut]
-        public async Task<HttpResponseMessage> Put(Guid id, [FromBody]Post value)
+        public async Task<Post> Put(Guid id, [FromBody]Post value)
         {
             if (id == Guid.Empty || value == null)
             {
@@ -90,8 +90,8 @@ namespace MyBlog.Web.Controllers.API
             }
 
             value.ID = id;
-            await repository.UpdateAsync(value);
-            return new HttpResponseMessage(HttpStatusCode.OK);
+            var post = await repository.UpdateAsync(value);
+            return post;
         }
 
         /// <summary>
