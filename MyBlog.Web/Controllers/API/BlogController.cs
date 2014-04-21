@@ -61,7 +61,7 @@ namespace MyBlog.Web.Controllers.API
         /// <param name="value">New blog</param>
         [Route("blogs")]
         [HttpPost]
-        public async Task<HttpResponseMessage> Post([FromBody]Blog value)
+        public async Task<Blog> Post([FromBody]Blog value)
         {
             if (value == null)
             {
@@ -69,8 +69,8 @@ namespace MyBlog.Web.Controllers.API
                     Request.CreateErrorResponse(HttpStatusCode.NotFound, "Invalid parameter"));
             }
 
-            await repository.InsertAsync(value);
-            return new HttpResponseMessage(HttpStatusCode.OK);
+            var blog = await repository.InsertAsync(value);
+            return blog;
         }
 
         /// <summary>

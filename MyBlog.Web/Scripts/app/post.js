@@ -12,7 +12,6 @@
                 BlogID: $("#blogID").val()
             },
             function () {
-                // Success
                 window.location.replace(redirectUrl);
             }
         );

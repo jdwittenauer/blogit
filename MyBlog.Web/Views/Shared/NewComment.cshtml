@@ -1,0 +1,10 @@
+﻿@model MyBlog.Domain.Entities.Comment
+
+@{
+    Layout = null;
+}
+
+<blockquote class="blog-comment">
+    (@Model.Date.ToShortDateString() @Model.Date.ToShortTimeString()) @Model.Author.Name said:<br />
+    @Model.Content
+</blockquote>

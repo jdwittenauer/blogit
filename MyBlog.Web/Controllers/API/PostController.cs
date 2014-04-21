@@ -61,7 +61,7 @@ namespace MyBlog.Web.Controllers.API
         /// <param name="value">New post</param>
         [Route("posts")]
         [HttpPost]
-        public async Task<HttpResponseMessage> Post([FromBody]Post value)
+        public async Task<Post> Post([FromBody]Post value)
         {
             if (value == null)
             {
@@ -70,8 +70,8 @@ namespace MyBlog.Web.Controllers.API
             }
 
             value.Date = DateTime.Now;
-            await repository.InsertAsync(value);
-            return new HttpResponseMessage(HttpStatusCode.OK);
+            var post = await repository.InsertAsync(value);
+            return post;
         }
 
         /// <summary>

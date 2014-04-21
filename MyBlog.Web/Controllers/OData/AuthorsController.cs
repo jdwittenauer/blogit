@@ -55,7 +55,7 @@ namespace MyBlog.Web.Controllers.OData
         /// </summary>
         /// <param name="item">New author</param>
         /// <returns>Status message</returns>
-        public async Task<HttpResponseMessage> Post(Author item)
+        public async Task<Author> Post(Author item)
         {
             if (item == null)
             {
@@ -63,8 +63,8 @@ namespace MyBlog.Web.Controllers.OData
                     Request.CreateErrorResponse(HttpStatusCode.NotFound, "Invalid parameter"));
             }
 
-            await repository.InsertAsync(item);
-            return new HttpResponseMessage(HttpStatusCode.OK);
+            var author = await repository.InsertAsync(item);
+            return author;
         }
 
         /// <summary>

@@ -37,5 +37,14 @@ namespace MyBlog.Web.Controllers
 
             return View(model);
         }
+
+        /// <summary>
+        /// New comment partial view.
+        /// </summary>
+        public ActionResult NewComment(Guid id)
+        {
+            var model = repository.Get(id);
+            return View(model);
+        }
 	}
 }

@@ -10,7 +10,6 @@
                 Category: $("#category").val()
             },
             function () {
-                // Success
                 window.location.replace(redirectUrl);
             }
         );
@@ -18,5 +17,29 @@
 }
 
 function RegisterBlogDetailEvents() {
-
+    $(".pager li a").click(function (e) {
+        e.preventDefault();
+        var requestUrl = $(this).prop("href");
+        var newCommentUrl = $(this).data("partial-url");
+        var $comments = $(this).parents(".blog-post").find("div").first();
+        var $textArea = $(this).parents(".blog-post").find("textarea").first();
+        var postID = $(this).parents(".blog-post").find("[name='PostID']").val();
+        var authorID = $(this).parents(".blog-post").find("[name='AuthorID']").val();
+        
+        $.post(
+            requestUrl,
+            {
+                Content: $textArea.val(),
+                PostID: postID,
+                AuthorID: authorID
+            },
+            function (comment) {
+                $.get(newCommentUrl + "/" + comment.ID, function (html) {
+                    $comments.append($(html).fadeIn('slow'));
+                    $textArea.val("");
+                });
+            },
+            "json"
+        );
+    });
 }

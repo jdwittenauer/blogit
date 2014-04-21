@@ -61,7 +61,7 @@ namespace MyBlog.Web.Controllers.API
         /// <param name="value">New comment</param>
         [Route("comments")]
         [HttpPost]
-        public async Task<HttpResponseMessage> Post([FromBody]Comment value)
+        public async Task<Comment> Post([FromBody]Comment value)
         {
             if (value == null)
             {
@@ -70,8 +70,8 @@ namespace MyBlog.Web.Controllers.API
             }
 
             value.Date = DateTime.Now;
-            await repository.InsertAsync(value);
-            return new HttpResponseMessage(HttpStatusCode.OK);
+            var comment = await repository.InsertAsync(value);
+            return comment;
         }
 
         /// <summary>

@@ -18,32 +18,31 @@
             @foreach (var post in Model.Posts)
             {
                 <div class="blog-post">
+                    <input type="hidden" name="PostID" value="@post.ID" />
+                    <input type="hidden" name="AuthorID" value="@post.AuthorID" />
+
                     <h2 class="blog-post-title">@post.Title</h2>
-                    <p class="blog-post-meta">@post.Date.ToShortDateString() by <a href="@Url.Action("Index", "Author")">@post.Author.Name</a></p>
+                    <p class="blog-post-meta">@post.Date.ToShortDateString() @post.Date.ToShortTimeString() by <a href="@Url.Action("Index", "Author")">@post.Author.Name</a></p>
 
                     <p>@post.Content</p>
 
                     <br />
 
-                    @foreach (var comment in post.Comments)
-                    {
-                        <blockquote class="blog-comment">
-                            (@comment.Date.ToShortDateString()) @comment.Author.Name said:<br />
-                            @comment.Content
-                        </blockquote>
-                    }
+                    <div>
+                        @foreach (var comment in post.Comments)
+                        {
+                            @Html.Partial("NewComment", comment);
+                        }
+                    </div>
 
                     <textarea class="blog-comment width-50" rows="3"></textarea>
                     <ul class="pager">
-                        <li><a href="#">Comment</a></li>
+                        <li>
+                            <a href="@Url.HttpRouteUrl("Comments", new { })" data-partial-url="@Url.Action("NewComment", "Comment")">Comment</a>
+                        </li>
                     </ul>
                 </div>
             }
-
-            <ul class="pager">
-                <li><a href="#">Previous</a></li>
-                <li><a href="#">Next</a></li>
-            </ul>
         </div>
 
         <div class="col-sm-2 col-sm-offset-1 blog-sidebar">

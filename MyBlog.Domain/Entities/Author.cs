@@ -11,8 +11,8 @@ namespace MyBlog.Domain.Entities
         public int Age { get; set; }
         public string City { get; set; }
         public string State { get; set; }
-        public ICollection<Post> Posts { get; set; }
-        public ICollection<Comment> Comments { get; set; }
+        public virtual ICollection<Post> Posts { get; set; }
+        public virtual ICollection<Comment> Comments { get; set; }
 
         public Author() { }
     }

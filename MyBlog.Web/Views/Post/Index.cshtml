@@ -7,13 +7,13 @@
 <div class="container-fluid">
     <h1 class="page-header">@ViewBag.Title</h1>
 
-    <div class="row">
-        @if (Model.Posts.Count == 0)
-        {
-            <p class="lead">This author has not created any posts yet.</p>
-        }
-        else
-        {
+    @if (Model.Posts.Count == 0)
+    {
+        <p class="lead">This author has not created any posts yet.</p>
+    }
+    else
+    {
+        <div class="row>">
             <div class="col-md-6">
                 <div class="list-group">
                     @{int i = 1;}
@@ -53,6 +53,6 @@
                     }
                 </div>
             </div>
-        }
-    </div>
+        </div>
+    }
 </div>

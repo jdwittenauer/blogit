@@ -318,6 +318,7 @@
     <Content Include="Views\Blog\New.cshtml" />
     <Content Include="Views\Blog\Detail.cshtml" />
     <Content Include="Views\Post\New.cshtml" />
+    <Content Include="Views\Shared\NewComment.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

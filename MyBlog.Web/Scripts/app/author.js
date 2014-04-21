@@ -15,7 +15,6 @@
                     State: $("#state").val()
                 },
                 function () {
-                    // Success
                     window.location.replace(redirectUrl);
                 }
             );
@@ -32,7 +31,6 @@
                     State: $("#state").val()
                 },
                 success: function () {
-                    // Success
                     window.location.replace(redirectUrl);
                 }
             });
