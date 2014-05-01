@@ -93,7 +93,7 @@ namespace MyBlog.Infrastructure.Repositories
 
             try
             {
-                if (!context.Set<T>().Local.Any(x => x == entity))
+                if (!context.Set<T>().Local.Any(x => x.ID == entity.ID))
                     context.Set<T>().Attach(entity);
 
                 entity.UpdatedDate = DateTime.Now;
@@ -120,7 +120,7 @@ namespace MyBlog.Infrastructure.Repositories
 
             try
             {
-                if (!context.Set<T>().Local.Any(x => x == entity))
+                if (!context.Set<T>().Local.Any(x => x.ID == entity.ID))
                     context.Set<T>().Attach(entity);
 
                 context.Set<T>().Remove(entity);
@@ -194,7 +194,7 @@ namespace MyBlog.Infrastructure.Repositories
                 int i = 0;
                 foreach (var entity in entities)
                 {
-                    if (!context.Set<T>().Local.Any(x => x == entity))
+                    if (!context.Set<T>().Local.Any(x => x.ID == entity.ID))
                         context.Set<T>().Attach(entity);
 
                     entity.UpdatedDate = DateTime.Now;
@@ -238,6 +238,9 @@ namespace MyBlog.Infrastructure.Repositories
                 int i = 0;
                 foreach (var entity in entities)
                 {
+                    if (!context.Set<T>().Local.Any(x => x.ID == entity.ID))
+                        context.Set<T>().Attach(entity);
+
                     context.Set<T>().Remove(entity);
                     i++;
 
@@ -351,7 +354,7 @@ namespace MyBlog.Infrastructure.Repositories
 
             try
             {
-                if (!context.Set<T>().Local.Any(x => x == entity))
+                if (!context.Set<T>().Local.Any(x => x.ID == entity.ID))
                     context.Set<T>().Attach(entity);
 
                 entity.UpdatedDate = DateTime.Now;
@@ -378,7 +381,7 @@ namespace MyBlog.Infrastructure.Repositories
 
             try
             {
-                if (!context.Set<T>().Local.Any(x => x == entity))
+                if (!context.Set<T>().Local.Any(x => x.ID == entity.ID))
                     context.Set<T>().Attach(entity);
 
                 context.Set<T>().Remove(entity);
@@ -454,7 +457,7 @@ namespace MyBlog.Infrastructure.Repositories
                 int i = 0;
                 foreach (var entity in entities)
                 {
-                    if (!context.Set<T>().Local.Any(x => x == entity))
+                    if (!context.Set<T>().Local.Any(x => x.ID == entity.ID))
                         context.Set<T>().Attach(entity);
 
                     entity.UpdatedDate = DateTime.Now;
@@ -499,6 +502,9 @@ namespace MyBlog.Infrastructure.Repositories
                 int i = 0;
                 foreach (var entity in entities)
                 {
+                    if (!context.Set<T>().Local.Any(x => x.ID == entity.ID))
+                        context.Set<T>().Attach(entity);
+
                     context.Set<T>().Remove(entity);
                     i++;
 

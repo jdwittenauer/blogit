@@ -34,3 +34,7 @@ function RegisterActiveNavBar() {
         return this.href == url;
     }).parent().parent().parent().filter("li").addClass("active");
 }
+
+function GetLoggedInUser() {
+    var userID = localStorage["userID"];
+}
