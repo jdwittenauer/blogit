@@ -10,6 +10,8 @@ namespace MyBlog.Domain.Interfaces
     public interface IAuthorRepository : IRepository<Author>
     {
         List<Author> GetAuthors();
+        Author GetByName(string name);
         Task<List<Author>> GetAuthorsAsync();
+        Task<Author> GetByNameAsync(string name);
     }
 }

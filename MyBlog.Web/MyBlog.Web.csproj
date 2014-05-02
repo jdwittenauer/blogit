@@ -319,6 +319,7 @@
     <Content Include="Views\Blog\Detail.cshtml" />
     <Content Include="Views\Post\New.cshtml" />
     <Content Include="Views\Shared\NewComment.cshtml" />
+    <Content Include="Views\Home\Login.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

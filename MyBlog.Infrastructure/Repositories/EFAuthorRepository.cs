@@ -30,6 +30,16 @@ namespace MyBlog.Infrastructure.Repositories
         }
 
         /// <summary>
+        /// Get an author by name.
+        /// </summary>
+        /// <param name="name">Author name</param>
+        /// <returns>Author</returns>
+        public Author GetByName(string name)
+        {
+            return Query().Where(x => x.Name == name).FirstOrDefault();
+        }
+
+        /// <summary>
         /// Get a list of all authors.  Uses asynchronous data access pattern.
         /// </summary>
         /// <returns>List of authors</returns>
@@ -37,6 +47,17 @@ namespace MyBlog.Infrastructure.Repositories
         {
             var query = await QueryAsync();
             return query.ToList();
+        }
+
+        /// <summary>
+        /// Get an author by name.  Uses asynchronous data access pattern.
+        /// </summary>
+        /// <param name="name">Author name</param>
+        /// <returns>Author</returns>
+        public async Task<Author> GetByNameAsync(string name)
+        {
+            var query = await QueryAsync();
+            return query.Where(x => x.Name == name).FirstOrDefault();
         }
     }
 }

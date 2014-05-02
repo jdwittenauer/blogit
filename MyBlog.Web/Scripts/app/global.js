@@ -27,14 +27,30 @@ function RegisterActiveNavBar() {
     var url = window.location;
 
     $("#navbar ul.nav a").filter(function () {
-        return this.href == url;
+        return this.href === url;
     }).parent().addClass("active");
 
     $("#navbar ul.nav a").filter(function () {
-        return this.href == url;
+        return this.href === url;
     }).parent().parent().parent().filter("li").addClass("active");
 }
 
-function GetLoggedInUser() {
-    var userID = localStorage["userID"];
+function CheckUserLoginCredentials() {
+    var userID = localStorage["author.id"];
+    var userName = localStorage["author.name"];
+
+    if (userID === null && window.location.href.toString().indexOf("login") === -1) {
+        if ($("#authorID").length > 0) {
+            // Set the current user
+            localStorage["author.id"] = $("#authorID").val();
+            localStorage["author.name"] = $("#authorName").val();
+        }
+        else {
+            // Redirect to login page
+            window.location.replace($("#loginUrl").val());
+        }
+    }
+    else {
+        // TODO
+    }
 }

@@ -1,0 +1,20 @@
+﻿@{
+    ViewBag.Title = "Login";
+}
+
+<div class="container-fluid">
+    <h1 class="page-header">Log In</h1>
+
+    <p>Enter a user name below (any name will do) and we'll create an author for you if one doesn't already exist.  This will be your alias for posts, comments etc.</p>
+
+    <form role="form">
+        <div class="row">
+            <div class="form-group col-md-6">
+                <label for="AuthorName">Author Name</label>
+                <input type="text" class="form-control" id="authorName" name="AuthorName" placeholder="Enter name" />
+            </div>
+        </div>
+
+        <input type="submit" class="btn btn-default" id="submit" value="Submit" />
+    </form>
+</div>
