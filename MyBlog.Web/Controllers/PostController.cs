@@ -44,10 +44,6 @@ namespace MyBlog.Web.Controllers
             model.AuthorID = authorID;
             model.BlogID = blogID;
 
-            // The site doesn't have any identity management yet, so in order to get a valid author ID 
-            // (which would normally be the logged in user) we'll just statically grab the first author 
-            model.AuthorID = DependencyResolver.Current.GetService<IAuthorRepository>().GetAuthors().First().ID;
-
             return View(model);
         }
 	}

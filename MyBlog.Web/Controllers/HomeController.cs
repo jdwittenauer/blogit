@@ -14,15 +14,15 @@ namespace MyBlog.Web.Controllers
         /// </summary>
         public ActionResult Index()
         {
-            if (TempData.ContainsKey("authorID"))
+            if (TempData.ContainsKey("userID"))
             {
-                ViewBag.AuthorID = TempData["authorID"];
-                ViewBag.AuthorName = TempData["authorName"];
+                ViewBag.UserID = TempData["userID"];
+                ViewBag.UserName = TempData["userName"];
             }
             else
             {
-                ViewBag.AuthorID = string.Empty;
-                ViewBag.AuthorName = string.Empty;
+                ViewBag.UserID = string.Empty;
+                ViewBag.UserName = string.Empty;
             }
 
             return View();
@@ -31,17 +31,17 @@ namespace MyBlog.Web.Controllers
         /// <summary>
         /// Login view.
         /// </summary>
-        public ActionResult Login(string authorName)
+        public ActionResult Login(string userName)
         {
-            if (authorName != null && authorName.Length > 0)
+            if (userName != null && userName.Length > 0)
             {
                 var repository = DependencyResolver.Current.GetService<IAuthorRepository>();
-                var author = repository.GetByName(authorName);
+                var author = repository.GetByName(userName);
 
                 if (author == null)
                 {
                     author = new Author();
-                    author.Name = authorName;
+                    author.Name = userName;
                     author.Age = 0;
                     author.City = "Unknown";
                     author.State = "Unknown";
@@ -49,8 +49,9 @@ namespace MyBlog.Web.Controllers
                     author = repository.Insert(author);
                 }
 
-                TempData["authorID"] = author.ID;
-                TempData["authorName"] = author.Name;
+                TempData["userID"] = author.ID;
+                TempData["userName"] = author.Name;
+
                 return RedirectToAction("Index", "Home");
             }
 

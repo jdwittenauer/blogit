@@ -13,6 +13,8 @@
 <div class="container-fluid">
     <h1 class="page-header">@ViewBag.Title</h1>
 
+    <input type="hidden" id="blogID" name="BlogID" value="@Model.ID" />
+
     <div class="row">
         <div class="col-sm-8 blog-main">
             @foreach (var post in Model.Posts)
@@ -73,7 +75,7 @@
             <div class="sidebar-module">
                 <h4>Admin</h4>
                 <ol class="list-unstyled">
-                    <li>@Html.ActionLink("Create New Post...", "New", "Post", new { authorID = Guid.Empty, blogID = Model.ID }, new { })</li>
+                    <li>@Html.ActionLink("Create New Post...", "New", "Post", new { }, new { id = "newPost" })</li>
                 </ol>
             </div>
         </div>

@@ -24,7 +24,7 @@ function RegisterBlogDetailEvents() {
         var $comments = $(this).parents(".blog-post").find("div").first();
         var $textArea = $(this).parents(".blog-post").find("textarea").first();
         var postID = $(this).parents(".blog-post").find("[name='PostID']").val();
-        var authorID = $(this).parents(".blog-post").find("[name='AuthorID']").val();
+        var authorID = localStorage.getItem("user.id");
         
         $.post(
             requestUrl,
@@ -41,5 +41,14 @@ function RegisterBlogDetailEvents() {
             },
             "json"
         );
+    });
+
+    $("#newPost").click(function (e) {
+        e.preventDefault();
+        var requestUrl = $(this).prop("href");
+        var blogID = $("#blogID").val();
+        var authorID = localStorage.getItem("user.id");
+
+        window.location.replace(requestUrl + "/" + authorID + "/" + blogID);
     });
 }

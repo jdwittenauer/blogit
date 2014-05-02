@@ -1,4 +1,16 @@
-﻿function RegisterChangeAuthorEvents() {
+﻿function RegisterAuthorIndexEvents() {
+    var userID = localStorage.getItem("user.id");
+
+    if (userID !== null) {
+        $("table tr td:first-child").each(function () {
+            if ($(this).html() === userID) {
+                $(this).parent().addClass("bg-info");
+            }
+        });
+    }
+}
+
+function RegisterChangeAuthorEvents() {
     $("#save").click(function () {
         var id = $("#id").val();
         var requestUrl = $("#save").data("request-url");

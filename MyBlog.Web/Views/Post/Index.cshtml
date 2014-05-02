@@ -21,7 +21,7 @@
                     {
                         if (i % 2 == 1)
                         {
-                            <a href="@Url.Action("Detail", "Blog", new { id = post.BlogID })" class="list-group-item background-very-light">
+                            <a href="@Url.Action("Detail", "Blog", new { id = post.BlogID })" class="list-group-item bg-very-light">
                                 <h3>@post.Title</h3>
                                 <p>Date: @post.Date.ToShortDateString()</p>
                                 <p>Author: @post.AuthorName</p>
@@ -41,7 +41,7 @@
                     {
                         if (j % 2 == 0)
                         {
-                            <a href="@Url.Action("Detail", "Blog", new { id = post.BlogID })" class="list-group-item background-very-light">
+                            <a href="@Url.Action("Detail", "Blog", new { id = post.BlogID })" class="list-group-item bg-very-light">
                                 <h3>@post.Title</h3>
                                 <p>Date: @post.Date.ToShortDateString()</p>
                                 <p>Author: @post.AuthorName</p>

@@ -4,6 +4,12 @@
     ViewBag.Title = "Authors";
 }
 
+<script>
+    $(function () {
+        RegisterAuthorIndexEvents();
+    });
+</script>
+
 <div class="container-fluid">
     <h1 class="page-header">@ViewBag.Title</h1>
 
@@ -28,6 +34,7 @@
             @foreach (var author in Model.Authors)
             {
                 <tr>
+                    <td class="display-none">@author.ID</td>
                     <td>@i</td>
                     <td>@author.Name</td>
                     <td>@author.Age</td>

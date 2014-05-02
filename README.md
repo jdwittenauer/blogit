@@ -18,3 +18,4 @@ Some of the design patterns and technologies used include:
 - OData services using Web API
 - Object mapping using AutoMapper
 - Asyncronous server and client operations
+- Client state using HTML5 local storage
