@@ -44,7 +44,7 @@ namespace MyBlog.Web.Filters
             }
 
             string eventDetail;
-            string uri = actionExecutedContext.Request.RequestUri.ToString().Substring(7).ToLower();
+            string uri = actionExecutedContext.Request.RequestUri.ToString().Substring(7);
             if (uri.EndsWith("/"))
             {
                 uri = uri.Remove(uri.Length - 1);

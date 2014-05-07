@@ -39,7 +39,7 @@ namespace MyBlog.Web.Filters
                 loadTime = Math.Round(double.Parse(timer.ElapsedMilliseconds.ToString()) / 1000, 3);
             }
 
-            string uri = filterContext.HttpContext.Request.Url.ToString().Substring(7).ToLower();
+            string uri = filterContext.HttpContext.Request.Url.ToString().Substring(7);
             if (uri.EndsWith("/"))
             {
                 uri = uri.Remove(uri.Length - 1);
