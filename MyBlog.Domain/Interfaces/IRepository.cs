@@ -21,6 +21,7 @@ namespace MyBlog.Domain.Interfaces
         void BulkDelete(IEnumerable<T> entities);
         IQueryable<T> Query();
         IQueryable<T> QueryNoTracking();
+        IQueryable<T> QueryWithEagerLoading();
         Task<T> GetAsync(Guid key);
         Task<T> InsertAsync(T entity);
         Task<T> UpdateAsync(T entity);
@@ -30,5 +31,6 @@ namespace MyBlog.Domain.Interfaces
         Task BulkDeleteAsync(IEnumerable<T> entities);
         Task<IQueryable<T>> QueryAsync();
         Task<IQueryable<T>> QueryNoTrackingAsync();
+        Task<IQueryable<T>> QueryWithEagerLoadingAsync();
     }
 }

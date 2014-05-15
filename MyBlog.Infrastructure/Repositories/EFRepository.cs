@@ -300,6 +300,26 @@ namespace MyBlog.Infrastructure.Repositories
         }
 
         /// <summary>
+        /// Returns an IQueryable API for the entity.  Allows a consumer to compose custom queries.
+        /// Lazy loading is disabled.  By default no relationships are added.  Entity-specific
+        /// repositories should override this and add foreign key relationships as needed.
+        /// </summary>
+        /// <returns>IQueryable object</returns>
+        public virtual IQueryable<T> QueryWithEagerLoading()
+        {
+            try
+            {
+                context.Configuration.LazyLoadingEnabled = false;
+                return context.Set<T>();
+            }
+            catch (Exception)
+            {
+                context.Dispose();
+                throw;
+            }
+        }
+
+        /// <summary>
         /// Retrieves an entity's current state from the data store and returns the initialized object.
         /// Uses asynchronous data access pattern.
         /// </summary>
@@ -562,6 +582,30 @@ namespace MyBlog.Infrastructure.Repositories
                 // so for the time being this will run syncronously...wrapping in async so parent calls
                 // can use the await keyword
                 return context.Set<T>().AsNoTracking();
+            }
+            catch (Exception)
+            {
+                context.Dispose();
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Returns an IQueryable API for the entity.  Allows a consumer to compose custom queries.
+        /// Lazy loading is disabled.  By default no relationships are added.  Entity-specific
+        /// repositories should override this and add foreign key relationships as needed.
+        /// Uses asynchronous data access pattern.
+        /// </summary>
+        /// <returns>IQueryable object</returns>
+        public virtual async Task<IQueryable<T>> QueryWithEagerLoadingAsync()
+        {
+            try
+            {
+                // Currently there is no easy way to push an external query to the database asyncronously,
+                // so for the time being this will run syncronously...wrapping in async so parent calls
+                // can use the await keyword
+                context.Configuration.LazyLoadingEnabled = false;
+                return context.Set<T>();
             }
             catch (Exception)
             {
