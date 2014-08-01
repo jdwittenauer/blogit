@@ -1,6 +1,8 @@
 ﻿using System.Net.Http.Formatting;
 using System.Web.Http;
+using System.Web.Http.OData;
 using System.Web.Http.OData.Builder;
+using System.Web.Http.OData.Extensions;
 using MyBlog.Domain.Entities;
 
 namespace MyBlog.Web
@@ -15,16 +17,17 @@ namespace MyBlog.Web
             builder.EntitySet<Blog>("blogs");
             builder.EntitySet<Comment>("comments");
             builder.EntitySet<Post>("posts");
+            builder.ContainerName = "MyBlogDataService";
 
-            config.Routes.MapODataRoute("OData", "api/odata", builder.GetEdmModel());
+            config.Routes.MapODataServiceRoute("OData", "api/odata", builder.GetEdmModel());
 
-            var queryattribute = new QueryableAttribute()
+            var queryAttributes = new EnableQueryAttribute()
             {
                 PageSize = 100,
                 MaxTop = 100,
                 EnsureStableOrdering = false
             };
-            config.EnableQuerySupport(queryattribute);
+            config.AddODataQueryFilter(queryAttributes);
 
             // Web API attribute routing
             config.MapHttpAttributeRoutes();

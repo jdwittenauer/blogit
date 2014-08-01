@@ -16,7 +16,7 @@ namespace MyBlog.Web
         {
             var builder = new ContainerBuilder();
 
-            builder.RegisterType<MyBlogContext>().AsSelf().InstancePerHttpRequest();
+            builder.RegisterType<MyBlogContext>().AsSelf().InstancePerRequest();
 
             builder.RegisterType<EFAuthorRepository>()
                 .As<IAuthorRepository>().UsingConstructor(typeof(MyBlogContext));
