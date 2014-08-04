@@ -7,6 +7,8 @@ using Autofac.Integration.WebApi;
 using MyBlog.Domain.Interfaces;
 using MyBlog.Infrastructure.Framework;
 using MyBlog.Infrastructure.Repositories;
+using MyBlog.Web.Filters;
+using MyBlog.Web.Models.Shared;
 
 namespace MyBlog.Web
 {
@@ -34,6 +36,11 @@ namespace MyBlog.Web
             builder.RegisterControllers(Assembly.GetExecutingAssembly());
             builder.RegisterApiControllers(Assembly.GetExecutingAssembly());
             builder.RegisterModule(new AutofacWebTypesModule());
+
+            builder.RegisterType<ViewModelFactory>().As<IViewModelFactory>();
+            builder.Register(x => new AddSharedContext(x.Resolve<IViewModelFactory>()))
+                .AsActionFilterFor<Controller>().InstancePerRequest();
+            builder.RegisterFilterProvider();
 
             var container = builder.Build();
 

@@ -5,6 +5,7 @@ using System.Web.Mvc;
 using AutoMapper;
 using MyBlog.Domain.Entities;
 using MyBlog.Domain.Interfaces;
+using MyBlog.Web.Controllers.Shared;
 using MyBlog.Web.Models;
 using MyBlog.Web.Models.DTO;
 
@@ -13,7 +14,7 @@ namespace MyBlog.Web.Controllers
     /// <summary>
     /// Author controller.
     /// </summary>
-    public class AuthorController : Controller
+    public class AuthorController : BaseController
     {
         private IAuthorRepository repository;
 

@@ -1,14 +1,24 @@
 ﻿using System.Web.Mvc;
 using MyBlog.Domain.Interfaces;
 using MyBlog.Domain.Entities;
+using MyBlog.Web.Controllers.Shared;
+using MyBlog.Web.Models.Shared;
 
 namespace MyBlog.Web.Controllers
 {
     /// <summary>
     /// Home controller.
     /// </summary>
-    public class HomeController : Controller
+    public class HomeController : BaseController
     {
+        /// <summary>
+        /// Cover view.
+        /// </summary>
+        public ActionResult Cover()
+        {
+            return View();
+        }
+
         /// <summary>
         /// Index view.
         /// </summary>
@@ -25,7 +35,7 @@ namespace MyBlog.Web.Controllers
                 ViewBag.UserName = string.Empty;
             }
 
-            return View();
+            return View(new BaseViewModel());
         }
 
         /// <summary>
@@ -55,15 +65,7 @@ namespace MyBlog.Web.Controllers
                 return RedirectToAction("Index", "Home");
             }
 
-            return View();
-        }
-
-        /// <summary>
-        /// Cover view.
-        /// </summary>
-        public ActionResult Cover()
-        {
-            return View();
+            return View(new BaseViewModel());
         }
 
         /// <summary>
@@ -71,7 +73,7 @@ namespace MyBlog.Web.Controllers
         /// </summary>
         public ActionResult Theme()
         {
-            return View();
+            return View(new BaseViewModel());
         }
 
         /// <summary>
@@ -79,7 +81,7 @@ namespace MyBlog.Web.Controllers
         /// </summary>
         public ActionResult Jumbotron()
         {
-            return View();
+            return View(new BaseViewModel());
         }
 
         /// <summary>
@@ -87,7 +89,7 @@ namespace MyBlog.Web.Controllers
         /// </summary>
         public ActionResult Dashboard()
         {
-            return View();
+            return View(new BaseViewModel());
         }
     }
 }
