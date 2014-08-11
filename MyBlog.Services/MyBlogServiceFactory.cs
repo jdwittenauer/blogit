@@ -13,7 +13,7 @@ namespace MyBlog.Services
     public class MyBlogServiceFactory
     {
         public string Environment { get; set; }
-        public Dictionary<string, object> OpenChannels { get; private set; }
+        public Dictionary<string, object> OpenChannelFactories { get; private set; }
         private BasicHttpBinding binding;
 
         /// <summary>
@@ -42,7 +42,7 @@ namespace MyBlog.Services
             binding.Security.Mode = BasicHttpSecurityMode.TransportCredentialOnly;
             binding.Security.Transport.ClientCredentialType = HttpClientCredentialType.Windows;
 
-            OpenChannels = new Dictionary<string, object>();
+            OpenChannelFactories = new Dictionary<string, object>();
         }
 
         /// <summary>
@@ -82,19 +82,23 @@ namespace MyBlog.Services
         public TChannel GetService<TChannel>(string uri)
         {
             string key = typeof(TChannel).Name;
-            if (!OpenChannels.ContainsKey(key))
-            {
-                EndpointAddress endpoint = new EndpointAddress(uri);
-                MyBlogChannelFactory<TChannel> factory = new MyBlogChannelFactory<TChannel>(binding, endpoint);
 
-                factory.Credentials.Windows.ClientCredential = 
-                    System.Net.CredentialCache.DefaultNetworkCredentials;
-                factory.Credentials.Windows.AllowedImpersonationLevel =
-                    System.Security.Principal.TokenImpersonationLevel.Identification;
-                OpenChannels.Add(key, factory);
+            if (!OpenChannelFactories.ContainsKey(key))
+            {
+                var factory = InitializeChannelFactory<TChannel>(uri);
+                OpenChannelFactories.Add(key, factory);
             }
 
-            TChannel service = ((MyBlogChannelFactory<TChannel>)OpenChannels[key]).CreateChannel();
+            if (((MyBlogChannelFactory<TChannel>)OpenChannelFactories[key]).State == CommunicationState.Faulted ||
+                ((MyBlogChannelFactory<TChannel>)OpenChannelFactories[key]).State == CommunicationState.Closed)
+            {
+                // Throw away the faulted channel factory and create a new one
+                OpenChannelFactories.Remove(key);
+                var factory = InitializeChannelFactory<TChannel>(uri);
+                OpenChannelFactories.Add(key, factory);
+            }
+
+            TChannel service = ((MyBlogChannelFactory<TChannel>)OpenChannelFactories[key]).CreateChannel();
             ((IClientChannel)service).OperationTimeout = TimeSpan.FromMinutes(10);
             ((IClientChannel)service).Open();
 
@@ -130,6 +134,22 @@ namespace MyBlog.Services
                 action(service);
                 CloseService((IClientChannel)service);
                 error = false;
+            }
+            catch (Exception)
+            {
+                // Automatic retry
+                if (((IClientChannel)service).State == CommunicationState.Faulted ||
+                    ((IClientChannel)service).State == CommunicationState.Closed)
+                {
+                    service = GetService<TChannel>(uri);
+                    action(service);
+                    CloseService((IClientChannel)service);
+                    error = false;
+                }
+                else
+                {
+                    throw;
+                }
             }
             finally
             {
@@ -175,6 +195,23 @@ namespace MyBlog.Services
                 error = false;
                 return result;
             }
+            catch (Exception)
+            {
+                // Automatic retry
+                if (((IClientChannel)service).State == CommunicationState.Faulted ||
+                    ((IClientChannel)service).State == CommunicationState.Closed)
+                {
+                    service = GetService<TChannel>(uri);
+                    TReturn result = function(service);
+                    CloseService((IClientChannel)service);
+                    error = false;
+                    return result;
+                }
+                else
+                {
+                    throw;
+                }
+            }
             finally
             {
                 if (error)
@@ -217,10 +254,29 @@ namespace MyBlog.Services
         /// </summary>
         public void Close()
         {
-            foreach (KeyValuePair<string, object> channelFactory in OpenChannels)
+            foreach (KeyValuePair<string, object> channelFactory in OpenChannelFactories)
             {
                 ((ChannelFactory)channelFactory.Value).Close();
             }
+        }
+
+        /// <summary>
+        /// Initializes a new channel factory.
+        /// </summary>
+        /// <typeparam name="TChannel">Service interface</typeparam>
+        /// <param name="uri">Service URI</param>
+        /// <returns>Channel factory</returns>
+        private MyBlogChannelFactory<TChannel> InitializeChannelFactory<TChannel>(string uri)
+        {
+            EndpointAddress endpoint = new EndpointAddress(uri);
+            MyBlogChannelFactory<TChannel> factory = new MyBlogChannelFactory<TChannel>(binding, endpoint);
+
+            factory.Credentials.Windows.ClientCredential =
+                System.Net.CredentialCache.DefaultNetworkCredentials;
+            factory.Credentials.Windows.AllowedImpersonationLevel =
+                System.Security.Principal.TokenImpersonationLevel.Identification;
+
+            return factory;
         }
 
         /// <summary>
