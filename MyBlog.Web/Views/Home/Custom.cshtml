@@ -1,0 +1,187 @@
+﻿@model MyBlog.Web.Models.Shared.BaseViewModel
+
+@{
+    ViewBag.Title = "Various CSS Effects";
+}
+
+@Styles.Render("~/Content/custom")
+
+<div class="container-fluid">
+    <h1 class="page-header">@ViewBag.Title</h1>
+
+    <p>This page contains miscellaneous HTML/CSS demonstrations and effects that I've collected for future reference.</p>
+
+    <hr />
+
+    <div class="ribbon">
+        <a href="#">GitHub Ribbon Graphic</a>
+    </div>
+
+    <p class="blur">Nice blurring effect for text.</p>
+
+    <hr />
+
+    <a href="#" class="a">Cool custom link effect.</a>
+
+    <hr />
+
+    <form action="#" method="post">
+        <div>
+            <label for="name">Input with glowing border</label>
+            <input type="text" name="name" id="name" value="" tabindex="1" />
+        </div>
+    </form>
+
+    <hr />
+
+    <p>
+        <span class="dropcap">L</span> orem ipsum dolor sit amet, consectetur adipiscing elit. Mauris tristique lobortis orci ac lacinia. Fusce eu purus eget diam vehicula auctor nec eu elit. Morbi consequat facilisis orci vel malesuada. Donec ultrices molestie sollicitudin. Aliquam pharetra libero enim. Donec et suscipit massa. Donec dui odio, dignissim non sodales et, tincidunt a sapien. Phasellus elit nibh, adipiscing sed blandit vel, interdum et arcu.
+    </p>
+
+    <hr />
+
+    <div class="pressed" id="container1">
+        <p>pressed</p>
+    </div>
+
+    <hr />
+
+    <div class="stitched" id="container2">
+        <div class="h2">Stitched</div>
+    </div>
+
+    <hr />
+
+    <p>Shadows and gradients</p>
+
+    <div class="row">
+        <div class="col-md-1">
+            <div class="shadow"></div>
+        </div>
+        <div class="col-md-1"></div>
+        <div class="col-md-1">
+            <div class="inner-shadow"></div>
+        </div>
+        <div class="col-md-1"></div>
+        <div class="col-md-1">
+            <div class="linear"></div>
+        </div>
+        <div class="col-md-1"></div>
+        <div class="col-md-1">
+            <div class="radial"></div>
+        </div>
+    </div>
+
+    <hr />
+
+    <p>Shapes</p>
+
+    <div class="row">
+        <div class="col-md-1">
+            <div class="circle"></div>
+        </div>
+        <div class="col-md-1"></div>
+        <div class="col-md-1">
+            <div class="triangle"></div>
+        </div>
+        <div class="col-md-1"></div>
+        <div class="col-md-1">
+            <div class="diamond"></div>
+        </div>
+        <div class="col-md-1"></div>
+        <div class="col-md-1">
+            <div class="star"></div>
+        </div>
+        <div class="col-md-1"></div>
+        <div class="col-md-1">
+            <div class="heart"></div>
+        </div>
+    </div>
+
+    <hr />
+
+    <p>Advanced gradients</p>
+
+    <div class="row">
+        <div class="col-md-4">
+            <div class="gradient"></div>
+        </div>
+        <div class="col-md-1"></div>
+        <div class="col-md-4">
+            <div class="gradient2"></div>
+        </div>
+    </div>
+
+    <hr />
+
+    <div class="row footer">
+        <div class="col-md-3">
+            <a href="#" id="f-diw" class="footer-box">
+                <h5>DigWP</h5>
+                <p>
+                    A book and blog co-authored by Jeff Starr and myself about the World's most popular publishing platform.
+                </p>
+            </a>
+        </div>
+        <div class="col-md-3">
+            <a href="#" id="f-qod" class="footer-box">
+                <h5>Quotes on Design</h5>
+                <p>
+                    Design, like Art, can be an elusive word to define and an awfully fun thing to have opinions about.
+                </p>
+            </a>
+        </div>
+        <div class="col-md-3">
+            <a href="#" id="f-htmlipsum" class="footer-box">
+                <h5>HTML-Ipsum</h5>
+                <p>
+                    One-click copy to clipboard access to <em>Lorem Ipsum</em> text that comes wrapped in a variety of HTML.
+                </p>
+            </a>
+        </div>
+        <div class="col-md-3">
+            <a href="#" id="f-bookshelf" class="footer-box last">
+                <h5>Bookshelf</h5>
+                <p>
+                    Hey Chris, what books do you recommend? These, young fertile mind, these.
+                </p>
+            </a>
+        </div>
+    </div>
+
+    <section>
+        <div id="icon-wrapper">
+            <a href="#">
+                <div class="icons">
+                    <div class="icon-slide-container">
+                        <img class="slide-icon" alt="" height="100" src="~/Content/app/images/view-map.jpg">
+                    </div>
+                </div>
+            </a>
+
+            <a href="#">
+                <div class="icons2">
+                    <div class="icon-slide-container">
+                        <img class="slide-icon" alt="" height="100" src="~/Content/app/images/add-beach.jpg">
+                    </div>
+                </div>
+            </a>
+
+            <a href="#">
+                <div class="icons3">
+                    <div class="icon-slide-container">
+                        <img class="slide-icon" alt="" height="100" src="~/Content/app/images/view-all.jpg">
+                    </div>
+                </div>
+            </a>
+
+            <a href="#">
+                <div class="icons4">
+                    <div class="icon-slide-container">
+                        <img class="slide-icon" alt="" height="100" src="~/Content/app/images/feedback.jpg">
+                    </div>
+                </div>
+            </a>
+        </div>
+    </section>
+</div>

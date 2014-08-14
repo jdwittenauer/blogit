@@ -6,14 +6,14 @@ namespace MyBlog.Infrastructure.Migrations
     using System.Data.Entity.Migrations.Infrastructure;
     using System.Resources;
     
-    [GeneratedCode("EntityFramework.Migrations", "6.0.2-21211")]
-    public sealed partial class ModelUpdates : IMigrationMetadata
+    [GeneratedCode("EntityFramework.Migrations", "6.1.1-30610")]
+    public sealed partial class InitialCreate : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(ModelUpdates));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(InitialCreate));
         
         string IMigrationMetadata.Id
         {
-            get { return "201403130208333_ModelUpdates"; }
+            get { return "201408121426436_InitialCreate"; }
         }
         
         string IMigrationMetadata.Source

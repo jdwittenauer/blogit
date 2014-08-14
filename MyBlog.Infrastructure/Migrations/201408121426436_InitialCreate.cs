@@ -35,7 +35,7 @@ namespace MyBlog.Infrastructure.Migrations
                     })
                 .PrimaryKey(t => t.ID)
                 .ForeignKey("dbo.Post", t => t.PostID)
-                .ForeignKey("dbo.Author", t => t.AuthorID, cascadeDelete: true)
+                .ForeignKey("dbo.Author", t => t.AuthorID)
                 .Index(t => t.PostID)
                 .Index(t => t.AuthorID);
             
@@ -53,10 +53,10 @@ namespace MyBlog.Infrastructure.Migrations
                         BlogID = c.Guid(nullable: false),
                     })
                 .PrimaryKey(t => t.ID)
-                .ForeignKey("dbo.Blog", t => t.BlogID, cascadeDelete: true)
-                .ForeignKey("dbo.Author", t => t.AuthorID, cascadeDelete: true)
-                .Index(t => t.BlogID)
-                .Index(t => t.AuthorID);
+                .ForeignKey("dbo.Blog", t => t.BlogID)
+                .ForeignKey("dbo.Author", t => t.AuthorID)
+                .Index(t => t.AuthorID)
+                .Index(t => t.BlogID);
             
             CreateTable(
                 "dbo.Blog",
@@ -110,10 +110,10 @@ namespace MyBlog.Infrastructure.Migrations
             DropForeignKey("dbo.Comment", "AuthorID", "dbo.Author");
             DropForeignKey("dbo.Comment", "PostID", "dbo.Post");
             DropForeignKey("dbo.Post", "BlogID", "dbo.Blog");
+            DropIndex("dbo.Post", new[] { "BlogID" });
             DropIndex("dbo.Post", new[] { "AuthorID" });
             DropIndex("dbo.Comment", new[] { "AuthorID" });
             DropIndex("dbo.Comment", new[] { "PostID" });
-            DropIndex("dbo.Post", new[] { "BlogID" });
             DropTable("dbo.Error");
             DropTable("dbo.Log");
             DropTable("dbo.Blog");

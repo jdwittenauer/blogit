@@ -18,6 +18,7 @@ namespace MyBlog.Web
                 "~/Scripts/app/author.js",
                 "~/Scripts/app/blog.js",
                 "~/Scripts/app/post.js"));
+            bundles.Add(new ScriptBundle("~/bundles/shape").Include("~/Scripts/app/shape.js"));
 
             // Style bundles
             bundles.Add(new StyleBundle("~/Content/bootstrap").Include(
@@ -25,9 +26,12 @@ namespace MyBlog.Web
                 "~/Content/bootstrap-theme.css"));
             bundles.Add(new StyleBundle("~/Content/site").Include(
                 "~/Content/app/site.css",
-                "~/Content/app/blog.css",
-                "~/Content/app/dashboard.css"));
+                "~/Content/app/blog.css"));
             bundles.Add(new StyleBundle("~/Content/cover").Include("~/Content/app/cover.css"));
+            bundles.Add(new StyleBundle("~/Content/grid").Include("~/Content/app/grid.css"));
+            bundles.Add(new StyleBundle("~/Content/custom").Include("~/Content/app/custom.css"));
+            bundles.Add(new StyleBundle("~/Content/glass").Include("~/Content/app/glass.css"));
+            bundles.Add(new StyleBundle("~/Content/shape").Include("~/Content/app/shape.css"));
         }
     }
 }

@@ -77,19 +77,35 @@ namespace MyBlog.Web.Controllers
         }
 
         /// <summary>
-        /// Jumbotron view.
+        /// Grid view.
         /// </summary>
-        public ActionResult Jumbotron()
+        public ActionResult Grid()
         {
             return View(new BaseViewModel());
         }
 
         /// <summary>
-        /// Dashboard view.
+        /// Custom view.
         /// </summary>
-        public ActionResult Dashboard()
+        public ActionResult Custom()
         {
             return View(new BaseViewModel());
+        }
+
+        /// <summary>
+        /// Glass view.
+        /// </summary>
+        public ActionResult Glass()
+        {
+            return View();
+        }
+
+        /// <summary>
+        /// Shape view.
+        /// </summary>
+        public ActionResult Shape()
+        {
+            return View();
         }
     }
 }

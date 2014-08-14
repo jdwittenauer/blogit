@@ -57,13 +57,9 @@
     <Compile Include="Mapping\ErrorMap.cs" />
     <Compile Include="Mapping\LogMap.cs" />
     <Compile Include="Mapping\PostMap.cs" />
-    <Compile Include="Migrations\201402112159431_InitialCreate.cs" />
-    <Compile Include="Migrations\201402112159431_InitialCreate.Designer.cs">
-      <DependentUpon>201402112159431_InitialCreate.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201403130208333_ModelUpdates.cs" />
-    <Compile Include="Migrations\201403130208333_ModelUpdates.Designer.cs">
-      <DependentUpon>201403130208333_ModelUpdates.cs</DependentUpon>
+    <Compile Include="Migrations\201408121426436_InitialCreate.cs" />
+    <Compile Include="Migrations\201408121426436_InitialCreate.Designer.cs">
+      <DependentUpon>201408121426436_InitialCreate.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -85,11 +81,8 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201402112159431_InitialCreate.resx">
-      <DependentUpon>201402112159431_InitialCreate.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201403130208333_ModelUpdates.resx">
-      <DependentUpon>201403130208333_ModelUpdates.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201408121426436_InitialCreate.resx">
+      <DependentUpon>201408121426436_InitialCreate.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

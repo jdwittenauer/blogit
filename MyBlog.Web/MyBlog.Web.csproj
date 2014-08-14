@@ -268,12 +268,21 @@
   <ItemGroup>
     <Content Include="Content\app\blog.css" />
     <Content Include="Content\app\cover.css" />
-    <Content Include="Content\app\dashboard.css" />
+    <Content Include="Content\app\custom.css" />
+    <Content Include="Content\app\glass.css" />
+    <Content Include="Content\app\grid.css" />
+    <Content Include="Content\app\images\add-beach.jpg" />
+    <Content Include="Content\app\images\css-tricks.png" />
+    <Content Include="Content\app\images\feedback.jpg" />
+    <Content Include="Content\app\images\view-all.jpg" />
+    <Content Include="Content\app\images\view-map.jpg" />
+    <Content Include="Content\app\shape.css" />
     <Content Include="Content\app\site.css" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\app\images\placekitten.jpg" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -281,6 +290,7 @@
     <Content Include="Scripts\app\blog.js" />
     <Content Include="Scripts\app\author.js" />
     <Content Include="Scripts\app\global.js" />
+    <Content Include="Scripts\app\shape.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\holder.js" />
@@ -315,8 +325,7 @@
     <Content Include="Views\Comment\Index.cshtml" />
     <Content Include="Views\Post\Index.cshtml" />
     <Content Include="Views\Home\Theme.cshtml" />
-    <Content Include="Views\Home\Dashboard.cshtml" />
-    <Content Include="Views\Home\Jumbotron.cshtml" />
+    <Content Include="Views\Home\Custom.cshtml" />
     <Content Include="Views\Home\Cover.cshtml" />
     <Content Include="Views\Author\Edit.cshtml" />
     <Content Include="Views\Blog\New.cshtml" />
@@ -325,6 +334,9 @@
     <Content Include="Views\Shared\NewComment.cshtml" />
     <Content Include="Views\Home\Login.cshtml" />
     <Content Include="Scripts\jquery-2.1.1.min.map" />
+    <Content Include="Views\Home\Grid.cshtml" />
+    <Content Include="Views\Home\Glass.cshtml" />
+    <Content Include="Views\Home\Shape.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

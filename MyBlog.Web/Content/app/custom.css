@@ -1,0 +1,567 @@
+﻿.clearfix {
+    display: inline-block;
+}
+
+.clearfix:after {
+     visibility: hidden;
+     display: block;
+     font-size: 0;
+     content: " ";
+     clear: both;
+     height: 0;
+}
+
+.ribbon {
+    background-color: #a00;
+    overflow: hidden;
+    /* top left corner */
+    position: absolute;
+    right: -3em;
+    top: 7em;
+    /* 45 deg ccw rotation */
+    -webkit-transform: rotate(45deg);
+    -moz-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    -o-transform: rotate(45deg);
+    transform: rotate(45deg);
+    /* shadow */
+    box-shadow: 0 0 1em #888;
+}
+
+.ribbon a {
+    border: 1px solid #faa;
+    color: #fff;
+    display: block;
+    font: bold 81.25% 'Helvetiva Neue', Helvetica, Arial, sans-serif;
+    margin: 0.05em 0 0.075em 0;
+    padding: 0.5em 3.5em;
+    text-align: center;
+    text-decoration: none;
+    /* shadow */
+    text-shadow: 0 0 0.5em #444;
+}
+
+.blur {
+    font-size: 32px;
+    color: transparent;
+    text-shadow: 0 0 5px rgba(0,0,0,0.5);
+}
+
+.a {
+	color: #f65e0f;
+	text-decoration: none;
+	border-bottom: 1px solid transparent;
+	-webkit-transition: all .15s ease-in-out;
+    -moz-transition: all .15s ease-in-out;
+    -o-transition: all .15s ease-in-out;
+    transition: all .15s ease-in-out;
+}
+
+.a:hover {
+	border-bottom-color: #f65e0f;
+	-webkit-transition: all .15s ease-in-out;
+    -moz-transition: all .15s ease-in-out;
+    -o-transition: all .15s ease-in-out;
+    transition: all .15s ease-in-out;
+}
+
+input[type=text], textarea {
+    -webkit-transition: all 0.30s ease-in-out;
+    -moz-transition: all 0.30s ease-in-out;
+    -o-transition: all 0.30s ease-in-out;
+    transition: all 0.30s ease-in-out;
+    outline: none;
+    padding: 3px 0 3px 3px;
+    margin: 5px 1px 3px 0;
+    border: 1px solid #DDDDDD;
+}
+ 
+input[type=text]:focus, textarea:focus {
+    box-shadow: 0 0 5px rgba(81, 203, 238, 1);
+    padding: 3px 0 3px 3px;
+    margin: 5px 1px 3px 0;
+    border: 1px solid rgba(81, 203, 238, 1);
+}
+
+.dropcap { 
+    float: left; 
+    color: #000; 
+    font-size: 75px; 
+    line-height: 60px; 
+    padding-top: 4px; 
+    padding-right: 8px; 
+    padding-left: 3px; 
+    font-family: Georgia;
+}
+
+.pressed {
+    background: #222222;
+    color: #131313;
+    font-size: 80px;
+}
+
+#container1 p {
+    text-align: center;
+    text-transform: uppercase;
+    text-shadow: #2c2c2c 3px 3px 5px;
+}
+
+.stitched {
+    background: #21303b;
+    color: #fff;
+}
+ 
+.h2 {
+    font-size: 70px;
+    line-height: 190px;
+    font-family: Helvetica, sans-serif;
+    font-weight: bold;
+    text-align: center;
+}
+ 
+#container2 {
+    /*stitching*/
+    outline: 1px dashed #98abb9;
+    outline-offset: -5px;
+     
+    background-color: #556068;
+    height: 200px;
+    width: 400px;
+    margin: 100px auto;
+     
+    /*shadow*/
+    box-shadow: 2px 2px 2px #000;
+}
+
+.shadow {
+    height: 120px;
+    width: 120px;
+    background: #ccc;
+    box-shadow: 3px 3px 6px 0 #000;
+}
+
+.inner-shadow {
+    height: 120px;
+    width: 120px;
+    background: #ccc;
+    box-shadow: inset 0 0 10px #000;
+}
+
+.linear {
+    height: 120px;
+    width: 120px;
+    background: #999;
+    background-image: -webkit-linear-gradient(top, #ddd, #999);
+    background-image: -moz-linear-gradient(top, #ddd, #999);
+    background-image: -ms-linear-gradient(top, #ddd, #999);
+    background-image: -o-linear-gradient(top, #ddd, #999);
+    background-image: linear-gradient(top, #ddd, #999);
+}
+
+.radial {
+    height: 120px;
+    width: 120px;
+    background: -webkit-radial-gradient(circle, #eee 0, #bbb 85%);
+    background: -moz-radial-gradient(circle, #eee 0, #bbb 85%);
+    background: -ms-radial-gradient(circle, #eee 0, #bbb 85%);
+    background: -o-radial-gradient(circle, #eee 0, #bbb 85%);
+    background: radial-gradient(circle, #eee 0, #bbb 85%);
+}
+
+.circle { 
+    width: 140px;
+    height: 140px;
+    background: blue; 
+    border-radius: 70px;
+}
+
+.triangle {
+    width: 0; 
+    height: 0; 
+    border-bottom: 120px solid blue; 
+    border-left: 60px solid transparent; 
+    border-right: 60px solid transparent; 
+}
+
+.diamond {
+    width: 80px; 
+    height: 80px; 
+    background: blue;
+    margin: 30px 0 0 30px;
+    -webkit-transform: rotate(-45deg);
+    -moz-transform: rotate(-45deg);
+    -ms-transform: rotate(-45deg);
+    -o-transform: rotate(-45deg);
+    transform: rotate(-45deg);
+    -webkit-transform-origin: 0 100%;
+    -moz-transform-origin: 0 100%;
+    -ms-transform-origin: 0 100%;
+    -o-transform-origin: 0 100%;
+    transform-origin: 0 100%;
+}
+
+.star {
+    position: absolute;
+    width: 0; 
+    height: 0; 
+    border-left: 50px solid transparent; 
+    border-right: 50px solid transparent; 
+    border-bottom: 80px solid blue;
+}
+
+.star:after {
+    content:"";
+    position: absolute;
+    width: 0; 
+    height: 0; 
+    border-left: 50px solid transparent; 
+    border-right: 50px solid transparent; 
+    border-top: 80px solid blue;
+    margin: 30px 0 0 -50px;
+}
+
+.heart {
+	position: relative;
+}
+
+.heart:before, .heart:after {
+    position: absolute;
+    content: "";
+    left: 70px; top: 0;
+    width: 70px;
+    height: 115px;
+    background: blue;
+    border-radius: 50px 50px 0 0;
+    -webkit-transform: rotate(-45deg);
+    -moz-transform: rotate(-45deg);
+    -ms-transform: rotate(-45deg);
+    -o-transform: rotate(-45deg);
+    transform: rotate(-45deg);
+    -webkit-transform-origin: 0 100%;
+    -moz-transform-origin: 0 100%;
+    -ms-transform-origin: 0 100%;
+    -o-transform-origin: 0 100%;
+    transform-origin: 0 100%;
+}
+
+.heart:after { 
+    left: 0; 
+    -webkit-transform: rotate(45deg); 
+    -moz-transform: rotate(45deg); 
+    -ms-transform: rotate(45deg); 
+    -o-transform: rotate(45deg);
+    transform: rotate(45deg);
+    -webkit-transform-origin: 100% 100%;
+    -moz-transform-origin: 100% 100%;
+    -ms-transform-origin: 100% 100%;
+    -o-transform-origin: 100% 100%;
+    transform-origin :100% 100%;
+}
+
+.gradient {
+    width: 400px;
+    height: 200px;
+    background:
+        -moz-linear-gradient( top left, white, transparent 25% ),
+        -moz-linear-gradient( bottom right, white, transparent 25% ),
+        -moz-radial-gradient( 25% 50%, circle, white, white 20%, transparent 25% ),
+        -moz-radial-gradient( 75% 50%, contain, white, white 20%, transparent 25% )
+        black;
+    background:
+        -webkit-linear-gradient( top left, white, transparent 25% ),
+        -webkit-linear-gradient( bottom right, white, transparent 25% ),
+        -webkit-radial-gradient( 25% 50%, circle, white, white 20%, transparent 25% ),
+        -webkit-radial-gradient( 75% 50%, contain, white, white 20%, transparent 25% )
+        black;
+    background:
+        -o-linear-gradient( top left, white, transparent 25% ),
+        -o-linear-gradient( bottom right, white, transparent 25% ),
+        -o-radial-gradient( 25% 50%, circle, white, white 20%, transparent 25% ),
+        -o-radial-gradient( 75% 50%, contain, white, white 20%, transparent 25% )
+        black;
+    background:
+        -khtml-linear-gradient( top left, white, transparent 25% ),
+        -khtml-linear-gradient( bottom right, white, transparent 25% ),
+        -khtml-radial-gradient( 25% 50%, circle, white, white 20%, transparent 25% ),
+        -khtml-radial-gradient( 75% 50%, contain, white, white 20%, transparent 25% )
+        black;
+    background:
+        -ms-linear-gradient( top left, white, transparent 25% ),
+        -ms-linear-gradient( bottom right, white, transparent 25% ),
+        -ms-radial-gradient( 25% 50%, circle, white, white 20%, transparent 25% ),
+        -ms-radial-gradient( 75% 50%, contain, white, white 20%, transparent 25% )
+        black;
+    background:
+        linear-gradient( top left, white, transparent 25% ),
+        linear-gradient( bottom right, white, transparent 25% ),
+        radial-gradient( 25% 50%, circle, white, white 20%, transparent 25% ),
+        radial-gradient( 75% 50%, contain, white, white 20%, transparent 25% )
+        black;            
+}
+
+.gradient2 {
+    width: 400px;
+    height: 200px;
+    background:
+        -moz-radial-gradient( center center, contain, #757575, transparent ),
+        black;
+    background:
+        -webkit-radial-gradient( center center, contain, #757575, transparent ),
+        black;
+    background:
+        -o-radial-gradient( center center, contain, #757575, transparent ),
+        black;
+    background:
+        -khtml-radial-gradient( center center, contain, #757575, transparent ),
+        black;
+    background:
+        -ms-radial-gradient( center center, contain, #757575, transparent ),
+        black;
+    background:
+        radial-gradient( center center, contain, #757575, transparent ),
+        black;
+}
+
+
+a[href], input[type='submit'], input[type='image'], label[for], select, button, .pointer {
+    cursor: pointer;
+}
+
+tbody tr:nth-child(odd) {  
+    background-color: #ccc;  
+}  
+
+
+/* Slide image boxes */
+
+.footer-box {
+    margin: 0 0 10px 0;
+    display: inline-block;
+    width: 262px;
+    height: 180px;
+    padding: 15px;
+    background: #e6e2df;
+    color: #b2aaa4;
+    -webkit-transition: all 0.2s ease;
+    -moz-transition: all 0.2s ease;
+    -o-transition: all 0.2s ease;
+    transition: all 0.2s ease;
+    background-position: 320px 50%;
+    background-repeat: no-repeat;
+    text-decoration:  none;
+}
+.footer-box h5 {
+    font:  bold 24px Sans-Serif !important;
+    text-transform: uppercase;
+    font-size: 38px;
+    line-height: 1;
+    padding: 0 0 10px 0;
+}
+.footer-box:hover h5 {
+    text-shadow: 0 0 4px rgba(0,0,0,0.4);
+    color: white;
+}
+.footer-box:hover p {
+    color: white;
+}
+.footer-box p {
+    font-size: 12px;
+    width: 175px;
+    line-height: 1.5;
+}
+.footer-box:hover {
+    background-position: 200px 50%;
+}
+#f-diw {
+    background-image: url("images/css-tricks.png");
+    background-position: 290px -1288px;
+}
+#f-diw:hover {
+    background-color: #237abe;
+    background-position: 186px -1288px;
+}
+#f-qod {
+    background-image: url("images/css-tricks.png");
+    background-position: 290px -1448px;
+}
+#f-qod:hover {
+    background-color: #37597a;
+    background-position: 186px -1448px;
+}
+#f-htmlipsum {
+    background-image: url("images/css-tricks.png");
+    background-position: 290px -1608px;
+}
+#f-htmlipsum:hover {
+    background-color: #333333;
+    background-position: 186px -1608px;
+}
+#f-qod:hover p {
+    color: #adbde3;
+}
+#f-bookshelf {
+    background-image: url("images/css-tricks.png");
+    background-position: 290px -1768px;
+}
+#f-bookshelf:hover {
+    background-color: #ff8400;
+    background-position: 186px -1768px;
+}
+#f-html-ipsum:hover p {
+    color: #fff8da;
+}
+#f-twitter {
+    background-image: url("images/css-tricks.png");
+    background-position: 290px -1928px;
+}
+#f-twitter:hover {
+    background-color: #4ed2fe;
+    background-position: 186px -1928px;
+}
+#f-forrst {
+    background-image: url("images/css-tricks.png");
+    background-position: 290px -2088px;
+}
+#f-forrst:hover {
+    background-color: #203f16;
+    background-position: 186px -2088px;
+}
+#f-forrst:hover p {
+    color:  #92c59c;
+}
+
+
+/* Second sliding boxes example */
+
+section {
+    float: left;
+    width: 100%;
+    padding: 50px 0 100px 0;
+}
+
+#icon-wrapper {
+	width: 100%;
+	float: left;
+	height: 300px;
+}
+
+.icons {
+	width: 25%;
+	float: left;
+	position: relative;
+}
+.icons2 {
+	width: 25%;
+	float: left;
+	position: relative;
+	margin-left: 25%;
+}
+.icons3 {
+	width: 25%;
+	float: left;
+	position: relative;
+	margin-left: 50%;
+}
+.icons4 {
+	width: 25%;
+	float: left;
+	position: relative;
+	margin-left: 75%;
+}
+
+.icon-slide-container {
+	height: 300px;
+	overflow: hidden;
+	text-align: left;
+	position: absolute;
+	float: left;
+	width: 300px;
+	left: 50%;
+	margin-left: -150px;
+}
+
+.slide-icon {
+    width: 300px;
+    height: auto;
+    position: absolute;
+    margin-top: -300px;
+    -webkit-transition: .4s ease;
+    -moz-transition: .4s ease;
+    -o-transition: .4s ease;
+    transition: .4s ease;
+}
+	
+.slide-icon:hover {
+    position: absolute;
+    margin-top: 0;
+}
+
+
+/* Modern font stacks */
+
+.fonts {
+    /* Times New Roman-based serif */
+    font-family: Cambria, "Hoefler Text", Utopia, "Liberation Serif", "Nimbus Roman No9 L Regular", Times, "Times New Roman", serif;
+    /* A modern Georgia-based serif */
+    font-family: Constantia, "Lucida Bright", Lucidabright, "Lucida Serif", Lucida, "DejaVu Serif," "Bitstream Vera Serif", "Liberation Serif", Georgia, serif;
+    /*A more traditional Garamond-based serif */
+    font-family: "Palatino Linotype", Palatino, Palladio, "URW Palladio L", "Book Antiqua", Baskerville, "Bookman Old Style", "Bitstream Charter", "Nimbus Roman No9 L", Garamond, "Apple Garamond", "ITC Garamond Narrow", "New Century Schoolbook", "Century Schoolbook", "Century Schoolbook L", Georgia, serif;
+    /*The Helvetica/Arial-based sans serif */
+    font-family: Frutiger, "Frutiger Linotype", Univers, Calibri, "Gill Sans", "Gill Sans MT", "Myriad Pro", Myriad, "DejaVu Sans Condensed", "Liberation Sans", "Nimbus Sans L", Tahoma, Geneva, "Helvetica Neue", Helvetica, Arial, sans-serif;
+    /*The Verdana-based sans serif */
+    font-family: Corbel, "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", "DejaVu Sans", "Bitstream Vera Sans", "Liberation Sans", Verdana, "Verdana Ref", sans-serif;
+    /*The Trebuchet-based sans serif */
+    font-family: "Segoe UI", Candara, "Bitstream Vera Sans", "DejaVu Sans", "Bitstream Vera Sans", "Trebuchet MS", Verdana, "Verdana Ref", sans-serif;
+    /*The heavier "Impact" sans serif */
+    font-family: Impact, Haettenschweiler, "Franklin Gothic Bold", Charcoal, "Helvetica Inserat", "Bitstream Vera Sans Bold", "Arial Black", sans-serif;
+    /*The monospace */
+    font-family: Consolas, "Andale Mono WT", "Andale Mono", "Lucida Console", "Lucida Sans Typewriter", "DejaVu Sans Mono", "Bitstream Vera Sans Mono", "Liberation Mono", "Nimbus Mono L", Monaco, "Courier New", Courier, monospace;
+}
+
+
+/* Media query samples */
+
+/* Smartphones (portrait and landscape) ----------- */
+@media only screen and (min-device-width : 320px) and (max-device-width : 480px) {
+  /* Styles */
+}
+  
+/* Smartphones (landscape) ----------- */
+@media only screen and (min-width : 321px) {
+  /* Styles */
+}
+  
+/* Smartphones (portrait) ----------- */
+@media only screen and (max-width : 320px) {
+  /* Styles */
+}
+  
+/* iPads (portrait and landscape) ----------- */
+@media only screen and (min-device-width : 768px) and (max-device-width : 1024px) {
+  /* Styles */
+}
+  
+/* iPads (landscape) ----------- */
+@media only screen and (min-device-width : 768px) and (max-device-width : 1024px) and (orientation : landscape) {
+  /* Styles */
+}
+  
+/* iPads (portrait) ----------- */
+@media only screen and (min-device-width : 768px) and (max-device-width : 1024px) and (orientation : portrait) {
+  /* Styles */
+}
+  
+/* Desktops and laptops ----------- */
+@media only screen and (min-width : 1224px) {
+  /* Styles */
+}
+  
+/* Large screens ----------- */
+@media only screen and (min-width : 1824px) {
+  /* Styles */
+}
+  
+/* iPhone 4 ----------- */
+@media only screen and (-webkit-min-device-pixel-ratio:1.5), only screen and (min-device-pixel-ratio:1.5) {
+  /* Styles */
+}
