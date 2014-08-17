@@ -1,4 +1,4 @@
-webdev-mvc
+Blog It
 ======================
 
 This MVC-based application demonstrates a number of design patterns and advanced web development techniques using popular .NET and open source tools and frameworks.  All content is for illustrative purposes only.
