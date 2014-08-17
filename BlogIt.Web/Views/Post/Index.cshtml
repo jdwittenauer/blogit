@@ -1,0 +1,58 @@
+﻿@model BlogIt.Web.Models.PostViewModel
+
+@{
+    ViewBag.Title = "Posts";
+}
+
+<div class="container-fluid">
+    <h1 class="page-header">@ViewBag.Title</h1>
+
+    @if (Model.Posts.Count == 0)
+    {
+        <p class="lead">This author has not created any posts yet.</p>
+    }
+    else
+    {
+        <div class="row>">
+            <div class="col-md-6">
+                <div class="list-group">
+                    @{int i = 1;}
+                    @foreach (var post in Model.Posts)
+                    {
+                        if (i % 2 == 1)
+                        {
+                            <a href="@Url.Action("Detail", "Blog", new { id = post.BlogID })" class="list-group-item bg-very-light">
+                                <h3>@post.Title</h3>
+                                <p>Date: @post.Date.ToShortDateString()</p>
+                                <p>Author: @post.AuthorName</p>
+                                <p>Blog: @post.BlogName</p>
+                                <p>Comments: @post.CommentCount</p>
+                            </a>
+                        }
+                        i++;
+                    }
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="list-group">
+                    @{int j = 1;}
+                    @foreach (var post in Model.Posts)
+                    {
+                        if (j % 2 == 0)
+                        {
+                            <a href="@Url.Action("Detail", "Blog", new { id = post.BlogID })" class="list-group-item bg-very-light">
+                                <h3>@post.Title</h3>
+                                <p>Date: @post.Date.ToShortDateString()</p>
+                                <p>Author: @post.AuthorName</p>
+                                <p>Blog: @post.BlogName</p>
+                                <p>Comments: @post.CommentCount</p>
+                            </a>
+                        }
+                        j++;
+                    }
+                </div>
+            </div>
+        </div>
+    }
+</div>

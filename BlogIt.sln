@@ -1,0 +1,65 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.30723.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlogIt.Domain", "BlogIt.Domain\BlogIt.Domain.csproj", "{20C6FDE2-5C18-4D29-81F8-24442E10B434}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlogIt.Infrastructure", "BlogIt.Infrastructure\BlogIt.Infrastructure.csproj", "{FD4B1EAC-4FB9-4B38-BBD1-65AD8EB6C177}"
+	ProjectSection(ProjectDependencies) = postProject
+		{20C6FDE2-5C18-4D29-81F8-24442E10B434} = {20C6FDE2-5C18-4D29-81F8-24442E10B434}
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlogIt.Tests", "BlogIt.Tests\BlogIt.Tests.csproj", "{87904FC3-A0A5-4345-8DD5-FE1EE5301053}"
+	ProjectSection(ProjectDependencies) = postProject
+		{3FC48822-7FC7-43BC-877F-5688A3EB4356} = {3FC48822-7FC7-43BC-877F-5688A3EB4356}
+		{B14EF571-AEAE-4F80-AC76-320FBB6D2AC5} = {B14EF571-AEAE-4F80-AC76-320FBB6D2AC5}
+		{FD4B1EAC-4FB9-4B38-BBD1-65AD8EB6C177} = {FD4B1EAC-4FB9-4B38-BBD1-65AD8EB6C177}
+		{20C6FDE2-5C18-4D29-81F8-24442E10B434} = {20C6FDE2-5C18-4D29-81F8-24442E10B434}
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlogIt.Services", "BlogIt.Services\BlogIt.Services.csproj", "{B14EF571-AEAE-4F80-AC76-320FBB6D2AC5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlogIt.Web", "BlogIt.Web\BlogIt.Web.csproj", "{3FC48822-7FC7-43BC-877F-5688A3EB4356}"
+	ProjectSection(ProjectDependencies) = postProject
+		{B14EF571-AEAE-4F80-AC76-320FBB6D2AC5} = {B14EF571-AEAE-4F80-AC76-320FBB6D2AC5}
+		{FD4B1EAC-4FB9-4B38-BBD1-65AD8EB6C177} = {FD4B1EAC-4FB9-4B38-BBD1-65AD8EB6C177}
+		{20C6FDE2-5C18-4D29-81F8-24442E10B434} = {20C6FDE2-5C18-4D29-81F8-24442E10B434}
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Readme", "Readme", "{A47D2698-23F3-449C-BB88-5451C6E7F9C7}"
+	ProjectSection(SolutionItems) = preProject
+		README.md = README.md
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{20C6FDE2-5C18-4D29-81F8-24442E10B434}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{20C6FDE2-5C18-4D29-81F8-24442E10B434}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{20C6FDE2-5C18-4D29-81F8-24442E10B434}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{20C6FDE2-5C18-4D29-81F8-24442E10B434}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FD4B1EAC-4FB9-4B38-BBD1-65AD8EB6C177}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FD4B1EAC-4FB9-4B38-BBD1-65AD8EB6C177}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FD4B1EAC-4FB9-4B38-BBD1-65AD8EB6C177}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FD4B1EAC-4FB9-4B38-BBD1-65AD8EB6C177}.Release|Any CPU.Build.0 = Release|Any CPU
+		{87904FC3-A0A5-4345-8DD5-FE1EE5301053}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{87904FC3-A0A5-4345-8DD5-FE1EE5301053}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{87904FC3-A0A5-4345-8DD5-FE1EE5301053}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{87904FC3-A0A5-4345-8DD5-FE1EE5301053}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B14EF571-AEAE-4F80-AC76-320FBB6D2AC5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B14EF571-AEAE-4F80-AC76-320FBB6D2AC5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B14EF571-AEAE-4F80-AC76-320FBB6D2AC5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B14EF571-AEAE-4F80-AC76-320FBB6D2AC5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3FC48822-7FC7-43BC-877F-5688A3EB4356}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3FC48822-7FC7-43BC-877F-5688A3EB4356}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3FC48822-7FC7-43BC-877F-5688A3EB4356}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3FC48822-7FC7-43BC-877F-5688A3EB4356}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

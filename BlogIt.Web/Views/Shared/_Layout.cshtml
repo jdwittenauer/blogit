@@ -1,0 +1,105 @@
+﻿@model BlogIt.Web.Models.Shared.BaseViewModel
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="" />
+    <meta name="author" content="">
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+    <title>Blog It - @ViewBag.Title</title>
+
+    @Styles.Render("~/Content/bootstrap")
+    @Styles.Render("~/Content/site")
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/bundles/app")
+    @RenderSection("scripts", required: false)
+
+    <script>
+        $(function () {
+            // Uncomment this to enable menu hover feature
+            //RegisterHoverEnabledNavBar();
+            RegisterActiveNavBar();
+            RegisterLogOutFunction();
+            CheckUserLoginCredentials();
+        });
+    </script>
+</head>
+
+<body>
+    <input type="hidden" id="loginUrl" value="@Url.Action("Login", "Home")" />
+
+    <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                @Html.ActionLink("Blog It", "Index", "Home", null, new { @class = "navbar-brand" })
+            </div>
+
+            <div class="collapse navbar-collapse" id="navbar">
+                <ul class="nav navbar-nav">
+                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                    <li>@Html.ActionLink("Authors", "Index", "Author")</li>
+                    <li>@Html.ActionLink("Blogs", "Index", "Blog")</li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Misc</a>
+                        <ul class="dropdown-menu">
+                            <li>@Html.ActionLink("Bootstrap Theme", "Theme", "Home")</li>
+                            <li>@Html.ActionLink("Bootstrap Grid", "Grid", "Home")</li>
+                            <li>@Html.ActionLink("Various CSS Effects", "Custom", "Home")</li>
+                            <li>@Html.ActionLink("Frosted Glass Effect", "Glass", "Home")</li>
+                            <li>@Html.ActionLink("Shapes Canvas Demo", "Shape", "Home")</li>
+                        </ul>
+                    </li>
+                </ul>
+
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" id="user"></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#" id="logOut">Log Out</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    @RenderBody()
+
+    <br />
+
+    <footer class="footer">
+        <div class="container-fluid">
+            <div class="row">
+                <hr />
+
+                <div class="col-md-2 col-md-push-5 text-center">
+                    &copy; @DateTime.Now.Year Blog It
+                </div>
+
+                <div class="col-md-5 col-md-pull-2 text-center">
+                    <a>Link 1</a>&nbsp;&nbsp;&nbsp;
+                    <a>Link 2</a>&nbsp;&nbsp;&nbsp;
+                    <a>Link 3</a>&nbsp;&nbsp;&nbsp;
+                </div>
+
+                <div class="col-md-5 text-center">
+                    <a>Link 4</a>&nbsp;&nbsp;&nbsp;
+                    <a>Link 5</a>&nbsp;&nbsp;&nbsp;
+                    <a>Link 6</a>&nbsp;&nbsp;&nbsp;
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

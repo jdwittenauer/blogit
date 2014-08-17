@@ -1,0 +1,53 @@
+﻿@model BlogIt.Web.Models.AuthorViewModel
+
+@{
+    ViewBag.Title = "Authors";
+}
+
+<script>
+    $(function () {
+        RegisterAuthorIndexEvents();
+    });
+</script>
+
+<div class="container-fluid">
+    <h1 class="page-header">@ViewBag.Title</h1>
+
+    <div class="padding-8">
+        @Html.ActionLink("Insert", "Edit", "Author")
+    </div>
+
+    <div class="table-responsive">
+        <table class="table table-striped table-hover">
+            <tr>
+                <th>#</th>
+                <th>Name</th>
+                <th>Age</th>
+                <th>City</th>
+                <th>State</th>
+                <th>Posts</th>
+                <th>Comments</th>
+                <th>Actions</th>
+            </tr>
+
+            @{int i = 1;}
+            @foreach (var author in Model.Authors)
+            {
+                <tr>
+                    <td class="display-none">@author.ID</td>
+                    <td>@i</td>
+                    <td>@author.Name</td>
+                    <td>@author.Age</td>
+                    <td>@author.City</td>
+                    <td>@author.State</td>
+                    <td>@Html.ActionLink(author.PostCount.ToString(), "Index", "Post", new { authorID = author.ID }, new { })</td>
+                    <td>@Html.ActionLink(author.CommentCount.ToString(), "Index", "Comment", new { authorID = author.ID }, new { })</td>
+                    <td>
+                        @Html.ActionLink("Edit", "Edit", "Author", new { id = author.ID }, new { })
+                    </td>
+                </tr>
+                i++;
+            }
+        </table>
+    </div>
+</div>

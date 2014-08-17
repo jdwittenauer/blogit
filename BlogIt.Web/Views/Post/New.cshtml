@@ -1,0 +1,41 @@
+﻿@model BlogIt.Domain.Entities.Post
+
+@{
+    ViewBag.Title = "Add Post";
+}
+
+<script>
+    $(function () {
+        RegisterNewPostEvents();
+    });
+</script>
+
+<div class="container-fluid">
+    <h1 class="page-header">@ViewBag.Title</h1>
+
+    <input type="hidden" id="authorID" name="AuthorID" value="@Model.AuthorID" />
+    <input type="hidden" id="blogID" name="BlogID" value="@Model.BlogID" />
+
+    <div class="row padding-8">
+        <label class="col-md-2" for="Title">Title</label>
+        <div class="col-md-10">
+            <input type="text" class="text-box" id="title" name="Title" value="@Model.Title" />
+        </div>
+    </div>
+
+    <div class="row padding-8">
+        <label class="col-md-2" for="Content">Content</label>
+        <div class="col-md-10">
+            <textarea class="width-50" id="content" name="Content" rows="3">@Model.Content</textarea>
+        </div>
+    </div>
+
+    <div class="row padding-8">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="button" class="btn btn-default" id="save" value="Save"
+                   data-request-url="@Url.HttpRouteUrl("Posts", new { })"
+                   data-redirect-url="@Url.Action("Detail", "Blog", new { id = Model.BlogID })" />&nbsp;
+            <a href="@Url.Action("Detail", "Blog", new { id = Model.BlogID })" class="btn btn-default">Cancel</a>
+        </div>
+    </div>
+</div>

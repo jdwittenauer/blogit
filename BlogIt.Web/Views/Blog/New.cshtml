@@ -1,0 +1,38 @@
+﻿@model BlogIt.Domain.Entities.Blog
+
+@{
+    ViewBag.Title = "Add Blog";
+}
+
+<script>
+    $(function () {
+        RegisterNewBlogEvents();
+    });
+</script>
+
+<div class="container-fluid">
+    <h1 class="page-header">@ViewBag.Title</h1>
+
+    <div class="row padding-8">
+        <label class="col-md-2" for="Name">Name</label>
+        <div class="col-md-10">
+            <input type="text" class="text-box" id="name" name="Name" value="@Model.Name" />
+        </div>
+    </div>
+
+    <div class="row padding-8">
+        <label class="col-md-2" for="Category">Category</label>
+        <div class="col-md-10">
+            <input type="text" class="text-box" id="category" name="Category" value="@Model.Category" />
+        </div>
+    </div>
+
+    <div class="row padding-8">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="button" class="btn btn-default" id="save" value="Save"
+                   data-request-url="@Url.HttpRouteUrl("Blogs", new { })"
+                   data-redirect-url="@Url.Action("Index", "Blog")" />&nbsp;
+            <a href="@Url.Action("Index", "Blog")" class="btn btn-default">Cancel</a>
+        </div>
+    </div>
+</div>
