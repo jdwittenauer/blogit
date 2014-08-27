@@ -11,58 +11,10 @@
      height: 0;
 }
 
-.ribbon {
-    background-color: #a00;
-    overflow: hidden;
-    /* top left corner */
-    position: absolute;
-    right: -3em;
-    top: 7em;
-    /* 45 deg ccw rotation */
-    -webkit-transform: rotate(45deg);
-    -moz-transform: rotate(45deg);
-    -ms-transform: rotate(45deg);
-    -o-transform: rotate(45deg);
-    transform: rotate(45deg);
-    /* shadow */
-    box-shadow: 0 0 1em #888;
-}
-
-.ribbon a {
-    border: 1px solid #faa;
-    color: #fff;
-    display: block;
-    font: bold 81.25% 'Helvetiva Neue', Helvetica, Arial, sans-serif;
-    margin: 0.05em 0 0.075em 0;
-    padding: 0.5em 3.5em;
-    text-align: center;
-    text-decoration: none;
-    /* shadow */
-    text-shadow: 0 0 0.5em #444;
-}
-
 .blur {
     font-size: 32px;
     color: transparent;
     text-shadow: 0 0 5px rgba(0,0,0,0.5);
-}
-
-.a {
-	color: #f65e0f;
-	text-decoration: none;
-	border-bottom: 1px solid transparent;
-	-webkit-transition: all .15s ease-in-out;
-    -moz-transition: all .15s ease-in-out;
-    -o-transition: all .15s ease-in-out;
-    transition: all .15s ease-in-out;
-}
-
-.a:hover {
-	border-bottom-color: #f65e0f;
-	-webkit-transition: all .15s ease-in-out;
-    -moz-transition: all .15s ease-in-out;
-    -o-transition: all .15s ease-in-out;
-    transition: all .15s ease-in-out;
 }
 
 input[type=text], textarea {
