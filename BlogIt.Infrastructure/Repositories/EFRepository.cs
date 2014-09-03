@@ -46,15 +46,7 @@ namespace BlogIt.Infrastructure.Repositories
         /// <returns>Instantiated entity</returns>
         public T Get(Guid key)
         {
-            try
-            {
-                return context.Set<T>().Find(key);
-            }
-            catch (Exception)
-            {
-                context.Dispose();
-                throw;
-            }
+            return context.Set<T>().Find(key);
         }
 
         /// <summary>
@@ -66,20 +58,11 @@ namespace BlogIt.Infrastructure.Repositories
             if (entity == null)
                 throw new ArgumentNullException("entity");
 
-            try
-            {
-                entity.ID = GuidGenerator.GenerateComb();
-                entity.CreatedDate = DateTime.Now;
-                entity.UpdatedDate = DateTime.Now;
-                context.Set<T>().Add(entity);
-                context.SaveChanges();
-                return entity;
-            }
-            catch (Exception)
-            {
-                context.Dispose();
-                throw;
-            }
+            entity.ID = GuidGenerator.GenerateComb();
+            entity.CreatedDate = DateTime.Now;
+            context.Set<T>().Add(entity);
+            context.SaveChanges();
+            return entity;
         }
 
         /// <summary>
@@ -91,22 +74,13 @@ namespace BlogIt.Infrastructure.Repositories
             if (entity == null)
                 throw new ArgumentNullException("entity");
 
-            try
-            {
-                if (!context.Set<T>().Local.Any(x => x.ID == entity.ID))
-                    context.Set<T>().Attach(entity);
+            if (!context.Set<T>().Local.Any(x => x.ID == entity.ID))
+                context.Set<T>().Attach(entity);
 
-                entity.UpdatedDate = DateTime.Now;
-                context.Entry(entity).State = EntityState.Modified;
-                context.Entry(entity).Property(x => x.CreatedDate).IsModified = false;
-                context.SaveChanges();
-                return entity;
-            }
-            catch (Exception)
-            {
-                context.Dispose();
-                throw;
-            }
+            entity.UpdatedDate = DateTime.Now;
+            context.Entry(entity).State = EntityState.Modified;
+            context.SaveChanges();
+            return entity;
         }
 
         /// <summary>
@@ -118,20 +92,12 @@ namespace BlogIt.Infrastructure.Repositories
             if (entity == null)
                 throw new ArgumentNullException("entity");
 
-            try
-            {
-                if (!context.Set<T>().Local.Any(x => x.ID == entity.ID))
-                    context.Set<T>().Attach(entity);
+            if (!context.Set<T>().Local.Any(x => x.ID == entity.ID))
+                context.Set<T>().Attach(entity);
 
-                context.Set<T>().Remove(entity);
-                context.SaveChanges();
-                return entity;
-            }
-            catch (Exception)
-            {
-                context.Dispose();
-                throw;
-            }
+            context.Set<T>().Remove(entity);
+            context.SaveChanges();
+            return entity;
         }
 
         /// <summary>
@@ -143,38 +109,36 @@ namespace BlogIt.Infrastructure.Repositories
             if (entities == null)
                 throw new ArgumentNullException("entities");
 
-            try
-            {
-                context.Configuration.AutoDetectChangesEnabled = false;
-                context.Configuration.ValidateOnSaveEnabled = false;
+            // Create a new context object to use just for this operation
+            BlogItContext bulkContext = new BlogItContext();
 
-                int i = 0;
-                foreach (var entity in entities)
+            // Disable change tracking
+            bulkContext.Configuration.AutoDetectChangesEnabled = false;
+            bulkContext.Configuration.ValidateOnSaveEnabled = false;
+
+            int i = 0;
+            foreach (var entity in entities)
+            {
+                entity.ID = GuidGenerator.GenerateComb();
+                entity.CreatedDate = DateTime.Now;
+                bulkContext.Set<T>().Add(entity);
+                i++;
+
+                if ((i % 100) == 0)
                 {
-                    entity.ID = GuidGenerator.GenerateComb();
-                    entity.CreatedDate = DateTime.Now;
-                    entity.UpdatedDate = DateTime.Now;
-                    context.Set<T>().Add(entity);
-                    i++;
+                    // Batch saves in groups of 100
+                    bulkContext.SaveChanges();
 
-                    if ((i % 1000) == 0)
-                    {
-                        context.SaveChanges();
-                    }
+                    // Destroy and re-create the context to flush out any saved state
+                    bulkContext.Dispose();
+                    bulkContext = new BlogItContext();
+                    bulkContext.Configuration.AutoDetectChangesEnabled = false;
+                    bulkContext.Configuration.ValidateOnSaveEnabled = false;
                 }
+            }
 
-                context.SaveChanges();
-            }
-            catch (Exception)
-            {
-                context.Dispose();
-                throw;
-            }
-            finally
-            {
-                context.Configuration.AutoDetectChangesEnabled = true;
-                context.Configuration.ValidateOnSaveEnabled = true;
-            }
+            bulkContext.SaveChanges();
+            bulkContext.Dispose();
         }
 
         /// <summary>
@@ -186,39 +150,38 @@ namespace BlogIt.Infrastructure.Repositories
             if (entities == null)
                 throw new ArgumentNullException("entities");
 
-            try
-            {
-                context.Configuration.AutoDetectChangesEnabled = false;
-                context.Configuration.ValidateOnSaveEnabled = false;
+            // Create a new context object to use just for this operation
+            BlogItContext bulkContext = new BlogItContext();
 
-                int i = 0;
-                foreach (var entity in entities)
+            // Disable change tracking
+            bulkContext.Configuration.AutoDetectChangesEnabled = false;
+            bulkContext.Configuration.ValidateOnSaveEnabled = false;
+
+            int i = 0;
+            foreach (var entity in entities)
+            {
+                if (!bulkContext.Set<T>().Local.Any(x => x.ID == entity.ID))
+                    bulkContext.Set<T>().Attach(entity);
+
+                entity.UpdatedDate = DateTime.Now;
+                bulkContext.Entry(entity).State = EntityState.Modified;
+                i++;
+
+                if ((i % 100) == 0)
                 {
-                    if (!context.Set<T>().Local.Any(x => x.ID == entity.ID))
-                        context.Set<T>().Attach(entity);
+                    // Batch saves in groups of 100
+                    bulkContext.SaveChanges();
 
-                    entity.UpdatedDate = DateTime.Now;
-                    context.Entry(entity).State = EntityState.Modified;
-                    i++;
-
-                    if ((i % 1000) == 0)
-                    {
-                        context.SaveChanges();
-                    }
+                    // Destroy and re-create the context to flush out any saved state
+                    bulkContext.Dispose();
+                    bulkContext = new BlogItContext();
+                    bulkContext.Configuration.AutoDetectChangesEnabled = false;
+                    bulkContext.Configuration.ValidateOnSaveEnabled = false;
                 }
+            }
 
-                context.SaveChanges();
-            }
-            catch (Exception)
-            {
-                context.Dispose();
-                throw;
-            }
-            finally
-            {
-                context.Configuration.AutoDetectChangesEnabled = true;
-                context.Configuration.ValidateOnSaveEnabled = true;
-            }
+            bulkContext.SaveChanges();
+            bulkContext.Dispose();
         }
 
         /// <summary>
@@ -230,38 +193,37 @@ namespace BlogIt.Infrastructure.Repositories
             if (entities == null)
                 throw new ArgumentNullException("entities");
 
-            try
-            {
-                context.Configuration.AutoDetectChangesEnabled = false;
-                context.Configuration.ValidateOnSaveEnabled = false;
+            // Create a new context object to use just for this operation
+            BlogItContext bulkContext = new BlogItContext();
 
-                int i = 0;
-                foreach (var entity in entities)
+            // Disable change tracking
+            bulkContext.Configuration.AutoDetectChangesEnabled = false;
+            bulkContext.Configuration.ValidateOnSaveEnabled = false;
+
+            int i = 0;
+            foreach (var entity in entities)
+            {
+                if (!bulkContext.Set<T>().Local.Any(x => x.ID == entity.ID))
+                    bulkContext.Set<T>().Attach(entity);
+
+                bulkContext.Set<T>().Remove(entity);
+                i++;
+
+                if ((i % 100) == 0)
                 {
-                    if (!context.Set<T>().Local.Any(x => x.ID == entity.ID))
-                        context.Set<T>().Attach(entity);
+                    // Batch saves in groups of 100
+                    bulkContext.SaveChanges();
 
-                    context.Set<T>().Remove(entity);
-                    i++;
-
-                    if ((i % 1000) == 0)
-                    {
-                        context.SaveChanges();
-                    }
+                    // Destroy and re-create the context to flush out any saved state
+                    bulkContext.Dispose();
+                    bulkContext = new BlogItContext();
+                    bulkContext.Configuration.AutoDetectChangesEnabled = false;
+                    bulkContext.Configuration.ValidateOnSaveEnabled = false;
                 }
+            }
 
-                context.SaveChanges();
-            }
-            catch (Exception)
-            {
-                context.Dispose();
-                throw;
-            }
-            finally
-            {
-                context.Configuration.AutoDetectChangesEnabled = true;
-                context.Configuration.ValidateOnSaveEnabled = true;
-            }
+            bulkContext.SaveChanges();
+            bulkContext.Dispose();
         }
 
         /// <summary>
@@ -270,15 +232,7 @@ namespace BlogIt.Infrastructure.Repositories
         /// <returns>IQueryable object</returns>
         public IQueryable<T> Query()
         {
-            try
-            {
-                return context.Set<T>();
-            }
-            catch (Exception)
-            {
-                context.Dispose();
-                throw;
-            }
+            return context.Set<T>();
         }
 
         /// <summary>
@@ -288,15 +242,7 @@ namespace BlogIt.Infrastructure.Repositories
         /// <returns>IQueryable object</returns>
         public IQueryable<T> QueryNoTracking()
         {
-            try
-            {
-                return context.Set<T>().AsNoTracking();
-            }
-            catch (Exception)
-            {
-                context.Dispose();
-                throw;
-            }
+            return context.Set<T>().AsNoTracking();
         }
 
         /// <summary>
@@ -307,16 +253,8 @@ namespace BlogIt.Infrastructure.Repositories
         /// <returns>IQueryable object</returns>
         public virtual IQueryable<T> QueryWithEagerLoading()
         {
-            try
-            {
-                context.Configuration.LazyLoadingEnabled = false;
-                return context.Set<T>();
-            }
-            catch (Exception)
-            {
-                context.Dispose();
-                throw;
-            }
+            context.Configuration.LazyLoadingEnabled = false;
+            return context.Set<T>();
         }
 
         /// <summary>
@@ -327,15 +265,7 @@ namespace BlogIt.Infrastructure.Repositories
         /// <returns>Instantiated entity</returns>
         public async Task<T> GetAsync(Guid key)
         {
-            try
-            {
-                return await context.Set<T>().FindAsync(key);
-            }
-            catch (Exception)
-            {
-                context.Dispose();
-                throw;
-            }
+            return await context.Set<T>().FindAsync(key);
         }
 
         /// <summary>
@@ -347,20 +277,11 @@ namespace BlogIt.Infrastructure.Repositories
             if (entity == null)
                 throw new ArgumentNullException("entity");
 
-            try
-            {
-                entity.ID = GuidGenerator.GenerateComb();
-                entity.CreatedDate = DateTime.Now;
-                entity.UpdatedDate = DateTime.Now;
-                context.Set<T>().Add(entity);
-                await context.SaveChangesAsync();
-                return entity;
-            }
-            catch (Exception)
-            {
-                context.Dispose();
-                throw;
-            }
+            entity.ID = GuidGenerator.GenerateComb();
+            entity.CreatedDate = DateTime.Now;
+            context.Set<T>().Add(entity);
+            await context.SaveChangesAsync();
+            return entity;
         }
 
         /// <summary>
@@ -372,22 +293,13 @@ namespace BlogIt.Infrastructure.Repositories
             if (entity == null)
                 throw new ArgumentNullException("entity");
 
-            try
-            {
-                if (!context.Set<T>().Local.Any(x => x.ID == entity.ID))
-                    context.Set<T>().Attach(entity);
+            if (!context.Set<T>().Local.Any(x => x.ID == entity.ID))
+                context.Set<T>().Attach(entity);
 
-                entity.UpdatedDate = DateTime.Now;
-                context.Entry(entity).State = EntityState.Modified;
-                context.Entry(entity).Property(x => x.CreatedDate).IsModified = false;
-                await context.SaveChangesAsync();
-                return entity;
-            }
-            catch (Exception)
-            {
-                context.Dispose();
-                throw;
-            }
+            entity.UpdatedDate = DateTime.Now;
+            context.Entry(entity).State = EntityState.Modified;
+            await context.SaveChangesAsync();
+            return entity;
         }
 
         /// <summary>
@@ -399,20 +311,12 @@ namespace BlogIt.Infrastructure.Repositories
             if (entity == null)
                 throw new ArgumentNullException("entity");
 
-            try
-            {
-                if (!context.Set<T>().Local.Any(x => x.ID == entity.ID))
-                    context.Set<T>().Attach(entity);
+            if (!context.Set<T>().Local.Any(x => x.ID == entity.ID))
+                context.Set<T>().Attach(entity);
 
-                context.Set<T>().Remove(entity);
-                await context.SaveChangesAsync();
-                return entity;
-            }
-            catch (Exception)
-            {
-                context.Dispose();
-                throw;
-            }
+            context.Set<T>().Remove(entity);
+            await context.SaveChangesAsync();
+            return entity;
         }
 
         /// <summary>
@@ -425,38 +329,36 @@ namespace BlogIt.Infrastructure.Repositories
             if (entities == null)
                 throw new ArgumentNullException("entities");
 
-            try
-            {
-                context.Configuration.AutoDetectChangesEnabled = false;
-                context.Configuration.ValidateOnSaveEnabled = false;
+            // Create a new context object to use just for this operation
+            BlogItContext bulkContext = new BlogItContext();
 
-                int i = 0;
-                foreach (var entity in entities)
+            // Disable change tracking
+            bulkContext.Configuration.AutoDetectChangesEnabled = false;
+            bulkContext.Configuration.ValidateOnSaveEnabled = false;
+
+            int i = 0;
+            foreach (var entity in entities)
+            {
+                entity.ID = GuidGenerator.GenerateComb();
+                entity.CreatedDate = DateTime.Now;
+                bulkContext.Set<T>().Add(entity);
+                i++;
+
+                if ((i % 100) == 0)
                 {
-                    entity.ID = GuidGenerator.GenerateComb();
-                    entity.CreatedDate = DateTime.Now;
-                    entity.UpdatedDate = DateTime.Now;
-                    context.Set<T>().Add(entity);
-                    i++;
+                    // Batch saves in groups of 100
+                    await bulkContext.SaveChangesAsync();
 
-                    if ((i % 1000) == 0)
-                    {
-                        await context.SaveChangesAsync();
-                    }
+                    // Destroy and re-create the context to flush out any saved state
+                    bulkContext.Dispose();
+                    bulkContext = new BlogItContext();
+                    bulkContext.Configuration.AutoDetectChangesEnabled = false;
+                    bulkContext.Configuration.ValidateOnSaveEnabled = false;
                 }
+            }
 
-                await context.SaveChangesAsync();
-            }
-            catch (Exception)
-            {
-                context.Dispose();
-                throw;
-            }
-            finally
-            {
-                context.Configuration.AutoDetectChangesEnabled = true;
-                context.Configuration.ValidateOnSaveEnabled = true;
-            }
+            await bulkContext.SaveChangesAsync();
+            bulkContext.Dispose();
         }
 
         /// <summary>
@@ -469,39 +371,38 @@ namespace BlogIt.Infrastructure.Repositories
             if (entities == null)
                 throw new ArgumentNullException("entities");
 
-            try
-            {
-                context.Configuration.AutoDetectChangesEnabled = false;
-                context.Configuration.ValidateOnSaveEnabled = false;
+            // Create a new context object to use just for this operation
+            BlogItContext bulkContext = new BlogItContext();
 
-                int i = 0;
-                foreach (var entity in entities)
+            // Disable change tracking
+            bulkContext.Configuration.AutoDetectChangesEnabled = false;
+            bulkContext.Configuration.ValidateOnSaveEnabled = false;
+
+            int i = 0;
+            foreach (var entity in entities)
+            {
+                if (!bulkContext.Set<T>().Local.Any(x => x.ID == entity.ID))
+                    bulkContext.Set<T>().Attach(entity);
+
+                entity.UpdatedDate = DateTime.Now;
+                bulkContext.Entry(entity).State = EntityState.Modified;
+                i++;
+
+                if ((i % 100) == 0)
                 {
-                    if (!context.Set<T>().Local.Any(x => x.ID == entity.ID))
-                        context.Set<T>().Attach(entity);
+                    // Batch saves in groups of 100
+                    await bulkContext.SaveChangesAsync();
 
-                    entity.UpdatedDate = DateTime.Now;
-                    context.Entry(entity).State = EntityState.Modified;
-                    i++;
-
-                    if ((i % 1000) == 0)
-                    {
-                        await context.SaveChangesAsync();
-                    }
+                    // Destroy and re-create the context to flush out any saved state
+                    bulkContext.Dispose();
+                    bulkContext = new BlogItContext();
+                    bulkContext.Configuration.AutoDetectChangesEnabled = false;
+                    bulkContext.Configuration.ValidateOnSaveEnabled = false;
                 }
+            }
 
-                await context.SaveChangesAsync();
-            }
-            catch (Exception)
-            {
-                context.Dispose();
-                throw;
-            }
-            finally
-            {
-                context.Configuration.AutoDetectChangesEnabled = true;
-                context.Configuration.ValidateOnSaveEnabled = true;
-            }
+            await bulkContext.SaveChangesAsync();
+            bulkContext.Dispose();
         }
 
         /// <summary>
@@ -514,38 +415,37 @@ namespace BlogIt.Infrastructure.Repositories
             if (entities == null)
                 throw new ArgumentNullException("entities");
 
-            try
-            {
-                context.Configuration.AutoDetectChangesEnabled = false;
-                context.Configuration.ValidateOnSaveEnabled = false;
+            // Create a new context object to use just for this operation
+            BlogItContext bulkContext = new BlogItContext();
 
-                int i = 0;
-                foreach (var entity in entities)
+            // Disable change tracking
+            bulkContext.Configuration.AutoDetectChangesEnabled = false;
+            bulkContext.Configuration.ValidateOnSaveEnabled = false;
+
+            int i = 0;
+            foreach (var entity in entities)
+            {
+                if (!bulkContext.Set<T>().Local.Any(x => x.ID == entity.ID))
+                    bulkContext.Set<T>().Attach(entity);
+
+                bulkContext.Set<T>().Remove(entity);
+                i++;
+
+                if ((i % 100) == 0)
                 {
-                    if (!context.Set<T>().Local.Any(x => x.ID == entity.ID))
-                        context.Set<T>().Attach(entity);
+                    // Batch saves in groups of 100
+                    await bulkContext.SaveChangesAsync();
 
-                    context.Set<T>().Remove(entity);
-                    i++;
-
-                    if ((i % 1000) == 0)
-                    {
-                        await context.SaveChangesAsync();
-                    }
+                    // Destroy and re-create the context to flush out any saved state
+                    bulkContext.Dispose();
+                    bulkContext = new BlogItContext();
+                    bulkContext.Configuration.AutoDetectChangesEnabled = false;
+                    bulkContext.Configuration.ValidateOnSaveEnabled = false;
                 }
+            }
 
-                await context.SaveChangesAsync();
-            }
-            catch (Exception)
-            {
-                context.Dispose();
-                throw;
-            }
-            finally
-            {
-                context.Configuration.AutoDetectChangesEnabled = true;
-                context.Configuration.ValidateOnSaveEnabled = true;
-            }
+            await bulkContext.SaveChangesAsync();
+            bulkContext.Dispose();
         }
 
         /// <summary>
@@ -555,18 +455,10 @@ namespace BlogIt.Infrastructure.Repositories
         /// <returns>IQueryable object</returns>
         public async Task<IQueryable<T>> QueryAsync()
         {
-            try
-            {
-                // Currently there is no easy way to push an external query to the database asyncronously,
-                // so for the time being this will run syncronously...wrapping in async so parent calls
-                // can use the await keyword
-                return context.Set<T>();
-            }
-            catch (Exception)
-            {
-                context.Dispose();
-                throw;
-            }
+            // Currently there is no easy way to push an external query to the database asyncronously,
+            // so for the time being this will run syncronously...wrapping in async so parent calls
+            // can use the await keyword
+            return context.Set<T>();
         }
 
         /// <summary>
@@ -576,18 +468,10 @@ namespace BlogIt.Infrastructure.Repositories
         /// <returns>IQueryable object</returns>
         public async Task<IQueryable<T>> QueryNoTrackingAsync()
         {
-            try
-            {
-                // Currently there is no easy way to push an external query to the database asyncronously,
-                // so for the time being this will run syncronously...wrapping in async so parent calls
-                // can use the await keyword
-                return context.Set<T>().AsNoTracking();
-            }
-            catch (Exception)
-            {
-                context.Dispose();
-                throw;
-            }
+            // Currently there is no easy way to push an external query to the database asyncronously,
+            // so for the time being this will run syncronously...wrapping in async so parent calls
+            // can use the await keyword
+            return context.Set<T>().AsNoTracking();
         }
 
         /// <summary>
@@ -599,19 +483,11 @@ namespace BlogIt.Infrastructure.Repositories
         /// <returns>IQueryable object</returns>
         public virtual async Task<IQueryable<T>> QueryWithEagerLoadingAsync()
         {
-            try
-            {
-                // Currently there is no easy way to push an external query to the database asyncronously,
-                // so for the time being this will run syncronously...wrapping in async so parent calls
-                // can use the await keyword
-                context.Configuration.LazyLoadingEnabled = false;
-                return context.Set<T>();
-            }
-            catch (Exception)
-            {
-                context.Dispose();
-                throw;
-            }
+            // Currently there is no easy way to push an external query to the database asyncronously,
+            // so for the time being this will run syncronously...wrapping in async so parent calls
+            // can use the await keyword
+            context.Configuration.LazyLoadingEnabled = false;
+            return context.Set<T>();
         }
 
         /// <summary>
