@@ -85,6 +85,14 @@ namespace BlogIt.Web.Controllers
         }
 
         /// <summary>
+        /// Side nav view.
+        /// </summary>
+        public ActionResult SideNav()
+        {
+            return View(new BaseViewModel());
+        }
+
+        /// <summary>
         /// Custom view.
         /// </summary>
         public ActionResult Custom()

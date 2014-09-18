@@ -60,6 +60,7 @@ namespace BlogIt.Infrastructure.Repositories
 
             entity.ID = GuidGenerator.GenerateComb();
             entity.CreatedDate = DateTime.Now;
+            entity.UpdatedDate = DateTime.Now;
             context.Set<T>().Add(entity);
             context.SaveChanges();
             return entity;
@@ -121,6 +122,7 @@ namespace BlogIt.Infrastructure.Repositories
             {
                 entity.ID = GuidGenerator.GenerateComb();
                 entity.CreatedDate = DateTime.Now;
+                entity.UpdatedDate = DateTime.Now;
                 bulkContext.Set<T>().Add(entity);
                 i++;
 
@@ -279,6 +281,7 @@ namespace BlogIt.Infrastructure.Repositories
 
             entity.ID = GuidGenerator.GenerateComb();
             entity.CreatedDate = DateTime.Now;
+            entity.UpdatedDate = DateTime.Now;
             context.Set<T>().Add(entity);
             await context.SaveChangesAsync();
             return entity;
@@ -341,6 +344,7 @@ namespace BlogIt.Infrastructure.Repositories
             {
                 entity.ID = GuidGenerator.GenerateComb();
                 entity.CreatedDate = DateTime.Now;
+                entity.UpdatedDate = DateTime.Now;
                 bulkContext.Set<T>().Add(entity);
                 i++;
 

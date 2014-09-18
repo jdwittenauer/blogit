@@ -55,6 +55,7 @@
                         <ul class="dropdown-menu">
                             <li>@Html.ActionLink("Bootstrap Theme", "Theme", "Home")</li>
                             <li>@Html.ActionLink("Bootstrap Grid", "Grid", "Home")</li>
+                            <li>@Html.ActionLink("Side Navigation", "SideNav", "Home")</li>
                             <li>@Html.ActionLink("Various CSS Effects", "Custom", "Home")</li>
                             <li>@Html.ActionLink("Frosted Glass Effect", "Glass", "Home")</li>
                             <li>@Html.ActionLink("Shapes Canvas Demo", "Shape", "Home")</li>
@@ -75,6 +76,7 @@
         </div>
     </div>
 
+    @RenderSection("Optional", required: false)
     @RenderBody()
 
     <br />

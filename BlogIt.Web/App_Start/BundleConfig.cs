@@ -29,6 +29,7 @@ namespace BlogIt.Web
                 "~/Content/app/blog.css"));
             bundles.Add(new StyleBundle("~/Content/cover").Include("~/Content/app/cover.css"));
             bundles.Add(new StyleBundle("~/Content/grid").Include("~/Content/app/grid.css"));
+            bundles.Add(new StyleBundle("~/Content/sidenav").Include("~/Content/app/sidenav.css"));
             bundles.Add(new StyleBundle("~/Content/custom").Include("~/Content/app/custom.css"));
             bundles.Add(new StyleBundle("~/Content/glass").Include("~/Content/app/glass.css"));
             bundles.Add(new StyleBundle("~/Content/shape").Include("~/Content/app/shape.css"));

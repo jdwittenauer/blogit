@@ -294,6 +294,7 @@
     <Content Include="Content\app\images\view-all.jpg" />
     <Content Include="Content\app\images\view-map.jpg" />
     <Content Include="Content\app\shape.css" />
+    <Content Include="Content\app\sidenav.css" />
     <Content Include="Content\app\site.css" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
@@ -354,6 +355,7 @@
     <Content Include="Views\Home\Grid.cshtml" />
     <Content Include="Views\Home\Glass.cshtml" />
     <Content Include="Views\Home\Shape.cshtml" />
+    <Content Include="Views\Home\SideNav.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

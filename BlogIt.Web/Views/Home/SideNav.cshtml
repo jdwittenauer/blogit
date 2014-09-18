@@ -1,0 +1,144 @@
+﻿@model BlogIt.Web.Models.Shared.BaseViewModel
+
+@{
+    ViewBag.Title = "Side Navigation";
+}
+
+@Styles.Render("~/Content/sidenav")
+
+<script>
+    $(function () {
+        $('body').scrollspy({
+            target: '.bs-docs-sidebar',
+            offset: 40
+        });
+
+        $('#sidebar').affix({
+            offset: {
+                top: 200
+            }
+        });
+
+        scrollIfAnchor(window.location.hash);
+        $("body").on("click", "a", scrollIfAnchor);
+    });
+
+    function scrollIfAnchor(href) {
+        href = typeof (href) == "string" ? href : $(this).attr("href");
+
+        if (!href) return;
+
+        var fromTop = 80;
+
+        if (href.charAt(0) == "#") {
+            var $target = $(href);
+
+            if ($target.length) {
+                $('html, body').animate({ scrollTop: $target.offset().top - fromTop });
+                if (history && "pushState" in history) {
+                    history.pushState({}, document.title, window.location.pathname + href);
+                    return false;
+                }
+            }
+        }
+    }
+</script>
+
+<div class="jumbotron jumbo-custom">
+    <h1>Blog It</h1>
+    <p>Demonstration of the side navigation feature used in the Bootstrap documentation.</p>
+</div>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-3">
+            <nav id="sidebar" class="bs-docs-sidebar">
+                <ul class="nav nav-stacked">
+                    <li>
+                        <a href="#GroupA">Group A</a>
+                        <ul class="nav nav-stacked">
+                            <li><a href="#GroupASub1">Sub-Group 1</a></li>
+                            <li><a href="#GroupASub2">Sub-Group 2</a></li>
+                            <li><a href="#GroupASub3">Sub-Group 3</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#GroupB">Group B</a>
+                        <ul class="nav nav-stacked">
+                            <li><a href="#GroupBSub1">Sub-Group 1</a></li>
+                            <li><a href="#GroupBSub2">Sub-Group 2</a></li>
+                            <li><a href="#GroupBSub3">Sub-Group 3</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#GroupC">Group C</a>
+                        <ul class="nav nav-stacked">
+                            <li><a href="#GroupCSub1">Sub-Group 1</a></li>
+                            <li><a href="#GroupCSub2">Sub-Group 2</a></li>
+                            <li><a href="#GroupCSub3">Sub-Group 3</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#GroupD">Group D</a>
+                        <ul class="nav nav-stacked">
+                            <li><a href="#GroupDSub1">Sub-Group 1</a></li>
+                            <li><a href="#GroupDSub2">Sub-Group 2</a></li>
+                            <li><a href="#GroupDSub3">Sub-Group 3</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+
+        <div class="col-md-9">
+            <section id="GroupA" class="group">
+                <h3>Group A</h3>
+                <div id="GroupASub1" class="subgroup">
+                    <h4>Group A Sub 1</h4>
+                </div>
+                <div id="GroupASub2" class="subgroup">
+                    <h4>Group A Sub 2</h4>
+                </div>
+                <div id="GroupASub3" class="subgroup">
+                    <h4>Group A Sub 3</h4>
+                </div>
+            </section>
+            <section id="GroupB" class="group">
+                <h3>Group B</h3>
+                <div id="GroupBSub1" class="subgroup">
+                    <h4>Group B Sub 1</h4>
+                </div>
+                <div id="GroupBSub2" class="subgroup">
+                    <h4>Group B Sub 2</h4>
+                </div>
+                <div id="GroupBSub3" class="subgroup">
+                    <h4>Group B Sub 3</h4>
+                </div>
+            </section>
+            <section id="GroupC" class="group">
+                <h3>Group C</h3>
+                <div id="GroupCSub1" class="subgroup">
+                    <h4>Group C Sub 1</h4>
+                </div>
+                <div id="GroupCSub2" class="subgroup">
+                    <h4>Group C Sub 2</h4>
+                </div>
+                <div id="GroupCSub3" class="subgroup">
+                    <h4>Group C Sub 3</h4>
+                </div>
+            </section>
+            <section id="GroupD" class="group">
+                <h3>Group D</h3>
+                <div id="GroupDSub1" class="subgroup">
+                    <h4>Group D Sub 1</h4>
+                </div>
+                <div id="GroupDSub2" class="subgroup">
+                    <h4>Group D Sub 2</h4>
+                </div>
+                <div id="GroupDSub3" class="subgroup">
+                    <h4>Group D Sub 3</h4>
+                </div>
+            </section>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,70 @@
+﻿.jumbo-custom {
+    background-color: #333;
+    color: #fff;
+}
+
+.group {
+    background: #eee;
+    width: 600px;
+    height: 1500px;
+}
+.group .subgroup {
+    background: #ccc;
+    width: 400px;
+    height: 400px;
+}
+
+.bs-docs-sidebar {
+    top: 60px;
+    padding-left: 20px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.bs-docs-sidebar .nav > li > a {
+    color: #999;
+    padding: 4px 20px;
+    font-size: 13px;
+    font-weight: 400;
+    border-left: 2px solid transparent;
+}
+
+.bs-docs-sidebar .nav .nav > li > a {
+    padding-top: 1px;
+    padding-bottom: 1px;
+    padding-left: 30px;
+    font-size: 12px;
+}
+
+.bs-docs-sidebar .nav > .active > a {  
+    color: #563d7c;
+}
+
+.bs-docs-sidebar .nav > .active > a, 
+.bs-docs-sidebar .nav > li > a:hover, 
+.bs-docs-sidebar .nav > li > a:focus {
+    color: #563d7c;                 
+    text-decoration: none;          
+    background-color: transparent;  
+    border-left-color: #563d7c;
+}
+
+.bs-docs-sidebar .nav > .active > a, 
+.bs-docs-sidebar .nav > .active:hover > a,
+.bs-docs-sidebar .nav>  .active:focus > a {
+    font-weight: 700;
+}
+
+.bs-docs-sidebar .nav .nav > .active > a, 
+.bs-docs-sidebar .nav .nav > .active:hover > a,
+.bs-docs-sidebar .nav .nav > .active:focus > a {
+    font-weight: 500;
+}
+
+.bs-docs-sidebar .nav ul.nav {
+    display: none;           
+}
+
+.bs-docs-sidebar .nav > .active > ul.nav {
+    display: block;           
+}
