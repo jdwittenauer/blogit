@@ -11,6 +11,52 @@
      height: 0;
 }
 
+.bs-callout {
+    margin: 20px 0;
+    padding: 15px 30px 15px 15px;
+    border-left: 5px solid #eee;
+}
+
+.bs-callout h4 {
+    margin-top: 0;
+}
+
+.bs-callout p:last-child {
+    margin-bottom: 0;
+}
+
+.bs-callout code,
+.bs-callout .highlight {
+    background-color: #fff;
+}
+ 
+.bs-callout-danger {
+    background-color: #fafafa;
+    border-color: #da4f49;
+}
+
+.bs-callout-warning {
+    background-color: #fafafa;
+    border-color: #faa732;
+}
+
+.bs-callout-info {
+    background-color: #fafafa;
+    border-color: #49afcd;
+}
+
+.bs-callout-danger h4 {
+    color: #da4f49;
+}
+
+.bs-callout-warning h4 {
+    color: #faa732;
+}
+
+.bs-callout-info h4 {
+    color: #49afcd;
+}
+
 .blur {
     font-size: 32px;
     color: transparent;
