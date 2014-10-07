@@ -1,0 +1,62 @@
+﻿@model BlogIt.Web.Models.Shared.BaseViewModel
+
+@{
+    ViewBag.Title = "BlogIt Chat";
+}
+
+@Scripts.Render("~/bundles/signalr")
+<script src="~/signalr/hubs"></script>
+
+<script>
+    $(function () {
+        // Reference the auto-generated proxy for the hub
+        var chat = $.connection.chatHub;
+
+        // Create a function that the hub can call back to display messages
+        chat.client.addNewMessageToPage = function (name, message) {
+            // Add the message to the page
+            html = '<li class="list-group-item"><strong>(' + htmlEncode(name)
+                + '</strong>) ' + htmlEncode(message) + '</li>';
+            $(html).hide().appendTo('#discussion').fadeIn('slow').css('display', '');
+        };
+
+        // Get the user name and store it to prepend to messages
+        $('#displayname').val(localStorage.getItem("user.name"));
+
+        // Set initial focus to message input box
+        $('#message').focus();
+
+        // Start the connection
+        $.connection.hub.start().done(function () {
+            $('#sendmessage').click(function () {
+                // Call the Send method on the hub
+                chat.server.send($('#displayname').val(), $('#message').val());
+
+                // Clear text box and reset focus for next comment
+                $('#message').val('').focus();
+            });
+        });
+    });
+
+    // This optional function html-encodes messages for display in the page
+    function htmlEncode(value) {
+        var encodedValue = $('<div />').text(value).html();
+        return encodedValue;
+    }
+</script>
+
+<div class="container-fluid">
+    <h1 class="page-header">@ViewBag.Title</h1>
+    <p>
+        This demo uses SignalR and web sockets to enable real-time communication between the server and client in the
+        form of a chat application.  Any messages sent via the form below will hit the server and immediately be
+        broadcast to all other clients with this page open.  To see it work for yourself, try opening a second window
+        and switch back and forth as you send messages!
+    </p>
+
+    <input type="text" class="text-box" id="message" />
+    <input type="button" class="btn btn-default" id="sendmessage" value="Send" />
+    <br /><br />
+    <input type="hidden" id="displayname" />
+    <ul class="list-group" id="discussion"></ul>
+</div>

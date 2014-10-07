@@ -69,6 +69,14 @@ namespace BlogIt.Web.Controllers
         }
 
         /// <summary>
+        /// Chat view.
+        /// </summary>
+        public ActionResult Chat()
+        {
+            return View(new BaseViewModel());
+        }
+
+        /// <summary>
         /// Theme view.
         /// </summary>
         public ActionResult Theme()

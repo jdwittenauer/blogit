@@ -19,3 +19,4 @@ Some of the design patterns and technologies used include:
 - Object mapping using AutoMapper
 - Asyncronous server and client operations
 - Client state using HTML5 local storage
+- Real-time updates with SignalR

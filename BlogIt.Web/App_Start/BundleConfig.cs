@@ -13,6 +13,7 @@ namespace BlogIt.Web
                 "~/Scripts/bootstrap.js",
                 "~/Scripts/holder.js"));
             bundles.Add(new ScriptBundle("~/bundles/modernizr").Include("~/Scripts/modernizr-*"));
+            bundles.Add(new ScriptBundle("~/bundles/signalr").Include("~/Scripts/jquery.signalR-{version}.js"));
             bundles.Add(new ScriptBundle("~/bundles/app").Include(
                 "~/Scripts/app/global.js",
                 "~/Scripts/app/author.js",
