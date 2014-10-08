@@ -1,7 +1,7 @@
-﻿@model BlogIt.Domain.Entities.Blog
+﻿@model BlogIt.Web.Models.BlogDetailViewModel
 
 @{
-    ViewBag.Title = Model.Name;
+    ViewBag.Title = Model.Blog.Name;
 }
 
 <script>
@@ -13,11 +13,11 @@
 <div class="container-fluid">
     <h1 class="page-header">@ViewBag.Title</h1>
 
-    <input type="hidden" id="blogID" name="BlogID" value="@Model.ID" />
+    <input type="hidden" id="blogID" name="BlogID" value="@Model.Blog.ID" />
 
     <div class="row">
         <div class="col-sm-8 blog-main">
-            @foreach (var post in Model.Posts)
+            @foreach (var post in Model.Blog.Posts)
             {
                 <div class="blog-post">
                     <input type="hidden" name="PostID" value="@post.ID" />
@@ -50,7 +50,7 @@
         <div class="col-sm-2 col-sm-offset-1 blog-sidebar">
             <div class="sidebar-module sidebar-module-inset">
                 <h4>About</h4>
-                <p>@Model.Category</p>
+                <p>@Model.Blog.Category</p>
             </div>
 
             <div class="sidebar-module">

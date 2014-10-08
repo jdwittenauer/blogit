@@ -262,13 +262,16 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Hubs\ChatHub.cs" />
+    <Compile Include="Models\AuthorDetailViewModel.cs" />
     <Compile Include="Models\AuthorViewModel.cs" />
+    <Compile Include="Models\BlogDetailViewModel.cs" />
     <Compile Include="Models\BlogViewModel.cs" />
     <Compile Include="Models\CommentViewModel.cs" />
     <Compile Include="Models\DTO\AuthorDTO.cs" />
     <Compile Include="Models\DTO\BlogDTO.cs" />
     <Compile Include="Models\DTO\CommentDTO.cs" />
     <Compile Include="Models\DTO\PostDTO.cs" />
+    <Compile Include="Models\PostDetailViewModel.cs" />
     <Compile Include="Models\PostViewModel.cs" />
     <Compile Include="Models\Shared\BaseViewModel.cs" />
     <Compile Include="Models\Shared\IViewModelFactory.cs" />

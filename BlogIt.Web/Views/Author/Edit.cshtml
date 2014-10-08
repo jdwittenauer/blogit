@@ -1,7 +1,7 @@
-﻿@model BlogIt.Domain.Entities.Author
+﻿@model BlogIt.Web.Models.AuthorDetailViewModel
 
 @{
-    ViewBag.Title = Model.ID == Guid.Empty ? "Add Author" : "Edit Author";
+    ViewBag.Title = Model.Author.ID == Guid.Empty ? "Add Author" : "Edit Author";
 }
 
 <script>
@@ -13,33 +13,33 @@
 <div class="container-fluid">
     <h1 class="page-header">@ViewBag.Title</h1>
 
-    <input type="hidden" id="id" name="ID" value="@Model.ID" />
+    <input type="hidden" id="id" name="ID" value="@Model.Author.ID" />
 
     <div class="row padding-8">
         <label class="col-md-2" for="Name">Name</label>
         <div class="col-md-10">
-            <input type="text" class="text-box" id="name" name="Name" value="@Model.Name" />
+            <input type="text" class="text-box" id="name" name="Name" value="@Model.Author.Name" />
         </div>
     </div>
 
     <div class="row padding-8">
         <label class="col-md-2" for="Age">Age</label>
         <div class="col-md-10">
-            <input type="number" class="text-box" id="age" name="Age" value="@Model.Age" />
+            <input type="number" class="text-box" id="age" name="Age" value="@Model.Author.Age" />
         </div>
     </div>
 
     <div class="row padding-8">
         <label class="col-md-2" for="City">City</label>
         <div class="col-md-10">
-            <input type="text" class="text-box" id="city" name="City" value="@Model.City" />
+            <input type="text" class="text-box" id="city" name="City" value="@Model.Author.City" />
         </div>
     </div>
 
     <div class="row padding-8">
         <label class="col-md-2" for="State">State</label>
         <div class="col-md-10">
-            <input type="text" class="text-box" id="state" name="State" value="@Model.State" />
+            <input type="text" class="text-box" id="state" name="State" value="@Model.Author.State" />
         </div>
     </div>
 

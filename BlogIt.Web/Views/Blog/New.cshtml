@@ -1,4 +1,4 @@
-﻿@model BlogIt.Domain.Entities.Blog
+﻿@model BlogIt.Web.Models.BlogDetailViewModel
 
 @{
     ViewBag.Title = "Add Blog";
@@ -16,14 +16,14 @@
     <div class="row padding-8">
         <label class="col-md-2" for="Name">Name</label>
         <div class="col-md-10">
-            <input type="text" class="text-box" id="name" name="Name" value="@Model.Name" />
+            <input type="text" class="text-box" id="name" name="Name" value="@Model.Blog.Name" />
         </div>
     </div>
 
     <div class="row padding-8">
         <label class="col-md-2" for="Category">Category</label>
         <div class="col-md-10">
-            <input type="text" class="text-box" id="category" name="Category" value="@Model.Category" />
+            <input type="text" class="text-box" id="category" name="Category" value="@Model.Blog.Category" />
         </div>
     </div>
 

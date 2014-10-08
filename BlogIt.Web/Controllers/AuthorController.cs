@@ -44,15 +44,14 @@ namespace BlogIt.Web.Controllers
         /// </summary>
         public ActionResult Edit(Guid? id)
         {
-            Author model = null;
-
+            var model = new AuthorDetailViewModel();
             if (id == null)
             {
-                model = new Author();
+                model.Author = new Author();
             }
             else
             {
-                model = repository.Get(id.Value);
+                model.Author = repository.Get(id.Value);
             }
 
             return View(model);

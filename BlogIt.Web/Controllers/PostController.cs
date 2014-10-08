@@ -31,7 +31,7 @@ namespace BlogIt.Web.Controllers
         /// </summary>
         public ActionResult Index(Guid authorID)
         {
-            var model = new PostViewModel()
+            var model = new PostViewModel
             {
                 Posts = Mapper.Map<List<Post>, List<PostDTO>>(repository.GetByAuthor(authorID))
             };
@@ -41,9 +41,12 @@ namespace BlogIt.Web.Controllers
 
         public ActionResult New(Guid authorID, Guid blogID)
         {
-            var model = new Post();
-            model.AuthorID = authorID;
-            model.BlogID = blogID;
+            var model = new PostDetailViewModel
+            {
+                Post = new Post()
+            };
+            model.Post.AuthorID = authorID;
+            model.Post.BlogID = blogID;
 
             return View(model);
         }

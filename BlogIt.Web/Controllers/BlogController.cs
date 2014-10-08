@@ -44,8 +44,11 @@ namespace BlogIt.Web.Controllers
         /// </summary>
         public ActionResult Detail(Guid id)
         {
-            Blog model = repository.Get(id);
-            model.Posts = model.Posts.OrderByDescending(x => x.CreatedDate).ToList();
+            var model = new BlogDetailViewModel
+            {
+                Blog = repository.Get(id)
+            };
+            model.Blog.Posts = model.Blog.Posts.OrderByDescending(x => x.CreatedDate).ToList();
 
             return View(model);
         }
@@ -55,7 +58,11 @@ namespace BlogIt.Web.Controllers
         /// </summary>
         public ActionResult New()
         {
-            var model = new Blog();
+            var model = new BlogDetailViewModel
+            {
+                Blog = new Blog()
+            };
+
             return View(model);
         }
 	}
