@@ -101,6 +101,22 @@ namespace BlogIt.Web.Controllers
         }
 
         /// <summary>
+        /// WinJS view.
+        /// </summary>
+        public ActionResult WinJS()
+        {
+            return View(new BaseViewModel());
+        }
+
+        /// <summary>
+        /// D3 view.
+        /// </summary>
+        public ActionResult D3()
+        {
+            return View(new BaseViewModel());
+        }
+
+        /// <summary>
         /// Custom view.
         /// </summary>
         public ActionResult Custom()

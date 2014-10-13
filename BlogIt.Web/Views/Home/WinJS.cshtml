@@ -1,0 +1,172 @@
+﻿@model BlogIt.Web.Models.Shared.BaseViewModel
+
+@{
+    ViewBag.Title = "WinJS Demo";
+}
+
+@Styles.Render("~/Content/winjs")
+@Scripts.Render("~/bundles/winjs")
+
+<style>
+    .flipView {
+        width: 100%;
+        max-width: 480px;
+        height: 270px;
+    }
+
+    .flipViewContent {
+        width: 100%;
+        max-width: 480px;
+        height: 270px;
+    }
+
+    .overlaidItemTemplate {
+        width: 100%;
+        max-width: 480px;
+        height: 270px;
+    }
+
+    .overlaidItemTemplate img {
+        width: 100%;
+        height: 100%;
+    }
+
+    .overlaidItemTemplate .overlay {
+        position: absolute;
+        background-color: rgba(0,0,0,0.65);
+        height: 40px;
+        padding: 40px 15px;
+        overflow: hidden;
+        width: 100%;
+        bottom: 0;
+    }
+
+    .overlaidItemTemplate .overlay .ItemTitle {
+        color: rgba(255, 255, 255, 0.8);
+    }
+
+    .smallListIconTextItem {
+        width: 260px;
+        height: 70px;
+        padding: 5px;
+        overflow: hidden;
+        display: -ms-flexbox;
+        display: -webkit-flex;
+        display: flex;
+    }
+
+    .smallListIconTextItem img.smallListIconTextItem-Image {
+        width: 60px;
+        height: 60px;
+        margin: 0;
+        margin-right: 20px;
+    }
+
+    .smallListIconTextItem .smallListIconTextItem-Detail {
+        margin: 5px;
+    }
+
+    .listLayoutTopHeaderTemplateRoot, .gridLayoutLeftHeaderTemplateRoot {
+        font-size: larger;
+        margin-left: 16px;
+    }
+
+    #listView {
+        width: 100%;
+        height: 280px;
+    }
+</style>
+
+<script>
+    $(function () {
+        // FlipView
+        var array = [
+                { type: "item", title: "Cliff", picture: "/Content/app/images/Cliff.jpg" },
+                { type: "item", title: "Grapes", picture: "/Content/app/images/Grapes.jpg" },
+                { type: "item", title: "Rainier", picture: "/Content/app/images/Rainier.jpg" },
+                { type: "item", title: "Sunset", picture: "/Content/app/images/Sunset.jpg" },
+                { type: "item", title: "Valley", picture: "/Content/app/images/Valley.jpg" }
+        ];
+        var bindingList = new WinJS.Binding.List(array);
+
+        WinJS.Namespace.define("DefaultData", {
+            bindingList: bindingList,
+            array: array
+        });
+
+        WinJS.UI.processAll();
+
+        // ListView
+        var itemArray = [
+                { title: "Marvelous Mint", text: "Gelato", picture: "/Content/app/images/60Mint.png" },
+                { title: "Succulent Strawberry", text: "Sorbet", picture: "/Content/app/images/60Strawberry.png" },
+                { title: "Banana Blast", text: "Low-fat frozen yogurt", picture: "/Content/app/images/60Banana.png" },
+                { title: "Lavish Lemon Ice", text: "Sorbet", picture: "/Content/app/images/60Lemon.png" },
+                { title: "Creamy Orange", text: "Sorbet", picture: "/Content/app/images/60Orange.png" },
+                { title: "Very Vanilla", text: "Ice Cream", picture: "/Content/app/images/60Vanilla.png" },
+                { title: "Banana Blast", text: "Low-fat frozen yogurt", picture: "/Content/app/images/60Banana.png" },
+                { title: "Lavish Lemon Ice", text: "Sorbet", picture: "/Content/app/images/60Lemon.png" }
+        ];
+
+        var items = [];
+        for (var i = 0; i < 4; i++) {
+            itemArray.forEach(function (item) {
+                items.push(item);
+            });
+        }
+
+        WinJS.Namespace.define("Sample.ListView", {
+            data: new WinJS.Binding.List(items)
+        });
+
+        WinJS.UI.processAll();
+    });
+</script>
+
+<div class="container-fluid">
+    <h2 class="page-header">@ViewBag.Title</h2>
+
+    <h2>FlipView</h2>
+
+    <div class="simple_ItemTemplate" data-win-control="WinJS.Binding.Template" style="display: none">
+        <div class="overlaidItemTemplate">
+            <img class="image" data-win-bind="src: picture; alt: title" />
+            <div class="overlay">
+                <h2 class="ItemTitle" data-win-bind="textContent: title"></h2>
+            </div>
+        </div>
+    </div>
+    <div id="simple_FlipView" class="flipView" data-win-control="WinJS.UI.FlipView"
+         data-win-options="{
+        itemDataSource: DefaultData.bindingList.dataSource,
+        itemTemplate: select('.simple_ItemTemplate')
+     }">
+    </div>
+
+    <br /><br />
+
+    <h2>ListView</h2>
+
+    <div class="smallListIconTextTemplate" data-win-control="WinJS.Binding.Template" style="display: none">
+        <div class="smallListIconTextItem">
+            <img src="#" class="smallListIconTextItem-Image" data-win-bind="src: picture" />
+            <div class="smallListIconTextItem-Detail">
+                <h4 data-win-bind="textContent: title"></h4>
+                <h6 data-win-bind="textContent: text"></h6>
+            </div>
+        </div>
+    </div>
+
+    <div id="listView"
+         class="win-selectionstylefilled"
+         data-win-control="WinJS.UI.ListView"
+         data-win-options="{
+            itemDataSource: Sample.ListView.data.dataSource,
+            itemTemplate: select('.smallListIconTextTemplate'),
+            selectionMode: 'none',
+            tapBehavior: 'none',
+            swipeBehavior: 'none',
+            layout: { type: WinJS.UI.GridLayout }
+    }">
+    </div>
+</div>

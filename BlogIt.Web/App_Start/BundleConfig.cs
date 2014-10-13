@@ -14,6 +14,10 @@ namespace BlogIt.Web
                 "~/Scripts/holder.js"));
             bundles.Add(new ScriptBundle("~/bundles/modernizr").Include("~/Scripts/modernizr-*"));
             bundles.Add(new ScriptBundle("~/bundles/signalr").Include("~/Scripts/jquery.signalR-{version}.js"));
+            bundles.Add(new ScriptBundle("~/bundles/d3").Include("~/Scripts/d3.js"));
+            bundles.Add(new ScriptBundle("~/bundles/winjs").Include(
+                "~/WinJS/js/base.js",
+                "~/WinJS/js/ui.js"));
             bundles.Add(new ScriptBundle("~/bundles/app").Include(
                 "~/Scripts/app/global.js",
                 "~/Scripts/app/author.js",
@@ -25,6 +29,7 @@ namespace BlogIt.Web
             bundles.Add(new StyleBundle("~/Content/bootstrap").Include(
                 "~/Content/bootstrap.css",
                 "~/Content/bootstrap-theme.css"));
+            bundles.Add(new StyleBundle("~/Content/winjs").Include("~/WinJS/css/ui-light.css"));
             bundles.Add(new StyleBundle("~/Content/site").Include(
                 "~/Content/app/site.css",
                 "~/Content/app/blog.css"));

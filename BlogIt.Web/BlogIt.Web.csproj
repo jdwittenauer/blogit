@@ -298,9 +298,20 @@
     <Content Include="Content\app\custom.css" />
     <Content Include="Content\app\glass.css" />
     <Content Include="Content\app\grid.css" />
+    <Content Include="Content\app\images\60Banana.png" />
+    <Content Include="Content\app\images\60Lemon.png" />
+    <Content Include="Content\app\images\60Mint.png" />
+    <Content Include="Content\app\images\60Orange.png" />
+    <Content Include="Content\app\images\60Strawberry.png" />
+    <Content Include="Content\app\images\60Vanilla.png" />
     <Content Include="Content\app\images\add-beach.jpg" />
+    <Content Include="Content\app\images\Cliff.jpg" />
     <Content Include="Content\app\images\css-tricks.png" />
     <Content Include="Content\app\images\feedback.jpg" />
+    <Content Include="Content\app\images\Grapes.jpg" />
+    <Content Include="Content\app\images\Rainier.jpg" />
+    <Content Include="Content\app\images\Sunset.jpg" />
+    <Content Include="Content\app\images\Valley.jpg" />
     <Content Include="Content\app\images\view-all.jpg" />
     <Content Include="Content\app\images\view-map.jpg" />
     <Content Include="Content\app\shape.css" />
@@ -314,6 +325,7 @@
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
+    <Content Include="LICENSE.txt" />
     <Content Include="Scripts\app\post.js" />
     <Content Include="Scripts\app\blog.js" />
     <Content Include="Scripts\app\author.js" />
@@ -321,6 +333,8 @@
     <Content Include="Scripts\app\shape.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\d3.js" />
+    <Content Include="Scripts\d3.min.js" />
     <Content Include="Scripts\holder.js" />
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
@@ -369,6 +383,25 @@
     <Content Include="Views\Home\Shape.cshtml" />
     <Content Include="Views\Home\SideNav.cshtml" />
     <Content Include="Views\Home\Chat.cshtml" />
+    <Content Include="WinJS\css\ui-dark.css" />
+    <Content Include="WinJS\css\ui-dark.min.css" />
+    <Content Include="WinJS\css\ui-light.css" />
+    <Content Include="WinJS\css\ui-light.min.css" />
+    <Content Include="WinJS\js\base.js" />
+    <Content Include="WinJS\js\base.min.js" />
+    <Content Include="WinJS\js\en-US\ui.strings.js" />
+    <Content Include="WinJS\js\ui.js" />
+    <Content Include="WinJS\js\ui.min.js" />
+    <Content Include="WinJS\js\WinJS.js" />
+    <Content Include="WinJS\js\WinJS.min.js" />
+    <Content Include="WinJS\License.txt" />
+    <Content Include="WinJS\README.md" />
+    <Content Include="WinJS\js\WinJS.min.js.map" />
+    <Content Include="WinJS\js\ui.min.js.map" />
+    <Content Include="WinJS\js\base.min.js.map" />
+    <Content Include="WinJS\fonts\Symbols.ttf" />
+    <Content Include="Views\Home\WinJS.cshtml" />
+    <Content Include="Views\Home\D3.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
