@@ -101,6 +101,14 @@ namespace BlogIt.Web.Controllers
         }
 
         /// <summary>
+        /// Reactive extensions view.
+        /// </summary>
+        public ActionResult Reactive()
+        {
+            return View(new BaseViewModel());
+        }
+
+        /// <summary>
         /// WinJS view.
         /// </summary>
         public ActionResult WinJS()

@@ -14,6 +14,17 @@ namespace BlogIt.Web
                 "~/Scripts/holder.js"));
             bundles.Add(new ScriptBundle("~/bundles/modernizr").Include("~/Scripts/modernizr-*"));
             bundles.Add(new ScriptBundle("~/bundles/signalr").Include("~/Scripts/jquery.signalR-{version}.js"));
+            bundles.Add(new ScriptBundle("~/bundles/rx").Include(
+                "~/Scripts/rx.js",
+                "~/Scripts/rx.jquery.js",
+                "~/Scripts/rx.aggregates.js",
+                "~/Scripts/rx.binding.js",
+                "~/Scripts/rx.coincidence.js",
+                "~/Scripts/rx.experimental.js",
+                "~/Scripts/rx.joinpatterns.js",
+                "~/Scripts/rx.testing.js",
+                "~/Scripts/rx.time.js",
+                "~/Scripts/rx.virtualtime.js"));
             bundles.Add(new ScriptBundle("~/bundles/d3").Include("~/Scripts/d3.js"));
             bundles.Add(new ScriptBundle("~/bundles/winjs").Include(
                 "~/WinJS/js/base.js",

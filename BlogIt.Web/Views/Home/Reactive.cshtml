@@ -1,0 +1,83 @@
+﻿@model BlogIt.Web.Models.Shared.BaseViewModel
+
+@{
+    ViewBag.Title = "Reactive Extensions Demo";
+}
+
+@Scripts.Render("~/bundles/rx")
+
+<script>
+    $(function () {
+        // Single-value observable
+        function Ex1() {
+            $("#content").html('');
+            var answer = Rx.Observable.return(42);
+            var observer = Rx.Observer.create(function (x) {
+                $("#content").append("The answer is " + x);
+            });
+            answer.subscribe(observer);
+        }
+
+        // Observable sequence
+        function Ex2() {
+            $("#content").html('');
+            var source = Rx.Observable.range(1, 10);
+            var subscription = source.subscribe(
+                function (next) {
+                    $("<p/>").html("OnNext: " + next).appendTo("#content");
+                },
+                function (exn) {
+                    $("<p/>").html("OnError: " + exn).appendTo("#content");
+                },
+                function () {
+                    $("<p/>").html("OnCompleted").appendTo("#content");
+                }
+            );
+        }
+
+        // Importing DOM events
+        function Ex3() {
+            $("#content").html('');
+
+            // Not working, need to debug
+            Rx.Observable.fromEvent($(document), "mousemove").subscribe(function (event) {
+                $("<p/>").text("X: " + event.pageX + " Y: " + event.pageY).appendTo("#content");
+            });
+            Rx.Observable.fromEvent($("#textbox"), "keyup").subscribe(function (event) {
+                $("<p/>").text("User wrote: " + $(event.target).val()).appendTo("#content");
+            });
+        }
+
+        $("#button1").click(Ex1);
+        $("#button2").click(Ex2);
+        $("#button3").click(Ex3);
+    });
+</script>
+
+<div class="container-fluid">
+    <h1 class="page-header">@ViewBag.Title</h1>
+
+    <p>
+        This page imports the reactive extensions for javascript packages and runs through some examples.  The reactive
+        extensions (Rx) are a set of libraries for composing asyncronous and event-based programs into observable
+        collections.
+    </p>
+
+    <br />
+
+    <div class="row">
+        <div class="col-md-1"><div id="button1" class="btn btn-default">Exercise 1</div></div>
+        <div class="col-md-1"><div id="button2" class="btn btn-default">Exercise 2</div></div>
+        <div class="col-md-1"><div id="button3" class="btn btn-default">Exercise 3</div></div>
+    </div>
+
+    <br /><br />
+
+    <input id="textbox" type="text" class="text-box" />
+
+    <br /><br />
+
+    <div class="row">
+        <div id="content"></div>
+    </div>
+</div>
