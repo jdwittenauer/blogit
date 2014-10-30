@@ -10,7 +10,9 @@
     $(function () {
         // Single-value observable
         function Ex1() {
-            $("#content").html('');
+            clear();
+            $("<p/>").text("Example of a static single-value observable.")
+                .appendTo("#description");
             var answer = Rx.Observable.return(42);
             var observer = Rx.Observer.create(function (x) {
                 $("#content").append("The answer is " + x);
@@ -20,7 +22,8 @@
 
         // Observable sequence
         function Ex2() {
-            $("#content").html('');
+            clear();
+            $("<p/>").text("Example of a sequence of events as a cold observable.").appendTo("#description");
             var source = Rx.Observable.range(1, 10);
             var subscription = source.subscribe(
                 function (next) {
@@ -37,20 +40,90 @@
 
         // Importing DOM events
         function Ex3() {
-            $("#content").html('');
+            clear();
+            $("<p/>").text("Observable wired to mouse movement (filtered to only capture events where x == y) " +
+                "and key presses in the text box.")
+                .appendTo("#description");
+            var moves = $(document).mousemoveAsObservable()
+                .select(function (event) {
+                    return { pageX: event.pageX, pageY: event.pageY };
+                })
+                .where(function (pos) {
+                    return pos.pageX === pos.pageY;
+                });
+            var input = $("#textbox").keyupAsObservable()
+                .select(function (event) {
+                    return $(event.target).val();
+                });
+            var movesSubscription = moves.subscribe(function (pos) {
+                $("<p/>").text("X: " + pos.pageX + " Y: " + pos.pageY).appendTo("#content");
+            });
+            var inputSubscription = input.subscribe(function (text) {
+                $("<p/>").text("User wrote: " + text).appendTo("#content");
+            });
+        }
 
-            // Not working, need to debug
-            Rx.Observable.fromEvent($(document), "mousemove").subscribe(function (event) {
-                $("<p/>").text("X: " + event.pageX + " Y: " + event.pageY).appendTo("#content");
+        // More query operators
+        function Ex4() {
+            clear();
+            $("<p/>").text("Observable that captures key presses but with throttled input and only if the value changed")
+                .appendTo("#description");
+            var input = $("#textbox").keyupAsObservable()
+                .select(function (event) {
+                    return $(event.target).val();
+                })
+                .throttle(250)
+                .distinctUntilChanged();
+            var inputSubscription = input.subscribe(function (text) {
+                $("<p/>").text("User wrote: " + text).appendTo("#content");
             });
-            Rx.Observable.fromEvent($("#textbox"), "keyup").subscribe(function (event) {
-                $("<p/>").text("User wrote: " + $(event.target).val()).appendTo("#content");
-            });
+        }
+
+        // Dictionary service using Wikipedia API
+        function Ex5() {
+            clear();
+            $("<p/>").text("Observable that uses the Wikipedia dictionary to return phrase matches to text box input.")
+                .appendTo("#description");
+            var terms = $("#textbox").keyupAsObservable()
+                .select(function (event) {
+                    return $(event.target).val();
+                })
+                .throttle(250);
+            var searchObservable = terms.selectMany(searchWikipedia);
+            searchObservable.subscribe(function (results) {
+                $("#results").empty();
+                $.each(results, function (_, result) {
+                    $("#results").append("<li>" + result + "</li>");
+                });
+            },
+            function (e) { $("#error").text(e); });
+        }
+
+        function searchWikipedia(term) {
+            return $.ajaxAsObservable({
+                url: "http://en.wikipedia.org/w/api.php",
+                dataType: "jsonp",
+                data: {
+                    action: "opensearch",
+                    search: term,
+                    format: "json"
+                }
+            })
+            .select(function (d) { return d.data[1]; });
+        }
+
+        function clear() {
+            $("#description").html('');
+            $("#content").html('');
+            $("#results").html('');
+            $("#error").html('');
         }
 
         $("#button1").click(Ex1);
         $("#button2").click(Ex2);
         $("#button3").click(Ex3);
+        $("#button4").click(Ex4);
+        $("#button5").click(Ex5);
     });
 </script>
 
@@ -69,7 +142,15 @@
         <div class="col-md-1"><div id="button1" class="btn btn-default">Exercise 1</div></div>
         <div class="col-md-1"><div id="button2" class="btn btn-default">Exercise 2</div></div>
         <div class="col-md-1"><div id="button3" class="btn btn-default">Exercise 3</div></div>
+        <div class="col-md-1"><div id="button4" class="btn btn-default">Exercise 4</div></div>
+        <div class="col-md-1"><div id="button5" class="btn btn-default">Exercise 5</div></div>
     </div>
+
+    <br /><br />
+
+    <p id="description">
+        Click a button to run one of the exercises.
+    </p>
 
     <br /><br />
 
@@ -77,7 +158,7 @@
 
     <br /><br />
 
-    <div class="row">
-        <div id="content"></div>
-    </div>
+    <div id="content"></div>
+    <ul id="results" />
+    <p id="error" />
 </div>
