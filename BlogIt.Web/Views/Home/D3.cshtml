@@ -6,8 +6,51 @@
 
 @Scripts.Render("~/bundles/d3")
 
+<script>
+    $(function () {
+        // Add an SVG element
+        var bodySelection = d3.select(".container-fluid");
+
+        var svgSelection = bodySelection.append("svg")
+            .attr("width", 50)
+            .attr("height", 50);
+        
+        var circleSelection = svgSelection
+            .append("circle")
+            .attr("cx", 25)
+            .attr("cy", 25)
+            .attr("r", 25)
+            .style("fill", "purple");
+
+        // Data binding
+        var circleRadii = [40, 20, 10];
+
+        var svgContainer = d3.select(".container-fluid")
+            .append("svg")
+            .attr("width", 200)
+            .attr("height", 200);
+
+        var circles = svgContainer.selectAll("circle")
+            .data(circleRadii)
+            .enter()
+            .append("circle");
+
+        var circleAttributes = circles
+            .attr("cx", 50)
+            .attr("cy", 50)
+            .attr("r", function (d) { return d; })
+            .style("fill", function (d) {
+                if (d === 40) { return "green"; }
+                else if (d === 20) { return "purple"; }
+                else if (d === 10) { return "red"; }
+            });
+    });
+</script>
+
 <div class="container-fluid">
     <h1 class="page-header">@ViewBag.Title</h1>
 
     <p>This page demonstrates some visualizations using the popular D3.js library.</p>
+
+    <br />
 </div>

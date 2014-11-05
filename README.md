@@ -20,3 +20,5 @@ Some of the design patterns and technologies used include:
 - Asyncronous server and client operations
 - Client state using HTML5 local storage
 - Real-time updates with SignalR
+- Reactive extensions for Javascript
+- Demos of libraries like D3, Winjs, etc.
