@@ -8,24 +8,35 @@
 
 <script>
     $(function () {
-        // Add an SVG element
-        var bodySelection = d3.select(".container-fluid");
+        Example1();
+        Example2();
+        Example3();
+        Example4();
+        Example5();
+        Example6();
+    });
+
+    function Example1() {
+        // Adding an SVG element
+        var bodySelection = d3.select(".row1");
 
         var svgSelection = bodySelection.append("svg")
             .attr("width", 50)
             .attr("height", 50);
-        
+
         var circleSelection = svgSelection
             .append("circle")
             .attr("cx", 25)
             .attr("cy", 25)
             .attr("r", 25)
             .style("fill", "purple");
+    }
 
+    function Example2() {
         // Data binding
         var circleRadii = [40, 20, 10];
 
-        var svgContainer = d3.select(".container-fluid")
+        var svgContainer = d3.select(".row1")
             .append("svg")
             .attr("width", 200)
             .attr("height", 200);
@@ -44,13 +55,143 @@
                 else if (d === 20) { return "purple"; }
                 else if (d === 10) { return "red"; }
             });
-    });
+    }
+
+    function Example3() {
+        // SVG element positioning with JSON data
+        var jsonCircles = [
+            { "x": 30, "y": 30, "radius": 20, "color": "green" },
+            { "x": 70, "y": 70, "radius": 20, "color": "purple" },
+            { "x": 110, "y": 110, "radius": 20, "color": "red" }];
+
+        var svgContainer = d3.select(".row1")
+            .append("svg")
+            .attr("width", 200)
+            .attr("height", 200);
+
+        var circles = svgContainer.selectAll("circle")
+            .data(jsonCircles)
+            .enter()
+            .append("circle");
+
+        var circleAttributes = circles
+            .attr("cx", function (d) { return d.x; })
+            .attr("cy", function (d) { return d.y; })
+            .attr("r", function (d) { return d.radius; })
+            .style("fill", function (d) { return d.color; });
+    }
+
+    function Example4() {
+        // Introductory example with SVG path
+        var lineData = [
+            { "x": 1, "y": 5 }, { "x": 20, "y": 20 },
+            { "x": 40, "y": 10 }, { "x": 60, "y": 40 },
+            { "x": 80, "y": 5 }, { "x": 100, "y": 60 }];
+
+        var lineFunction = d3.svg.line()
+            .x(function (d) { return d.x; })
+            .y(function (d) { return d.y; })
+            .interpolate("linear");
+
+        var svgContainer = d3.select(".row1")
+            .append("svg")
+            .attr("width", 200)
+            .attr("height", 200);
+
+        var lineGraph = svgContainer.append("path")
+            .attr("d", lineFunction(lineData))
+            .attr("stroke", "blue")
+            .attr("stroke-width", 2)
+            .attr("fill", "none");
+    }
+
+    function Example5() {
+        // Using D3 scaling
+        var initialData = [0, 1000, 3000, 2000, 5000, 4000, 7000, 6000, 9000, 8000, 10000];
+
+        var linearScaler = d3.scale.linear()
+            .domain([d3.min(initialData), d3.max(initialData)])
+            .range([0, 200]);
+
+        var axis = d3.svg.axis().scale(linearScaler);
+
+        var svgContainer = d3.select(".row1")
+            .append("svg")
+            .attr("width", 200)
+            .attr("height", 200);
+
+        var circles = svgContainer.selectAll("circle")
+            .data(initialData)
+            .enter()
+            .append("circle");
+
+        var circleAttributes = circles
+            .attr("cx", function (d) { return linearScaler(d); })
+            .attr("cy", function (d) { return linearScaler(d); })
+            .attr("r", 10)
+            .style("fill", "purple");
+    }
+
+    function Example6() {
+        // SVG grouping and transforms
+        var circleData = [
+            { "cx": 20, "cy": 20, "radius": 20, "color": "green" },
+            { "cx": 70, "cy": 70, "radius": 20, "color": "purple" }];
+
+        var rectangleData = [
+            { "rx": 110, "ry": 110, "height": 30, "width": 30, "color": "blue" },
+            { "rx": 160, "ry": 160, "height": 30, "width": 30, "color": "red" }];
+
+        var svgContainer = d3.select(".row1")
+            .append("svg")
+            .attr("width", 200)
+            .attr("height", 200);
+
+        var circleGroup = svgContainer.append("g")
+            .attr("transform", "translate(80,0)");
+
+        var circles = circleGroup.selectAll("circle")
+            .data(circleData)
+            .enter()
+            .append("circle");
+
+        var circleAttributes = circles
+            .attr("cx", function (d) { return d.cx; })
+            .attr("cy", function (d) { return d.cy; })
+            .attr("r", function (d) { return d.radius; })
+            .style("fill", function (d) { return d.color; });
+
+        var rectangles = svgContainer.selectAll("rect")
+            .data(rectangleData)
+            .enter()
+            .append("rect");
+
+        var rectangleAttributes = rectangles
+            .attr("x", function (d) { return d.rx; })
+            .attr("y", function (d) { return d.ry; })
+            .attr("height", function (d) { return d.height; })
+            .attr("width", function (d) { return d.width; })
+            .style("fill", function (d) { return d.color; });
+    }
 </script>
 
 <div class="container-fluid">
     <h1 class="page-header">@ViewBag.Title</h1>
 
-    <p>This page demonstrates some visualizations using the popular D3.js library.</p>
+    <p>
+        This page demonstrates some visualizations using the popular D3.js library. This first section covers a
+        really basic exploration of defining, styling, and transforming SVG objects using data and D3.
+    </p>
 
     <br />
+
+    <div class="row1"></div>
+
+    <br />
+
+    <p>
+        More to come here.
+    </p>
+
+    <div class="row2"></div>
 </div>
