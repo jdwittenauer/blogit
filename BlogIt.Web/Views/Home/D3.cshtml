@@ -8,6 +8,7 @@
 
 <script>
     $(function () {
+        // Introductory examples
         Example1();
         Example2();
         Example3();
@@ -16,6 +17,14 @@
         Example6();
         Example7();
         Example8();
+
+        // Borrowed demonstrations
+        BubbleChart();
+        SunburstPartition();
+        TreeMap();
+        OMGParticles();
+        RandomTraversal();
+        PrimsAlgorithm();
     });
 
     function Example1() {
@@ -209,7 +218,7 @@
 
     function Example8() {
         // Create a better chart
-        var dataPath = $("#dataPath").val();
+        var lettersData = $("#letters").val();
 
         var margin = { top: 20, right: 30, bottom: 30, left: 40 },
             width = 960 - margin.left - margin.right,
@@ -237,7 +246,7 @@
             .append("g")
             .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-        d3.tsv(dataPath, type, function (error, data) {
+        d3.tsv(lettersData, type, function (error, data) {
             x.domain(data.map(function (d) { return d.letter; }));
             y.domain([0, d3.max(data, function (d) { return d.frequency; })]);
 
@@ -270,15 +279,365 @@
                 .attr("height", function (d) { return height - y(d.frequency); })
                 .attr("width", x.rangeBand());
         });
+
+        function type(d) {
+            // coerce to number
+            d.value = +d.value;
+            return d;
+        }
     }
 
-    function type(d) {
-        d.value = +d.value; // coerce to number
-        return d;
+    function BubbleChart() {
+        var flareData = $("#flare").val();
+
+        var diameter = 960,
+            format = d3.format(",d"),
+            color = d3.scale.category20c();
+
+        var bubble = d3.layout.pack()
+            .sort(null)
+            .size([diameter, diameter])
+            .padding(1.5);
+
+        var svg = d3.select(".bubble").append("svg")
+            .attr("width", diameter)
+            .attr("height", diameter)
+            .attr("class", "bubble");
+
+        d3.json(flareData, function (error, root) {
+            var node = svg.selectAll(".node")
+                .data(bubble.nodes(classes(root))
+                .filter(function (d) { return !d.children; }))
+              .enter().append("g")
+                .attr("class", "node")
+                .attr("transform", function (d) { return "translate(" + d.x + "," + d.y + ")"; });
+
+            node.append("title")
+                .text(function (d) { return d.className + ": " + format(d.value); });
+
+            node.append("circle")
+                .attr("r", function (d) { return d.r; })
+                .style("fill", function (d) { return color(d.packageName); });
+
+            node.append("text")
+                .attr("dy", ".3em")
+                .style("text-anchor", "middle")
+                .text(function (d) { return d.className.substring(0, d.r / 3); });
+        });
+
+        function classes(root) {
+            // Returns a flattened hierarchy containing all leaf nodes under the root
+            var classes = [];
+
+            function recurse(name, node) {
+                if (node.children) node.children.forEach(function (child) { recurse(node.name, child); });
+                else classes.push({ packageName: name, className: node.name, value: node.size });
+            }
+
+            recurse(null, root);
+            return { children: classes };
+        }
+
+        d3.select(self.frameElement).style("height", diameter + "px");
+    }
+
+    function SunburstPartition() {
+        var flareData = $("#flare").val();
+
+        var width = 960,
+            height = 700,
+            radius = Math.min(width, height) / 2,
+            color = d3.scale.category20c();
+
+        var svg = d3.select(".sunburst").append("svg")
+            .attr("width", width)
+            .attr("height", height)
+          .append("g")
+            .attr("transform", "translate(" + width / 2 + "," + height * .52 + ")");
+
+        var partition = d3.layout.partition()
+            .sort(null)
+            .size([2 * Math.PI, radius * radius])
+            .value(function (d) { return 1; });
+
+        var arc = d3.svg.arc()
+            .startAngle(function (d) { return d.x; })
+            .endAngle(function (d) { return d.x + d.dx; })
+            .innerRadius(function (d) { return Math.sqrt(d.y); })
+            .outerRadius(function (d) { return Math.sqrt(d.y + d.dy); });
+
+        d3.json(flareData, function (error, root) {
+            var path = svg.datum(root).selectAll("path")
+                .data(partition.nodes)
+              .enter().append("path")
+                .attr("display", function (d) { return d.depth ? null : "none"; }) // hide inner ring
+                .attr("d", arc)
+                .style("stroke", "#fff")
+                .style("fill", function (d) { return color((d.children ? d : d.parent).name); })
+                .style("fill-rule", "evenodd")
+                .each(stash);
+
+            d3.select(".sunburst").selectAll("input").on("change", function change() {
+                var value = this.value === "count"
+                    ? function () { return 1; }
+                    : function (d) { return d.size; };
+
+                path
+                    .data(partition.value(value).nodes)
+                  .transition()
+                    .duration(1500)
+                    .attrTween("d", arcTween);
+            });
+        });
+
+        function stash(d) {
+            // Stash the old values for transition
+            d.x0 = d.x;
+            d.dx0 = d.dx;
+        }
+
+        function arcTween(a) {
+            // Interpolate the arcs in data space
+            var i = d3.interpolate({ x: a.x0, dx: a.dx0 }, a);
+            return function (t) {
+                var b = i(t);
+                a.x0 = b.x;
+                a.dx0 = b.dx;
+                return arc(b);
+            };
+        }
+
+        d3.select(self.frameElement).style("height", height + "px");
+    }
+
+    function TreeMap() {
+        var flareData = $("#flare").val();
+
+        var margin = { top: 40, right: 10, bottom: 10, left: 10 },
+            width = 960 - margin.left - margin.right,
+            height = 500 - margin.top - margin.bottom;
+
+        var color = d3.scale.category20c();
+
+        var treemap = d3.layout.treemap()
+            .size([width, height])
+            .sticky(true)
+            .value(function (d) { return d.size; });
+
+        var div = d3.select(".treemap").append("div")
+            .style("position", "relative")
+            .style("width", (width + margin.left + margin.right) + "px")
+            .style("height", (height + margin.top + margin.bottom) + "px")
+            .style("left", margin.left + "px")
+            .style("top", margin.top + "px");
+
+        d3.json(flareData, function (error, root) {
+            var node = div.datum(root).selectAll(".node")
+                .data(treemap.nodes)
+              .enter().append("div")
+                .attr("class", "node")
+                .call(position)
+                .style("background", function (d) { return d.children ? color(d.name) : null; })
+                .text(function (d) { return d.children ? null : d.name; });
+
+            d3.select(".treemap").selectAll("input").on("change", function change() {
+                var value = this.value === "count"
+                    ? function () { return 1; }
+                    : function (d) { return d.size; };
+
+                node
+                    .data(treemap.value(value).nodes)
+                  .transition()
+                    .duration(1500)
+                    .call(position);
+            });
+        });
+
+        function position() {
+            this.style("left", function (d) { return d.x + "px"; })
+                .style("top", function (d) { return d.y + "px"; })
+                .style("width", function (d) { return Math.max(0, d.dx - 1) + "px"; })
+                .style("height", function (d) { return Math.max(0, d.dy - 1) + "px"; });
+        }
+    }
+
+    function OMGParticles() {
+        var width = 960,
+            height = 500;
+
+        var i = 0;
+
+        var svg = d3.select(".particles").append("svg")
+            .attr("width", width)
+            .attr("height", height);
+
+        svg.append("rect")
+            .attr("width", width)
+            .attr("height", height)
+            .on("ontouchstart" in document ? "touchmove" : "mousemove", particle);
+
+        function particle() {
+            var m = d3.mouse(this);
+
+            svg.insert("circle", "rect")
+                .attr("cx", m[0])
+                .attr("cy", m[1])
+                .attr("r", 1e-6)
+                .style("stroke", d3.hsl((i = (i + 1) % 360), 1, .5))
+                .style("stroke-opacity", 1)
+              .transition()
+                .duration(2000)
+                .ease(Math.sqrt)
+                .attr("r", 100)
+                .style("stroke-opacity", 1e-6)
+                .remove();
+
+            d3.event.preventDefault();
+        }
+    }
+
+    function RandomTraversal() {
+        var randomTraversalScript = $("#generate-random-traversal").val();
+
+        var canvas = d3.select(".random").select("canvas"),
+            context = canvas.node().getContext("2d"),
+            width = canvas.property("width"),
+            height = canvas.property("height");
+
+        var worker = new Worker(randomTraversalScript);
+        worker.postMessage({ width: width, height: height });
+        worker.addEventListener("message", function (event) {
+            worker.terminate();
+
+            var N = 1 << 0,
+                S = 1 << 1,
+                W = 1 << 2,
+                E = 1 << 3;
+
+            var cells = event.data,
+                distance = 0,
+                visited = new Array(width * height),
+                frontier = [(height - 1) * width],
+                image = context.createImageData(width, height);
+
+            function flood() {
+                var frontier1 = [],
+                    i0,
+                    n0 = frontier.length,
+                    i1,
+                    color = d3.hsl((distance += .5) % 360, 1, .5).rgb();
+
+                for (var i = 0; i < n0; ++i) {
+                    i0 = frontier[i] << 2;
+                    image.data[i0 + 0] = color.r;
+                    image.data[i0 + 1] = color.g;
+                    image.data[i0 + 2] = color.b;
+                    image.data[i0 + 3] = 255;
+                }
+
+                for (var i = 0; i < n0; ++i) {
+                    i0 = frontier[i];
+                    if (cells[i0] & E && !visited[i1 = i0 + 1]) visited[i1] = true, frontier1.push(i1);
+                    if (cells[i0] & W && !visited[i1 = i0 - 1]) visited[i1] = true, frontier1.push(i1);
+                    if (cells[i0] & S && !visited[i1 = i0 + width]) visited[i1] = true, frontier1.push(i1);
+                    if (cells[i0] & N && !visited[i1 = i0 - width]) visited[i1] = true, frontier1.push(i1);
+                }
+
+                frontier = frontier1;
+                return !frontier1.length;
+            }
+
+            d3.timer(function () {
+                for (var i = 0, done; i < 1 && !(done = flood()) ; ++i);
+                context.putImageData(image, 0, 0);
+                return done;
+            });
+        });
+    }
+
+    function PrimsAlgorithm() {
+        var primsScript = $("#generate-prims").val();
+
+        var canvas = d3.select(".prim").select("canvas"),
+            context = canvas.node().getContext("2d"),
+            width = canvas.property("width"),
+            height = canvas.property("height");
+
+        var colors = d3.range(360)
+            .map((function () {
+                var color = d3.scale.cubehelix()
+                  .domain([0, 180, 360])
+                  .range([
+                    d3.hsl(-100, 0.75, 0.35),
+                    d3.hsl(80, 1.50, 0.80),
+                    d3.hsl(260, 0.75, 0.35)
+                  ]);
+                return function (i) {
+                    return d3.rgb(color(i));
+                };
+            })());
+
+        var worker = new Worker(primsScript);
+        worker.postMessage({ width: width, height: height });
+        worker.addEventListener("message", function (event) {
+            worker.terminate();
+
+            var N = 1 << 0,
+                S = 1 << 1,
+                W = 1 << 2,
+                E = 1 << 3;
+
+            var d = 0,
+                r = -1,
+                n = width * height,
+                cells = event.data,
+                distance = new Array(n),
+                frontier = [(height - 1) * width],
+                image = context.createImageData(width, height),
+                imageData = image.data;
+
+            distance[frontier[0]] = 0;
+
+            for (var i = 0, c, i4 = 3; i < n; ++i, i4 += 4) {
+                imageData[i4] = 255;
+            }
+
+            while (frontier.length) {
+                var frontier1 = [],
+                    i0,
+                    n0 = frontier.length,
+                    i1;
+
+                ++d;
+                for (var i = 0; i < n0; ++i) {
+                    i0 = frontier[i];
+                    if (cells[i0] & E && distance[i1 = i0 + 1] == null) distance[i1] = d, frontier1.push(i1);
+                    if (cells[i0] & W && distance[i1 = i0 - 1] == null) distance[i1] = d, frontier1.push(i1);
+                    if (cells[i0] & S && distance[i1 = i0 + width] == null) distance[i1] = d, frontier1.push(i1);
+                    if (cells[i0] & N && distance[i1 = i0 - width] == null) distance[i1] = d, frontier1.push(i1);
+                }
+
+                frontier = frontier1;
+            }
+
+            d3.timer(function (elapsed) {
+                for (var i = 0, c, i4 = 0, s = 1.1 - Math.cos(elapsed / 20000) ; i < n; ++i, i4 += 4) {
+                    c = colors[(c = Math.floor(distance[i] * s) % 360) < 0 ? c + 360 : c];
+                    imageData[i4] = c.r;
+                    imageData[i4 + 1] = c.g;
+                    imageData[i4 + 2] = c.b;
+                }
+                context.putImageData(image, 0, 0);
+            });
+        });
     }
 </script>
 
 <style>
+    text {
+        font: 10px sans-serif;
+    }
+
     .chart rect {
         fill: steelblue;
     }
@@ -310,6 +669,57 @@
     .x.axis path {
         display: none;
     }
+
+    .sunburst {
+        font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+        margin: auto;
+        position: relative;
+        width: 960px;
+    }
+
+    .sunburst form {
+        position: absolute;
+        right: 10px;
+        top: 10px;
+    }
+
+    .treemap {
+        font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+        margin: auto;
+        position: relative;
+        width: 960px;
+    }
+
+    .treemap form {
+        position: absolute;
+        right: 10px;
+        top: 10px;
+    }
+
+    .treemap .node {
+        border: solid 1px white;
+        font: 10px sans-serif;
+        line-height: 12px;
+        overflow: hidden;
+        position: absolute;
+        text-indent: 2px;
+    }
+
+    .particles {
+        margin: 0;
+        background: #222;
+        min-width: 960px;
+    }
+
+    .particles rect {
+        fill: none;
+        pointer-events: all;
+    }
+
+    .particles circle {
+        fill: none;
+        stroke-width: 2.5px;
+    }
 </style>
 
 <div class="container-fluid">
@@ -317,7 +727,8 @@
 
     <p>
         This page demonstrates some visualizations using the popular D3.js library. This first section covers a
-        really basic exploration of defining, styling, and transforming SVG objects using data and D3.
+        really basic exploration of defining, styling, and transforming SVG objects using data and D3.  Most
+        Examples are borrowed or adapted from various tutorials on D3.
     </p>
 
     <br />
@@ -332,5 +743,54 @@
 
     <div class="row3"></div>
 
-    <input type="hidden" id="dataPath" value="@Url.Content("~/Content/app/data/letters.tsv")" />
+    <br />
+
+    <p>
+        Below are examples that I've borrowed from galleries showing off D3's capabilities.  Most of these were
+        created by Mike Bostock himself (the creator of the D3 library).  As you can see, the power of this library
+        is pretty incredible.
+    </p>
+
+    <br />
+
+    <div class="bubble"></div>
+
+    <br />
+
+    <div class="sunburst">
+        <form>
+            <label><input type="radio" name="mode" value="size"> Size</label>
+            <label><input type="radio" name="mode" value="count" checked> Count</label>
+        </form>
+    </div>
+
+    <br />
+
+    <div class="treemap">
+        <form>
+            <label><input type="radio" name="mode" value="size" checked> Size</label>
+            <label><input type="radio" name="mode" value="count"> Count</label>
+        </form>
+    </div>
+
+    <br />
+
+    <div class="particles"></div>
+
+    <br />
+
+    <div class="random">
+        <canvas width="960" height="500"></canvas>
+    </div>
+
+    <br />
+
+    <div class="prim">
+        <canvas width="960" height="500"></canvas>
+    </div>
+
+    <input type="hidden" id="letters" value="@Url.Content("~/Content/app/data/letters.tsv")" />
+    <input type="hidden" id="flare" value="@Url.Content("~/Content/app/data/flare.json")" />
+    <input type="hidden" id="generate-random-traversal" value="@Url.Content("~/Scripts/app/generate-random-traversal.js")" />
+    <input type="hidden" id="generate-prims" value="@Url.Content("~/Scripts/app/generate-prims.js")" />
 </div>

@@ -5,7 +5,7 @@ This MVC-based application demonstrates a number of design patterns and advanced
 
 The app presents screens to manage a group of authors posting and commenting on a set of blogs.  Models are contrived and very basic - the intent is just to demonstrate various patterns and concepts.
 
-Also includes some miscellaneous static pages for useful HTML/CSS snippets.
+In addition to the main "Blog It" functionality, I've also added a "Misc" directory which includes a wide variety of demos and experiments for various technologies.
 
 Some of the design patterns and technologies used include:
 
@@ -19,6 +19,7 @@ Some of the design patterns and technologies used include:
 - Object mapping using AutoMapper
 - Asyncronous server and client operations
 - Client state using HTML5 local storage
+- Web workers running javascript in separate threads
 - Real-time updates with SignalR
 - Reactive extensions for Javascript
 - Demos of libraries like D3, Winjs, etc.

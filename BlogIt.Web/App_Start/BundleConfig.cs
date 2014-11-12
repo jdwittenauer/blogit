@@ -25,7 +25,11 @@ namespace BlogIt.Web
                 "~/Scripts/rx.testing.js",
                 "~/Scripts/rx.time.js",
                 "~/Scripts/rx.virtualtime.js"));
-            bundles.Add(new ScriptBundle("~/bundles/d3").Include("~/Scripts/d3.js"));
+            bundles.Add(new ScriptBundle("~/bundles/d3").Include(
+                "~/Scripts/d3.js",
+                "~/Scripts/app/cubehelix.min.js",
+                "~/Scripts/app/generate-random-traversal.js",
+                "~/Scripts/app/generate-prims.js"));
             bundles.Add(new ScriptBundle("~/bundles/winjs").Include(
                 "~/WinJS/js/base.js",
                 "~/WinJS/js/ui.js"));
