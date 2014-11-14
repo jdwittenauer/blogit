@@ -18,8 +18,9 @@ Some of the design patterns and technologies used include:
 - OData services using Web API
 - Object mapping using AutoMapper
 - Asyncronous server and client operations
-- Client state using HTML5 local storage
-- Web workers running javascript in separate threads
+- Unit testing with xUnit and Jasmine
+- Modular javascript design
+- HTML5 local storage & web workers
 - Real-time updates with SignalR
 - Reactive extensions for Javascript
 - Demos of libraries like D3, Winjs, etc.
