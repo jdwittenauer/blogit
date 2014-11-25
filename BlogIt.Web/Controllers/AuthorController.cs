@@ -29,7 +29,7 @@ namespace BlogIt.Web.Controllers
         /// <summary>
         /// Index view.
         /// </summary>
-        public ActionResult Index()
+        public ViewResult Index()
         {
             var model = new AuthorViewModel
             {
@@ -42,7 +42,7 @@ namespace BlogIt.Web.Controllers
         /// <summary>
         /// Edit view.
         /// </summary>
-        public ActionResult Edit(Guid? id)
+        public ViewResult Edit(Guid? id)
         {
             var model = new AuthorDetailViewModel();
             if (id == null)

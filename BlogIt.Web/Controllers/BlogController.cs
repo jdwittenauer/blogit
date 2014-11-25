@@ -29,7 +29,7 @@ namespace BlogIt.Web.Controllers
         /// <summary>
         /// Index view.
         /// </summary>
-        public ActionResult Index()
+        public ViewResult Index()
         {
             var model = new BlogViewModel
             {
@@ -42,7 +42,7 @@ namespace BlogIt.Web.Controllers
         /// <summary>
         /// Detail view.
         /// </summary>
-        public ActionResult Detail(Guid id)
+        public ViewResult Detail(Guid id)
         {
             var model = new BlogDetailViewModel
             {
@@ -56,7 +56,7 @@ namespace BlogIt.Web.Controllers
         /// <summary>
         /// New blog view.
         /// </summary>
-        public ActionResult New()
+        public ViewResult New()
         {
             var model = new BlogDetailViewModel
             {

@@ -1,8 +1,13 @@
-﻿using Xunit;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using Xunit;
 
 namespace BlogIt.Tests
 {
-    public class Test
+    public class SampleTests
     {
         [Fact]
         public void PassingTest()

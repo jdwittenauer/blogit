@@ -29,7 +29,7 @@ namespace BlogIt.Web.Controllers
         /// <summary>
         /// Index view.
         /// </summary>
-        public ActionResult Index(Guid authorID)
+        public ViewResult Index(Guid authorID)
         {
             var model = new CommentViewModel
             {
@@ -42,7 +42,7 @@ namespace BlogIt.Web.Controllers
         /// <summary>
         /// New comment partial view.
         /// </summary>
-        public ActionResult NewComment(Guid id)
+        public ViewResult NewComment(Guid id)
         {
             var model = repository.Get(id);
             return View(model);

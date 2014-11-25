@@ -242,6 +242,7 @@
     <Compile Include="Controllers\API\CommentController.cs" />
     <Compile Include="Controllers\API\BlogController.cs" />
     <Compile Include="Controllers\API\AuthorController.cs" />
+    <Compile Include="Controllers\JasmineController.cs" />
     <Compile Include="Controllers\OData\AuthorsController.cs" />
     <Compile Include="Controllers\OData\BlogsController.cs" />
     <Compile Include="Controllers\OData\CommentsController.cs" />
@@ -324,6 +325,8 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\app\images\placekitten.jpg" />
+    <Content Include="Content\jasmine\jasmine.css" />
+    <Content Include="Content\jasmine\jasmine_favicon.png" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -354,6 +357,9 @@
     <Content Include="Scripts\jasmine-samples\Song.js" />
     <Content Include="Scripts\jasmine-samples\SpecHelper.js" />
     <Content Include="Scripts\jasmine\boot.js" />
+    <Content Include="Scripts\jasmine\console.js" />
+    <Content Include="Scripts\jasmine\jasmine-html.js" />
+    <Content Include="Scripts\jasmine\jasmine-jquery.js" />
     <Content Include="Scripts\jasmine\jasmine.js" />
     <Content Include="Scripts\jquery-2.1.1.js" />
     <Content Include="Scripts\jquery-2.1.1.min.js" />
@@ -442,6 +448,7 @@
     <Content Include="Views\Home\WinJS.cshtml" />
     <Content Include="Views\Home\D3.cshtml" />
     <Content Include="Views\Home\Reactive.cshtml" />
+    <Content Include="Views\Jasmine\SpecRunner.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

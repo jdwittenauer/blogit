@@ -64,12 +64,14 @@
             }
         },
 
+        logOut: function (e) {
+            e.preventDefault();
+            localStorage.clear();
+            window.location.replace($("#loginUrl").val());
+        },
+
         registerLogOutEvent: function () {
-            $("#logOut").click(function (e) {
-                e.preventDefault();
-                localStorage.clear();
-                window.location.replace($("#loginUrl").val());
-            });
+            $("#logOut").click(this.logOut);
         }
     }
 })(window, document, localStorage, jQuery);

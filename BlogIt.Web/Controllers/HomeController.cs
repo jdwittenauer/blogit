@@ -14,7 +14,7 @@ namespace BlogIt.Web.Controllers
         /// <summary>
         /// Cover view.
         /// </summary>
-        public ActionResult Cover()
+        public ViewResult Cover()
         {
             return View();
         }
@@ -22,7 +22,7 @@ namespace BlogIt.Web.Controllers
         /// <summary>
         /// Index view.
         /// </summary>
-        public ActionResult Index()
+        public ViewResult Index()
         {
             if (TempData.ContainsKey("userID"))
             {
@@ -71,7 +71,7 @@ namespace BlogIt.Web.Controllers
         /// <summary>
         /// Chat view.
         /// </summary>
-        public ActionResult Chat()
+        public ViewResult Chat()
         {
             return View(new BaseViewModel());
         }
@@ -79,7 +79,7 @@ namespace BlogIt.Web.Controllers
         /// <summary>
         /// Theme view.
         /// </summary>
-        public ActionResult Theme()
+        public ViewResult Theme()
         {
             return View(new BaseViewModel());
         }
@@ -87,7 +87,7 @@ namespace BlogIt.Web.Controllers
         /// <summary>
         /// Grid view.
         /// </summary>
-        public ActionResult Grid()
+        public ViewResult Grid()
         {
             return View(new BaseViewModel());
         }
@@ -95,7 +95,7 @@ namespace BlogIt.Web.Controllers
         /// <summary>
         /// Side nav view.
         /// </summary>
-        public ActionResult SideNav()
+        public ViewResult SideNav()
         {
             return View(new BaseViewModel());
         }
@@ -103,7 +103,7 @@ namespace BlogIt.Web.Controllers
         /// <summary>
         /// Reactive extensions view.
         /// </summary>
-        public ActionResult Reactive()
+        public ViewResult Reactive()
         {
             return View(new BaseViewModel());
         }
@@ -111,7 +111,7 @@ namespace BlogIt.Web.Controllers
         /// <summary>
         /// WinJS view.
         /// </summary>
-        public ActionResult WinJS()
+        public ViewResult WinJS()
         {
             return View(new BaseViewModel());
         }
@@ -119,7 +119,7 @@ namespace BlogIt.Web.Controllers
         /// <summary>
         /// D3 view.
         /// </summary>
-        public ActionResult D3()
+        public ViewResult D3()
         {
             return View(new BaseViewModel());
         }
@@ -127,7 +127,7 @@ namespace BlogIt.Web.Controllers
         /// <summary>
         /// Custom view.
         /// </summary>
-        public ActionResult Custom()
+        public ViewResult Custom()
         {
             return View(new BaseViewModel());
         }
@@ -135,7 +135,7 @@ namespace BlogIt.Web.Controllers
         /// <summary>
         /// Glass view.
         /// </summary>
-        public ActionResult Glass()
+        public ViewResult Glass()
         {
             return View();
         }
@@ -143,7 +143,7 @@ namespace BlogIt.Web.Controllers
         /// <summary>
         /// Shape view.
         /// </summary>
-        public ActionResult Shape()
+        public ViewResult Shape()
         {
             return View();
         }
