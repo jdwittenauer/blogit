@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
-using AutoMapper;
 using BlogIt.Domain.Entities;
 using BlogIt.Domain.Interfaces;
 using BlogIt.Web.Controllers.Shared;
+using BlogIt.Web.Framework;
 using BlogIt.Web.Models;
 using BlogIt.Web.Models.DTO;
 
@@ -17,13 +17,15 @@ namespace BlogIt.Web.Controllers
     public class CommentController : BaseController
     {
         private ICommentRepository repository;
+        private IMappingService mappingService;
 
         /// <summary>
         /// Overrides the default constructor.  Uses dependency injection to instantiate repositories.
         /// </summary>
-        public CommentController(ICommentRepository repository)
+        public CommentController(ICommentRepository repository, IMappingService mappingService)
         {
             this.repository = repository;
+            this.mappingService = mappingService;
         }
 
         /// <summary>
@@ -33,7 +35,7 @@ namespace BlogIt.Web.Controllers
         {
             var model = new CommentViewModel
             {
-                Comments = Mapper.Map<List<Comment>, List<CommentDTO>>(repository.GetByAuthor(authorID))
+                Comments = mappingService.Map<List<Comment>, List<CommentDTO>>(repository.GetByAuthor(authorID))
             };
 
             return View(model);

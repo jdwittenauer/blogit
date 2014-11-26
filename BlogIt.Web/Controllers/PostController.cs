@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
-using AutoMapper;
 using BlogIt.Domain.Entities;
 using BlogIt.Domain.Interfaces;
 using BlogIt.Web.Controllers.Shared;
+using BlogIt.Web.Framework;
 using BlogIt.Web.Models;
 using BlogIt.Web.Models.DTO;
 
@@ -17,13 +17,15 @@ namespace BlogIt.Web.Controllers
     public class PostController : BaseController
     {
         private IPostRepository repository;
+        private IMappingService mappingService;
 
         /// <summary>
         /// Overrides the default constructor.  Uses dependency injection to instantiate repositories.
         /// </summary>
-        public PostController(IPostRepository repository)
+        public PostController(IPostRepository repository, IMappingService mappingService)
         {
             this.repository = repository;
+            this.mappingService = mappingService;
         }
 
         /// <summary>
@@ -33,7 +35,7 @@ namespace BlogIt.Web.Controllers
         {
             var model = new PostViewModel
             {
-                Posts = Mapper.Map<List<Post>, List<PostDTO>>(repository.GetByAuthor(authorID))
+                Posts = mappingService.Map<List<Post>, List<PostDTO>>(repository.GetByAuthor(authorID))
             };
 
             return View(model);

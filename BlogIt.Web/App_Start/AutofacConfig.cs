@@ -8,6 +8,7 @@ using BlogIt.Domain.Interfaces;
 using BlogIt.Infrastructure.Framework;
 using BlogIt.Infrastructure.Repositories;
 using BlogIt.Web.Filters;
+using BlogIt.Web.Framework;
 using BlogIt.Web.Models.Shared;
 
 namespace BlogIt.Web
@@ -32,6 +33,8 @@ namespace BlogIt.Web
                 .As<ILogRepository>().UsingConstructor(typeof(BlogItContext));
             builder.RegisterType<EFPostRepository>()
                 .As<IPostRepository>().UsingConstructor(typeof(BlogItContext));
+
+            builder.RegisterType<MappingService>().As<IMappingService>();
 
             builder.RegisterControllers(Assembly.GetExecutingAssembly());
             builder.RegisterApiControllers(Assembly.GetExecutingAssembly());

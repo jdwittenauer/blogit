@@ -1,0 +1,13 @@
+﻿{
+    "Framework": "jasmine",
+    "RootReferencePathMode": "SettingsFileDirectory",
+    "EnableCodeCoverage": "false",
+    "References": [
+        { "Path": "Scripts/jquery-2.1.1.min.js" },
+        { "Path": "Scripts/jasmine" },
+        { "Path": "Scripts/app" }
+    ],
+    "Tests": [
+        { "Path": "Scripts/tests" }
+    ]
+}

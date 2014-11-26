@@ -1,9 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Globalization;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
@@ -11,6 +8,7 @@ using Moq;
 using Xunit;
 using BlogIt.Domain.Entities;
 using BlogIt.Domain.Interfaces;
+using BlogIt.Web.Framework;
 
 namespace BlogIt.Tests.Utilities
 {
@@ -94,15 +92,66 @@ namespace BlogIt.Tests.Utilities
         }
 
         /// <summary>
-        /// Creates a mock repository of type T for simulating the data access layer.
+        /// Creates a mock mapping service used for simulating object mapping.
         /// </summary>
-        /// <typeparam name="T">Repository type</typeparam>
-        /// <returns>Repository object</returns>
-        public static IRepository<T> MockRepository<T>() where T : Entity, new()
+        /// <typeparam name="TSrc">Source type</typeparam>
+        /// <typeparam name="TDest">Destination type</typeparam>
+        /// <returns>Mapping service object</returns>
+        public static IMappingService MockMappingService<TSrc, TDest>() where TDest : class, new()
         {
-            var mockRepository = new Mock<IRepository<T>>();
-            mockRepository.Setup(x => x.Get(It.IsAny<Guid>())).Returns(new T());
-            return mockRepository.Object;
+            var mockMappingService = new Mock<IMappingService>();
+            mockMappingService.Setup(m => m.Map<TSrc, TDest>(It.IsAny<TSrc>())).Returns(new TDest());
+            return mockMappingService.Object;
+        }
+
+        /// <summary>
+        /// Creates a mock repository of authors for simulating the data access layer.
+        /// </summary>
+        /// <returns>Repository object</returns>
+        public static IAuthorRepository MockAuthorRepository()
+        {
+            var mockAuthorRepository = new Mock<IAuthorRepository>();
+            mockAuthorRepository.Setup(x => x.Get(It.IsAny<Guid>())).Returns(new Author());
+            return mockAuthorRepository.Object;
+        }
+
+        /// <summary>
+        /// Creates a mock repository of blogs for simulating the data access layer.
+        /// </summary>
+        /// <returns>Repository object</returns>
+        public static IBlogRepository MockBlogRepository()
+        {
+            var mockBlogRepository = new Mock<IBlogRepository>();
+            mockBlogRepository.Setup(x => x.Get(It.IsAny<Guid>())).Returns(
+                new Blog
+                {
+                    Posts = new List<Post>()
+                });
+            return mockBlogRepository.Object;
+        }
+
+        /// <summary>
+        /// Creates a mock repository of comments for simulating the data access layer.
+        /// </summary>
+        /// <returns>Repository object</returns>
+        public static ICommentRepository MockCommentRepository()
+        {
+            var mockCommentRepository = new Mock<ICommentRepository>();
+            mockCommentRepository.Setup(x => x.Get(It.IsAny<Guid>())).Returns(new Comment());
+            mockCommentRepository.Setup(x => x.GetByAuthor(It.IsAny<Guid>())).Returns(new List<Comment>());
+            return mockCommentRepository.Object;
+        }
+
+        /// <summary>
+        /// Creates a mock repository of posts for simulating the data access layer.
+        /// </summary>
+        /// <returns>Repository object</returns>
+        public static IPostRepository MockPostRepository()
+        {
+            var mockPostRepository = new Mock<IPostRepository>();
+            mockPostRepository.Setup(x => x.Get(It.IsAny<Guid>())).Returns(new Post());
+            mockPostRepository.Setup(x => x.GetByAuthor(It.IsAny<Guid>())).Returns(new List<Post>());
+            return mockPostRepository.Object;
         }
     }
 }

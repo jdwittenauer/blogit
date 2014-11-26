@@ -1,8 +1,3 @@
-/// <reference path="player.js" />
-/// <reference path="playerspec.js" />
-/// <reference path="song.js" />
-/// <reference path="spechelper.js" />
-
 describe("Player", function () {
   var player;
   var song;
