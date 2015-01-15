@@ -104,11 +104,13 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Microsoft.AspNet.Identity.Owin.2.1.0\lib\net45\Microsoft.AspNet.Identity.Owin.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.AspNet.SignalR.Core">
-      <HintPath>..\packages\Microsoft.AspNet.SignalR.Core.2.1.2\lib\net45\Microsoft.AspNet.SignalR.Core.dll</HintPath>
+    <Reference Include="Microsoft.AspNet.SignalR.Core, Version=2.2.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.SignalR.Core.2.2.0\lib\net45\Microsoft.AspNet.SignalR.Core.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.AspNet.SignalR.SystemWeb">
-      <HintPath>..\packages\Microsoft.AspNet.SignalR.SystemWeb.2.1.2\lib\net45\Microsoft.AspNet.SignalR.SystemWeb.dll</HintPath>
+    <Reference Include="Microsoft.AspNet.SignalR.SystemWeb, Version=2.2.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.SignalR.SystemWeb.2.2.0\lib\net45\Microsoft.AspNet.SignalR.SystemWeb.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Microsoft.Data.Edm, Version=5.6.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
@@ -141,7 +143,7 @@
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Newtonsoft.Json.6.0.7\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <HintPath>..\packages\Newtonsoft.Json.6.0.8\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -334,7 +336,6 @@
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
-    <Content Include="LICENSE.txt" />
     <Content Include="Scripts\app\cubehelix.min.js" />
     <Content Include="Scripts\app\generate-prims.js" />
     <Content Include="Scripts\app\generate-random-traversal.js" />
@@ -345,8 +346,6 @@
     <Content Include="Scripts\app\shape.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
-    <Content Include="Scripts\d3.js" />
-    <Content Include="Scripts\d3.min.js" />
     <Content Include="Content\app\data\letters.tsv" />
     <Content Include="Content\app\data\flare.json" />
     <Content Include="chutzpah.json" />
@@ -355,7 +354,9 @@
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="Content\bootstrap-theme.css.map" />
     <Content Include="Content\bootstrap.css.map" />
-    <None Include="Scripts\jquery-2.1.1.intellisense.js" />
+    <Content Include="Scripts\d3\d3.js" />
+    <Content Include="Scripts\d3\d3.min.js" />
+    <Content Include="Scripts\d3\LICENSE" />
     <Content Include="Scripts\holder.js" />
     <Content Include="Scripts\jasmine-samples\Player.js" />
     <Content Include="Scripts\jasmine-samples\PlayerSpec.js" />
@@ -366,10 +367,11 @@
     <Content Include="Scripts\jasmine\jasmine-html.js" />
     <Content Include="Scripts\jasmine\jasmine-jquery.js" />
     <Content Include="Scripts\jasmine\jasmine.js" />
-    <Content Include="Scripts\jquery-2.1.1.js" />
-    <Content Include="Scripts\jquery-2.1.1.min.js" />
-    <Content Include="Scripts\jquery.signalR-2.1.2.js" />
-    <Content Include="Scripts\jquery.signalR-2.1.2.min.js" />
+    <None Include="Scripts\jquery-2.1.3.intellisense.js" />
+    <Content Include="Scripts\jquery-2.1.3.js" />
+    <Content Include="Scripts\jquery-2.1.3.min.js" />
+    <Content Include="Scripts\jquery.signalR-2.2.0.js" />
+    <Content Include="Scripts\jquery.signalR-2.2.0.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
     <Content Include="Scripts\npm.js" />
     <Content Include="Scripts\rx.aggregates.js" />
@@ -389,6 +391,8 @@
     <Content Include="Scripts\rx.js" />
     <Content Include="Scripts\rx.lite.compat.js" />
     <Content Include="Scripts\rx.lite.compat.min.js" />
+    <Content Include="Scripts\rx.lite.extras.js" />
+    <Content Include="Scripts\rx.lite.extras.min.js" />
     <Content Include="Scripts\rx.lite.js" />
     <Content Include="Scripts\rx.lite.min.js" />
     <Content Include="Scripts\rx.min.js" />
@@ -432,7 +436,6 @@
     <Content Include="Views\Post\New.cshtml" />
     <Content Include="Views\Shared\NewComment.cshtml" />
     <Content Include="Views\Home\Login.cshtml" />
-    <Content Include="Scripts\jquery-2.1.1.min.map" />
     <Content Include="Views\Home\Grid.cshtml" />
     <Content Include="Views\Home\Glass.cshtml" />
     <Content Include="Views\Home\Shape.cshtml" />
@@ -459,6 +462,7 @@
     <Content Include="Views\Home\D3.cshtml" />
     <Content Include="Views\Home\Reactive.cshtml" />
     <Content Include="Views\Jasmine\SpecRunner.cshtml" />
+    <Content Include="Scripts\jquery-2.1.3.min.map" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
